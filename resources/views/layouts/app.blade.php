@@ -11,10 +11,10 @@
     </head>
     <body class="min-h-screen font-sans antialiased">
         <div class="h-full w-full bg-cover" style="background-image: url({{url('/a/images/background.jpg')}})">
-        <div class="bg-green-100/50">
+        <div class="">
         
         {{-- NAVBAR mobile only --}}
-        <x-mary-nav sticky class="lg:hidden">
+        <x-mary-nav sticky class="lg:hidden bg-transparent backdrop-blur-3xl">
             <x-slot:brand>
                 <div class="ml-5 pt-5">App</div>
             </x-slot:brand>
@@ -28,10 +28,15 @@
         {{-- MAIN --}}
         <x-mary-main full-width>
             {{-- SIDEBAR --}}
-            <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
-     
+            <x-slot:sidebar drawer="main-drawer" class="bg-base-100">
+                <div class="h-full w-full bg-cover" style="background-image: url({{url('/a/images/background.jpg')}})">
                 {{-- BRAND --}}
-                <div class="ml-5 pt-5">App</div>
+                <div class="ml-5 pt-5">
+                    <div class="flex items-center gap-4">
+                        <img class="h-12" src="{{url('/a/images/logo.png')}}">
+                        <h1 class="text-xl font-bold text-green-950">Caapedia</h1>
+                    </div>
+                </div>
      
                 {{-- MENU --}}
                 <x-mary-menu activate-by-route>
@@ -55,12 +60,20 @@
                         <x-mary-menu-item title="Archives" icon="o-archive-box" link="####" />
                     </x-mary-menu-sub>
                 </x-mary-menu>
+                </div>
             </x-slot:sidebar>
      
             {{-- The `$slot` goes here --}}
             <x-slot:content>
                 {{ $slot }}
             </x-slot:content>
+            <x-slot:footer class="hidden lg:block">
+                <div class="fixed bottom-0 w-full backdrop-blur-3xl border-t border-gray-300 shadow-lg">
+                    <div class="container mx-auto px-4 flex flex-row justify-between items-center py-4 space-y-4 md:space-y-0">
+                        <x-mary-icon name="o-check" class="w-9 h-9 text-green-500 text-2xl" label="Messages" />
+                    </div>
+                </div> 
+            </x-slot:footer>
         </x-mary-main>
     </div>
     </div>

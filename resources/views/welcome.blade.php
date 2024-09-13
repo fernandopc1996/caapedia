@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{{url('favicon.ico')}}" />
 
         <title>Caapedia</title>
         <!-- Fonts -->
@@ -13,7 +14,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="h-screen bg-cover bg-center flex justify-center items-center pb-32" style="background-image: url({{url('/a/images/background.jpg')}})">
+        <div class="h-screen bg-cover bg-center flex justify-center items-center pb-72 sm:pb-32" style="background-image: url({{url('/a/images/background.jpg')}})">
             <div class="flex flex-col items-center space-y-8">
                 <!-- Logo -->
                 <div>
@@ -23,20 +24,19 @@
                 <!-- Botões -->
                 <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
                     <!-- Botão Entrar como Convidado -->
-                    <a href="{{route('dashboard')}}{{-- route('guest.login') --}}" class="flex items-center justify-center w-64 h-16 bg-gray-800 text-white font-bold rounded-lg shadow-lg hover:bg-gray-700 transition-all">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4V16m0 0v4m0-4H8m4 0h4m-4-8a4 4 0 1 0 0 8m0-8V2m0 8a4 4 0 1 1-4 4"></path>
-                        </svg>
-                        Entrar como Convidado
-                    </a>
+                    <x-mary-button 
+                        label="Entrar como Convidado" 
+                        icon="fas.user-slash" 
+                        link="{{route('dashboard')}}{{-- route('guest.login') --}}" 
+                        no-wire-navigate 
+                        class="btn-neutral btn-lg w-72" />
 
-                    <!-- Botão Entrar com Google -->
-                    <a href="{{-- route('google.login') --}}" class="flex items-center justify-center w-64 h-16 bg-blue-600 text-white font-bold rounded-lg shadow-lg hover:bg-blue-500 transition-all">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12h4v2.06m-1.65-6.14A9.945 9.945 0 0 1 22 12a9.945 9.945 0 0 1-1.65 6.08M12 16v4m-8-8v-2a9.985 9.985 0 0 1 1.65-6.08"></path>
-                        </svg>
-                        Entrar com Google
-                    </a>
+                    <x-mary-button 
+                        label="Entrar com Google" 
+                        icon="fab.google" 
+                        link="{{-- route('google.login') --}}" 
+                        no-wire-navigate 
+                        class="btn-info  btn-lg w-72" />
                 </div>
             </div>
         </div>
@@ -53,8 +53,9 @@
         
                 <!-- Logos -->
                 <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
-                    <img class="h-10" src="{{url('/a/images/univasf.png')}}" alt="Univasf">
-                    <img class="h-16" src="{{url('/a/images/ppgdides.png')}}" alt="PPGDiDeS">
+                    <img class="h-8 contrast-200" src="{{url('/a/images/univasf.png')}}" alt="Univasf">
+                    <img class="h-10 contrast-200" src="{{url('/a/images/ppgdides.png')}}" alt="PPGDiDeS">
+                    <img class="h-10 contrast-200" src="{{url('/a/images/pev.png')}}" alt="PEV">
                 </div>
             </div>
         </footer>        
