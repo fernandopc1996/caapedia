@@ -2,10 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\UserHasPlayer;
+
+use App\Http\Controllers\Auth\GuestUserController;
+
+use App\Livewire\Game\Player\CreatePlayer;
+
+
+
 Route::view('/', 'welcome');
 
+Route::prefix('guest')->controller(GuestUserController::class)->group(function () {
+    Route::get('/create', 'create')->name('guest.create');
+});
+
+Route::middleware(['auth', UserHasPlayer::class])->group(function () {
+    Route::prefix('player')->group(function () {
+        Route::get('/create', CreatePlayer::class)->name('player.create');
+    });
+});
+
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', UserHasPlayer::class])
     ->name('dashboard');
 
 Route::view('profile', 'profile')

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{auth()->user()->theme ?? 'light'}}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="caapedia">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,9 +114,12 @@
                             <a href="#" class="hover:text-green-100">
                                 <x-mary-icon name="fas.pause" label="Pausar"/>
                             </a>
-                            
-                            <x-mary-icon name="fas.angle-right" label="Velocidade 1" />
-                            <x-mary-icon name="fas.angle-double-right" label="Velocidade 2" />
+                            <a href="#" class="hover:text-green-100">
+                                <x-mary-icon name="fas.angle-right" label="Velocidade 1" />
+                            </a>
+                            <a href="#" class="hover:text-green-100">
+                                <x-mary-icon name="fas.angle-double-right" label="Velocidade 2" />
+                            </a>
                         </div>                      
                         
                         <div>

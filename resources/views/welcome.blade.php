@@ -24,19 +24,22 @@
                 <!-- Botões -->
                 <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
                     <!-- Botão Entrar como Convidado -->
-                    <x-mary-button 
-                        label="Entrar como Convidado" 
-                        icon="fas.user-slash" 
-                        link="{{route('dashboard')}}{{-- route('guest.login') --}}" 
-                        no-wire-navigate 
-                        class="btn-neutral btn-lg w-72" />
-
+                    
                     <x-mary-button 
                         label="Entrar com Google" 
                         icon="fab.google" 
                         link="{{-- route('google.login') --}}" 
                         no-wire-navigate 
                         class="btn-info  btn-lg w-72" />
+
+                    <x-mary-button 
+                        label="Entrar como Convidado" 
+                        icon="fas.user-slash" 
+                        link="{{route('guest.create')}}" 
+                        no-wire-navigate 
+                        class="btn-neutral btn-lg w-72" />
+
+                    
                 </div>
             </div>
         </div>
