@@ -21,16 +21,16 @@
                     <div class="flex flex-col">
                     <h1 class="text-xl font-bold text-green-950">Caapedia</h1>
                     <h1 class="text-lg font-bold text-green-950">
-                        <x-timers.timer startTime="{{date('Y-m-01 H:i:00')}}" mode="1"/>
+                        <x-timers.timer startTime="{{Session::get('player')['last_datetime']}}" mode="{{Session::get('player')['mode_time']}}"/>
                     </h1>
                     <div class="flex gap-4">
-                        <a href="#" class="hover:text-green-100 ">
+                        <a href="{{route('timer.mode', 0)}}" class="hover:text-green-100 ">
                             <x-mary-icon name="fas.pause" label="Pausar"/>
                         </a>
-                        <a href="#" class="hover:text-green-100 ">
+                        <a href="{{route('timer.mode', 1)}}" class="hover:text-green-100">
                             <x-mary-icon name="fas.angle-right" label="Vel. 1" />
                         </a>
-                        <a href="#" class="hover:text-green-100 ">
+                        <a href="{{route('timer.mode', 2)}}" class="hover:text-green-100 ">
                             <x-mary-icon name="fas.angle-double-right" label="Vel. 2" />
                         </a>
                     </div>   
@@ -105,25 +105,26 @@
      
             {{-- The `$slot` goes here --}}
             <x-slot:content>
-                {{ $slot }}
+                {{ $slot }}  
 
                 <div class="hidden lg:flex group fixed w-100 hover:w-auto bottom-5 right-5 backdrop-blur-3xl border-t border-gray-800 shadow-lg">
                     <div class="flex flex-row container justify-between items-center gap-12 p-4">
 
                         <div class="hidden group-hover:flex gap-4">
-                            <a href="#" class="hover:text-green-100">
+                            <a href="{{route('timer.mode', 0)}}" class="hover:text-green-100">
                                 <x-mary-icon name="fas.pause" label="Pausar"/>
                             </a>
-                            <a href="#" class="hover:text-green-100">
+                            <a href="{{route('timer.mode', 1)}}" class="hover:text-green-100">
                                 <x-mary-icon name="fas.angle-right" label="Velocidade 1" />
                             </a>
-                            <a href="#" class="hover:text-green-100">
+                            <a href="{{route('timer.mode', 2)}}" class="hover:text-green-100">
                                 <x-mary-icon name="fas.angle-double-right" label="Velocidade 2" />
                             </a>
                         </div>                      
-                        
+                           
                         <div>
-                            <x-timers.timer startTime="{{date('Y-m-01 H:i:00')}}" mode="1"/>
+                            
+                            <x-timers.timer startTime="{{Session::get('player')['last_datetime']}}" mode="{{Session::get('player')['mode_time']}}"/>
                         </div>
                     </div>
                 </div> 

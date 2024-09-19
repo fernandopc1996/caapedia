@@ -26,7 +26,10 @@ class UserHasPlayer
         if ($user->players()->count() === 0 and !Route::is('player.create')) {
             return redirect()->route('player.create');
         }
-
+        if ($request->session()->missing('player')) {
+            $request->session()->put('player', $user->players()->first());
+        }
+       
         return $next($request);
     }
 
