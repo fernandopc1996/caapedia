@@ -1,16 +1,28 @@
 <div>
     <div x-data="appFooterComponent('{{ $startTime }}', {{ $mode }})">
         <div>
-            <span x-text="getTime()"></span>
+            <span x-text="getTime()" class="select-none"></span>
         </div>
     </div>
     <script>
         function appFooterComponent(startTime, mode) {
             return {
                 time: new Date(startTime),
-                mode: mode, // Recebe a opção do PHP
+                mode: mode, 
                 interval: null,
                 init() {
+                    this.startTimer();
+                    // Escuta o evento de atualização de modo
+                    window.addEventListener('timer-mode-updated', (event) => {
+                        const { startTime, mode } = event.detail;
+                        this.time = new Date(startTime); 
+                        this.mode = mode; 
+                        this.startTimer(); 
+                    });
+                },
+                startTimer() {
+                    clearInterval(this.interval);
+
                     if (this.mode === 0) {
                         // Pausado, sem atualização do tempo
                         return;
@@ -29,9 +41,10 @@
                         intervalTime = 1000; 
                     }
 
+                    // Inicia o intervalo de atualização do tempo
                     this.interval = setInterval(() => {
                         this.time = new Date(this.time.getTime() + increment);
-                    }, intervalTime); // Atualiza com base no intervalo definido
+                    }, intervalTime); 
                 },
                 getTime() {
                     if (this.mode === 1) {
@@ -48,7 +61,7 @@
                     return moment(date).locale('{{ str_replace('_', '-', app()->getLocale()) }}').format('DD MMMM, YYYY HH:mm:ss');
                 },
                 cleanup() {
-                    clearInterval(this.interval); // Limpa o intervalo ao destruir o componente
+                    clearInterval(this.interval); 
                 }
             }
         }

@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- REMOVER EM PRODUÇÃO --}}
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <!-- Scripts -->
@@ -20,20 +22,7 @@
                     
                     <div class="flex flex-col">
                     <h1 class="text-xl font-bold text-green-950">Caapedia</h1>
-                    <h1 class="text-lg font-bold text-green-950">
-                        <x-timers.timer startTime="{{Session::get('player')['last_datetime']}}" mode="{{Session::get('player')['mode_time']}}"/>
-                    </h1>
-                    <div class="flex gap-4">
-                        <a href="{{route('timer.mode', 0)}}" class="hover:text-green-100 ">
-                            <x-mary-icon name="fas.pause" label="Pausar"/>
-                        </a>
-                        <a href="{{route('timer.mode', 1)}}" class="hover:text-green-100">
-                            <x-mary-icon name="fas.angle-right" label="Vel. 1" />
-                        </a>
-                        <a href="{{route('timer.mode', 2)}}" class="hover:text-green-100 ">
-                            <x-mary-icon name="fas.angle-double-right" label="Vel. 2" />
-                        </a>
-                    </div>   
+                      
                     </div>
                 </div>
             </x-slot:brand>
@@ -107,27 +96,7 @@
             <x-slot:content>
                 {{ $slot }}  
 
-                <div class="hidden lg:flex group fixed w-100 hover:w-auto bottom-5 right-5 backdrop-blur-3xl border-t border-gray-800 shadow-lg">
-                    <div class="flex flex-row container justify-between items-center gap-12 p-4">
-
-                        <div class="hidden group-hover:flex gap-4">
-                            <a href="{{route('timer.mode', 0)}}" class="hover:text-green-100">
-                                <x-mary-icon name="fas.pause" label="Pausar"/>
-                            </a>
-                            <a href="{{route('timer.mode', 1)}}" class="hover:text-green-100">
-                                <x-mary-icon name="fas.angle-right" label="Velocidade 1" />
-                            </a>
-                            <a href="{{route('timer.mode', 2)}}" class="hover:text-green-100">
-                                <x-mary-icon name="fas.angle-double-right" label="Velocidade 2" />
-                            </a>
-                        </div>                      
-                           
-                        <div>
-                            
-                            <x-timers.timer startTime="{{Session::get('player')['last_datetime']}}" mode="{{Session::get('player')['mode_time']}}"/>
-                        </div>
-                    </div>
-                </div> 
+                <livewire:game.player.control-timer>
             </x-slot:content>
             
         </x-mary-main>

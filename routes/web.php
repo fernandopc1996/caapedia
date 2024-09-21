@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\{UserHasPlayer, CheckPlayerTime};
 
 use App\Http\Controllers\Auth\GuestUserController;
-use App\Http\Controllers\Game\Player\TimerController;
 
 use App\Livewire\Game\Player\{CreatePlayer};
 
@@ -25,10 +24,8 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
     Route::middleware([CheckPlayerTime::class])->group(function () {
         Route::view('dashboard', 'dashboard')->name('dashboard');
 
-        Route::prefix('timer')->controller(TimerController::class)->group(function () {
-            Route::get('/change/mode/{mode}', 'changeModeTimer')->name('timer.mode');
-        });
     });
+    
 });
 
 
