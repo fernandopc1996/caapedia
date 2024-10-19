@@ -68,8 +68,9 @@
                     </div>
     
                     <x-mary-menu-separator />
-
                     <div class="grid grid-cols-3 gap-4">
+                        <x-menu.button-row href="{{route('history.events')}}" wire:navigate 
+                                    icon="fas.book-open" title="História"/>
                         <x-menu.button-row href="{{route('people.manage')}}" wire:navigate 
                                     icon="fas.user-friends" title="Pessoas"/>
                         <x-menu.button-row href="{{route('production.manage')}}" wire:navigate 
@@ -78,9 +79,9 @@
                                     icon="fas.warehouse" title="Estoque"/>
                         <x-menu.button-row href="{{route('explore.manage')}}" wire:navigate
                                     icon="fas.leaf" title="Explorar"/>
-                        <x-menu.button-row href="{{route('people.manage')}}" wire:navigate 
-                                    icon="fas.newspaper" title="Notícias"/>
                         <x-menu.button-row href="{{route('news.newspaper')}}" wire:navigate 
+                                    icon="fas.newspaper" title="Notícias"/>
+                        <x-menu.button-row href="{{route('market.manage')}}" wire:navigate 
                                     icon="fas.cash-register" title="Comércio"/>
                         <x-menu.button-row href="{{route('finance.manage')}}" wire:navigate 
                                     icon="fas.piggy-bank" title="Finanças"/>
@@ -88,6 +89,7 @@
 
                     <x-mary-menu-separator />
 
+                    <x-mary-menu-item title="Ranking" icon="o-sparkles" link="{{route('profile')}}" />
                     <x-mary-menu-item title="Sua conta" icon="o-sparkles" link="{{route('profile')}}" />
                     <x-mary-menu-sub title="Settings" icon="o-cog-6-tooth">
                         <x-mary-menu-item title="Wifi" icon="o-wifi" link="####" />

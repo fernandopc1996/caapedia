@@ -14,6 +14,7 @@ use App\Livewire\Game\Market\{MarketManage};
 use App\Livewire\Game\People\{PeopleManage};
 use App\Livewire\Game\Production\{ProductionManage};
 use App\Livewire\Game\News\{Newspaper};
+use App\Livewire\Game\History\{EventsView};
 
 Route::view('/', 'welcome');
 
@@ -38,7 +39,7 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
         });
 
         Route::prefix('market')->group(function () {
-            Route::get('/manage', CreatePlayer::class)->name('market.manage');
+            Route::get('/manage', MarketManage::class)->name('market.manage');
         });
 
         Route::prefix('inventory')->group(function () {
@@ -55,6 +56,10 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
 
         Route::prefix('news')->group(function () {
             Route::get('/newspaper', Newspaper::class)->name('news.newspaper');
+        });
+
+        Route::prefix('history')->group(function () {
+            Route::get('/events', EventsView::class)->name('history.events');
         });
     });
     
