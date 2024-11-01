@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.mary-table-pagination span[aria-current="page"] > span {
+    @apply text-gray-800 border-black;
+    background-color: rgba(255,255,255, .3);
+}
+ 
+/* For dark mode*/
+.mary-table-pagination span[aria-disabled="true"] span {
+    @apply border-black;
+    background-color: rgba(255,255,255, .1);
+}
+ 
+/* For dark mode*/
+.mary-table-pagination button {
+    @apply text-gray-800 border-black;
+    background-color: transparent;
+}

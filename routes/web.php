@@ -16,6 +16,8 @@ use App\Livewire\Game\Production\{ProductionManage};
 use App\Livewire\Game\News\{Newspaper};
 use App\Livewire\Game\History\{EventsView};
 
+use App\Livewire\General\Person\{PersonIndexPage, PersonFormPage};
+
 Route::view('/', 'welcome');
 
 Route::prefix('guest')->controller(GuestUserController::class)->group(function () {
@@ -62,10 +64,16 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
             Route::get('/events', EventsView::class)->name('history.events');
         });
     });
-    
 });
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('general')->group(function () {
+        Route::prefix('person')->group(function () {
+            Route::get('/index', PersonIndexPage::class)->name('general.person.index');
+            Route::get('/form', PersonFormPage::class)->name('general.person.form');
+        });
+    });
+});   
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

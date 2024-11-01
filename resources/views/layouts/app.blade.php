@@ -89,11 +89,18 @@
 
                     <x-mary-menu-separator />
 
-                    <x-mary-menu-item title="Ranking" icon="o-sparkles" link="{{route('profile')}}" />
-                    <x-mary-menu-item title="Sua conta" icon="o-sparkles" link="{{route('profile')}}" />
-                    <x-mary-menu-sub title="Settings" icon="o-cog-6-tooth">
-                        <x-mary-menu-item title="Wifi" icon="o-wifi" link="####" />
-                        <x-mary-menu-item title="Archives" icon="o-archive-box" link="####" />
+                    <x-mary-menu-item title="Ranking" icon="fas.ranking-star"/>
+                    <x-mary-menu-item title="Sua conta" icon="fas.user" link="{{route('profile')}}" />
+                    <x-mary-menu-sub title="Configurações" icon="o-cog-6-tooth">
+                        <x-mary-menu-item title="Contas" icon="fas.users-gear" link="####" />
+                        <x-mary-menu-sub title="Cadastros" icon="fas.square-plus">
+                            <x-mary-menu-item title="Personagens" icon="fas.person" link="{{route('general.person.index')}}" />
+                            <x-mary-menu-item title="Categorias" icon="fas.tags" link="####" />
+                            <x-mary-menu-item title="Produtos" icon="fas.box" link="####" />
+                            <x-mary-menu-item title="Flora" icon="fas.leaf" link="####" />
+                            <x-mary-menu-item title="Fauna" icon="fas.kiwi-bird" link="####" />
+                            <x-mary-menu-item title="Eventos" icon="fas.calendar-alt" link="####" />
+                        </x-mary-menu-sub>
                     </x-mary-menu-sub>
                 </x-mary-menu>
                 </div>

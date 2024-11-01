@@ -27,7 +27,7 @@ export default {
         themes: [
           {
             caapedia: {
-              "primary": "#3b82f6",
+              "primary": "#021201",
               "secondary": "#f6d860",
               "accent": "#37cdbe",
               "neutral": "#3d4451",
@@ -44,13 +44,23 @@ export default {
               "--tab-radius": "0.5rem", // border radius of tabs
 
               ".input": {
-                    "background-color": "rgba(255,255,255, .1)",
-                    "border-color": "#000000",
-                },
-                ".input:focus": {
-                    "border-color": "#000000",
-                    "outline-color": "#000000",
-                },
+                  "background-color": "transparent",
+                  "border-color": "#000000",
+              },
+              ".input:focus": {
+                  "border-color": "#000000",
+                  "outline-color": "#000000",
+              },
+              ".input::placeholder": {
+                  "color": "rgba(0,0,0, 0.8)",
+              },
+              ".select": {
+                  "background-color": "rgba(255,255,255, .1)",
+                  "border-color": "#000000",
+              },
+              "table, td, th, tr": {
+                  "border-bottom": "1px solid #000;",
+              }
             },
           },
         ],
