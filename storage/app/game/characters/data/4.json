@@ -1,0 +1,14 @@
+{
+    "id": 4,
+    "name": "Damião",
+    "sex": 1,
+    "start_age": 15,
+
+    
+    "front_square": "c4/04_fs.png",
+    "side_square": null,
+    "front_partial": "c4/04_fp.png",
+    "side_partial": null,
+    "front_full": "c4/04_ff.png",
+    "side_full": null
+}

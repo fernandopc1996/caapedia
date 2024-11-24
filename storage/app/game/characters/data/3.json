@@ -1,0 +1,14 @@
+{
+    "id": 3,
+    "name": "Aparecida",
+    "sex": 2,
+    "start_age": 15,
+
+    
+    "front_square": "c3/03_fs.png",
+    "side_square": null,
+    "front_partial": "c3/03_fp.png",
+    "side_partial": null,
+    "front_full": "c3/03_ff.png",
+    "side_full": null
+}

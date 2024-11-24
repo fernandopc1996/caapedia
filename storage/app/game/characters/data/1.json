@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "name": "Pedro",
+    "sex": 1,
+    "start_age": 30,
+
+    
+    "front_square": "c1/01_fs.png",
+    "side_square": null,
+    "front_partial": "c1/01_fp.png",
+    "side_partial": null,
+    "front_full": "c1/01_ff.png",
+    "side_full": null
+}

@@ -1,0 +1,14 @@
+{
+    "id": 2,
+    "name": "Josefa",
+    "sex": 2,
+    "start_age": 30,
+
+    
+    "front_square": "c2/02_fs.png",
+    "side_square": null,
+    "front_partial": "c2/02_fp.png",
+    "side_partial": null,
+    "front_full": "c2/02_ff.png",
+    "side_full": null
+}
