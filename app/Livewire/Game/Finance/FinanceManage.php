@@ -8,6 +8,10 @@ use Livewire\Component;
 class FinanceManage extends Component
 {
     #[Title('Finanças')] 
+    public function mount()
+    {
+        sleep(1);
+    }
 
     public function render()
     {

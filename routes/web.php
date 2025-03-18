@@ -64,6 +64,33 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
             Route::get('/events', EventsView::class)->name('history.events');
         });
     });
+
+    Route::get('/imagens/{path}', function ($path) {
+        if (Str::contains($path, '..')) {
+            abort(404, 'Imagem não encontrada');
+            //abort(403, 'Acesso proibido');
+        }
+
+        $fullPath = storage_path('app/'  . $path);
+    
+        if (!file_exists($fullPath)) {
+            abort(404, 'Imagem não encontrada');
+        }
+        
+        $mimeType = mime_content_type($fullPath);
+        $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp', 'image/tiff'];
+        if (!in_array($mimeType, $allowedMimeTypes)) {
+            abort(404, 'Imagem não encontrada');
+            //abort(403, 'Tipo de arquivo não permitido');
+        }
+        $file = file_get_contents($fullPath);
+    
+        return Response::make($file, 200, [
+            'Content-Type' => $mimeType,
+            'Cache-Control' => 'public, max-age=31536000', // Cache por 1 ano
+            'Expires' => now()->addYear()->toRfc1123String(),
+        ]);
+    })->where('path', '.*'); 
 });
 
 Route::middleware(['auth'])->group(function () {
