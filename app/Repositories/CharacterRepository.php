@@ -45,7 +45,7 @@ class CharacterRepository
 
     protected function getImageUrl(?string $imagePath): ?string
     {
-        return $imagePath ? url("imagens/{$this->imagePath}/$imagePath") : null;
+        return $imagePath ? url("i/{$this->imagePath}/$imagePath") : null;
     }
 
     public function all(): Collection
