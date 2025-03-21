@@ -6,10 +6,10 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Repositories\ProductionRepository;
 
-class ProductionManage extends Component
-{
-    #[Title('Produção')] 
+class ProductionCreate extends Component{
+    #[Title('Construir')] 
     public $productions;
+    public $id = null;
 
     public function mount(ProductionRepository $productionRepository) {
         $productionRepository->clearCache();
@@ -17,8 +17,7 @@ class ProductionManage extends Component
         //dd($this->productions, $productionRepository->search(["name" => "Gali"]));
     }
 
-    public function render()
-    {
-        return view('livewire.game.production.production-manage');
+    public function render(){
+        return view('livewire.game.production.production-create');
     }
 }

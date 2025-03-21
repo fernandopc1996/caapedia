@@ -1,0 +1,28 @@
+{
+    "id": 1,
+    "name": "Criação de galinhas",
+    "description": "",
+    "build":{
+        "time": 18,
+        "cost": -200,
+        "area": 0.0004,
+        "water": -0.004,
+        "degration": -0.0004,
+        "products":[]
+    },
+    "production":{
+        "time": 24,
+        "cost": -20,
+        "area": 0,
+        "water": -0.0001,
+        "degration": -0.00004,
+        "batch": 2,
+        "products":[
+            {"id": 3, "qnt": [7, 10], "lottery": 70},
+            {"id": 4, "qnt": [1, 2], "lottery": 30}
+        ]
+    },
+    
+    
+    "images": ["p1/01.jpg"]
+}

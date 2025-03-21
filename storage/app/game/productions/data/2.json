@@ -1,0 +1,29 @@
+{
+    "id": 2,
+    "name": "Galinheiro",
+    "description": "",
+    "build":{
+        "time": 240,
+        "cost": -2000,
+        "area": 0.0016,
+        "water": -0.040,
+        "degration": -0.0004,
+        "products":[]
+    },
+    "production":{
+        "time": 24,
+        "cost": -100,
+        "area": 0,
+        "water": -0.004,
+        "degration": -0.00004,
+        "batch": 2,
+        "products":[
+            {"id": 1, "qnt": [1, 2], "lottery": 5},
+            {"id": 2, "qnt": [1, 2], "lottery": 5},
+            {"id": 3, "qnt": [17, 30], "lottery": 50},
+            {"id": 4, "qnt": [5, 12], "lottery": 40}
+        ]
+    },
+    
+    "images": ["p2/02.jpg"]
+}
