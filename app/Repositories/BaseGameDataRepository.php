@@ -11,7 +11,7 @@ abstract class BaseGameDataRepository
     protected string $basePath;
     protected string $imagePath;
     protected string $cacheKey;
-    protected int $cacheDuration = 3600; 
+    protected int $cacheDuration = 10;//3600; 
     protected Collection $items;
 
     public function __construct()

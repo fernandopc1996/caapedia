@@ -1,7 +1,8 @@
 {
     "id": 2,
     "name": "Galinheiro",
-    "description": "",
+    "description": "O manejo de galinhas envolve a alimentação, a limpeza, a biosseguridade, o bem-estar e a criação de um ambiente adequado",
+    "source": "https://ovosite.com.br/nordeste-aumenta-producao-de-ovos-pernambuco-e-ceara-se-destacam-no-ranking-nacional",
     "build":{
         "time": 240,
         "cost": -2000,

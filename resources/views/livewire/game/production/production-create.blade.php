@@ -1,5 +1,8 @@
 <div>
     <x-layout.header title="Construir" />
+    @if($coid)
+    <livewire:game.production.production-item :coid="$coid"/>
+    @else
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <x-buttons.big>
             <div class="flex-none p-4">
@@ -10,7 +13,7 @@
             </div>
         </x-buttons.big>
         @foreach ($productions as $production)
-        <x-buttons.big>
+        <x-buttons.big  wire:click="selectProduction({{ $production->id }})">
             <div class="flex-none p-4">
                 <img src="{{ $production->images[0] }}" alt="{{ $production->name }}"
                                 class="w-20 object-cover">
@@ -21,4 +24,5 @@
         </x-buttons.big> 
         @endforeach
     </div>
+    @endif
 </div>

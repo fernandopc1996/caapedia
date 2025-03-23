@@ -11,7 +11,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen font-sans antialiased bg-cover" style="background-image: url({{url('/a/images/background.jpg')}})">
+    <body class="min-h-screen font-sans antialiased bg-cover" style="background-image: url({{url('/a/images/texture.jpg')}})">
         <div class="">
         
         {{-- NAVBAR mobile only --}}
@@ -111,6 +111,7 @@
                 
                 {{ $slot }}  
 
+                <div class="mt-12"></div>
                 @session('player')
                     <livewire:game.player.control-timer>
                 @endsession

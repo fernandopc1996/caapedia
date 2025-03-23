@@ -10,6 +10,11 @@ class ProductionCreate extends Component{
     #[Title('Construir')] 
     public $productions;
     public $id = null;
+    public $coid = null;
+
+    public function selectProduction($coid){
+        $this->coid = $coid;
+    }
 
     public function mount(ProductionRepository $productionRepository) {
         $productionRepository->clearCache();
