@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
             $table->foreignId('player_production_id')->constrained()->nullable();
+            $table->foreignId('player_character_id')->constrained();
+            $table->boolean('completed')->default(0);
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
             $table->decimal('area', total: 12, places: 4);

@@ -10,6 +10,8 @@ class PlayerAction extends Model
     protected $fillable = [
         'player_id',
         'player_production_id',
+        'player_character_id',
+        'completed',
         'start',
         'end',
         'area',
@@ -18,17 +20,16 @@ class PlayerAction extends Model
         'amount',
     ];
 
-    /**
-     * Get the player that owns the action.
-     */
     public function player(): BelongsTo
     {
         return $this->belongsTo(Player::class);
     }
 
-    /**
-     * Get the related player production.
-     */
+    public function playerCharacter(): BelongsTo
+    {
+        return $this->belongsTo(PlayerCharacter::class);
+    }
+
     public function playerProduction(): BelongsTo
     {
         return $this->belongsTo(PlayerProduction::class);

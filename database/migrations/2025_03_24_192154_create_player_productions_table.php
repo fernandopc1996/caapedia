@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedInteger('coid');
             $table->dateTime('start_build')->nullable();
             $table->dateTime('end_build')->nullable();
+            $table->foreignId('player_character_id')->constrained();
+            $table->boolean('completed')->default(0);
             $table->decimal('area', total: 12, places: 4);
             $table->decimal('degration', total: 15, places: 6);
             $table->decimal('water', total: 16, places: 3);
