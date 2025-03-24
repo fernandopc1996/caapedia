@@ -47,25 +47,10 @@
                 {{-- MENU --}}
                 <x-mary-menu activate-by-route>
                     {{-- User --}}
-    
-                    <div class="grid grid-cols-2 justify-between mt-3 gap-4">
-                        <div class="flex flex-col items-center gap-1">
-                            <span class="text-xs font-semibold">Área produtiva (Ha):</span>
-                            <x-mary-icon name="fas.layer-group" label="0,100" class="text-2xl text-green-900"/>
-                        </div>
-                        <div class="flex flex-col items-center gap-1">
-                            <span class="text-xs font-semibold">Degradação (%):</span> 
-                            <x-mary-icon name="fas.frown" label="01" class="text-2xl text-red-900"/>
-                        </div>
-                        <div class="flex flex-col items-center gap-1">
-                            <span class="text-xs font-semibold">Água útil (m³):</span> 
-                            <x-mary-icon name="fas.tint" label="0,390" class="text-2xl text-blue-900"/>
-                        </div>
-                        <div class="flex flex-col items-center gap-1">
-                            <span class="text-xs font-semibold">Montante (R$):</span> 
-                            <x-mary-icon name="fas.dollar-sign" label="312,39" class="text-2xl text-teal-900"/>
-                        </div>
-                    </div>
+                    
+                    @session('player')
+                        <livewire:game.player.player-resources>
+                    @endsession
     
                     <x-mary-menu-separator />
                     <div class="grid grid-cols-3 gap-4">
