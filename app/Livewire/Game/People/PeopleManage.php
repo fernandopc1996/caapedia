@@ -5,15 +5,18 @@ namespace App\Livewire\Game\People;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Repositories\CharacterRepository;
+use Session;
 
 class PeopleManage extends Component
 {
     #[Title('Pessoas')] 
     public $characters;
 
-    public function mount(CharacterRepository $characterRepository) {
-        $characterRepository->clearCache();
-        $this->characters = $characterRepository->all();
+    public function mount() {
+        $player = Session::get('player');
+        $this->characters = $player->playerCharacters()->get()->map(function ($pc) {
+            return $pc->game_data;
+        });
         //dd($this->characters);
     }
 

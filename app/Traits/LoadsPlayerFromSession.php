@@ -23,6 +23,9 @@ trait LoadsPlayerFromSession
 
     public function updatePlayerInSession(Player $player): void
     {
+        $player->load([
+            'playerCharacters',
+        ]);
         Session::put('player', $player);
     }
 }

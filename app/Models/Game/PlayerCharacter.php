@@ -3,7 +3,6 @@
 namespace App\Models\Game;
 
 use Illuminate\Database\Eloquent\Model;
-
 use App\Repositories\CharacterRepository;
 
 class PlayerCharacter extends Model
@@ -11,6 +10,7 @@ class PlayerCharacter extends Model
     protected $fillable = [
         'player_id',
         'coid',
+        'working',
     ];
 
     protected $appends = ['game_data'];

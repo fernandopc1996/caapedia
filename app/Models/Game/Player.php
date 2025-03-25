@@ -35,6 +35,11 @@ class Player extends Model
         return $this->hasMany(PlayerProduction::class);
     }
 
+    public function playerCharacters(): HasMany
+    {
+        return $this->hasMany(PlayerCharacter::class);
+    }
+
     /**
      * Get all actions related to the player.
      */

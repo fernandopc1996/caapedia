@@ -2,11 +2,13 @@
     'characters' => [],
     'model' => null,
     'buttonLabel' => 'Selecionar',
-    'buttonClass' => 'bg-blue-600 hover:bg-blue-700'
+    'buttonClass' => 'bg-blue-600 hover:bg-blue-700',
+    'onSubmit' => null
 ])
 
 @php
     $modelName = $attributes->wire('model')->value();
+    $modelId = Str::slug($modelName, '_') . '_value'; // identificador do hidden input
 @endphp
 
 <div
@@ -14,61 +16,75 @@
         characters: @js($characters),
         index: 0,
         get current() {
-            return this.characters[this.index];
+            return this.characters[this.index] || null;
+        },
+        get hasPrev() {
+            return this.index > 0;
+        },
+        get hasNext() {
+            return this.index < this.characters.length - 1;
         },
         prev() {
-            if (this.index > 0) this.index--;
+            if (this.hasPrev) this.index--;
         },
         next() {
-            if (this.index < this.characters.length - 1) this.index++;
+            if (this.hasNext) this.index++;
         },
-        submit() {
-            if (this.characters.length > 0) {
-                @this.set('{{ $modelName }}', this.current.id);
+        updateModel() {
+            const hidden = document.getElementById('{{ $modelId }}');
+            if (this.current && hidden) {
+                hidden.value = this.current.id;
+                hidden.dispatchEvent(new Event('input'));
             }
         }
     }"
     class="flex flex-col items-center gap-0 w-full"
 >
-    {{-- Select group --}}
+    {{-- Hidden input para atualizar o model via Alpine --}}
+    <input type="hidden" wire:model="{{ $modelName }}" id="{{ $modelId }}">
+
+    {{-- Navegação --}}
     <div class="flex items-center justify-center w-full max-w-xs">
-        {{-- Left arrow --}}
         <button
             type="button"
             @click="prev"
-            class="w-20 h-12 text-xl border border-black rounded-tl-md bg-transparent hover:bg-gray-100 transition active:scale-95 flex items-center justify-center"
-            :disabled="index === 0"
-        >
+            class="w-20 h-14 text-xl border border-black rounded-tl-md bg-transparent hover:bg-gray-100 transition active:scale-95 flex items-center justify-center"
+            :disabled="!hasPrev || characters.length === 0"
+            :class="(!hasPrev || characters.length === 0) ? 'opacity-50 cursor-not-allowed' : ''"
+            >
             &#8592;
         </button>
 
-        {{-- Select --}}
-        <select
-            x-model="index"
-            class="h-12 appearance-none px-3 py-0 text-lg border-y border-black bg-transparent focus:outline-none focus:ring-2 focus:ring-black text-gray-900 w-full"
-        >
-            <template x-for="(character, i) in characters" :key="character.id">
-                <option :value="i" x-text="character.name" class="text-black"></option>
+        <div class="flex items-center gap-3 px-3 py-0 h-14 border-y border-black bg-transparent w-full justify-start overflow-hidden">
+            <template x-if="current">
+                <div class="flex items-center gap-2">
+                    <img :src="current.front_square || 'https://via.placeholder.com/32'" alt="Imagem" class="h-14 object-cover" />
+                    <span class="text-lg text-black font-medium truncate" x-text="current.name"></span>
+                </div>
             </template>
-        </select>
+            <template x-if="!current">
+                <span class="text-sm text-gray-500">Ninguém disponível</span>
+            </template>
+        </div>
 
-        {{-- Right arrow --}}
         <button
             type="button"
             @click="next"
-            class="w-20 h-12 text-xl border border-black rounded-tr-md bg-transparent hover:bg-gray-100 transition active:scale-95 flex items-center justify-center"
-            :disabled="index === characters.length - 1"
-        >
+            class="w-20 h-14 text-xl border border-black rounded-tr-md bg-transparent hover:bg-gray-100 transition active:scale-95 flex items-center justify-center"
+            :disabled="!hasNext || characters.length === 0"
+            :class="(!hasNext || characters.length === 0) ? 'opacity-50 cursor-not-allowed' : ''"
+            >
             &#8594;
         </button>
     </div>
 
-    {{-- Action button --}}
+    {{-- Botão principal com wire:click --}}
     <button
         type="button"
-        @click="submit"
-        class="w-full max-w-xs h-12 text-lg border border-black border-t-0 rounded-b-md bg-transparent text-black hover:bg-gray-100 transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        x-bind:disabled="characters.length === 0"
+        @click="updateModel()"
+        wire:click="characterSeletorAction"
+        class="w-full max-w-xs h-14 text-lg border border-black border-t-0 rounded-b-md bg-transparent text-black hover:bg-gray-100 transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+        :disabled="characters.length === 0"
         wire:loading.attr="disabled"
     >
         <span wire:loading.remove>{{ $buttonLabel }}</span>

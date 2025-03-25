@@ -16,53 +16,46 @@
     @if (!$id)
         {{-- Construir --}}
         <h3 class="text-2xl font-semibold text-gray-900 mb-2">Construir</h3>
-        <div class="mt-2 flex justify-between items-start gap-6 max-w-2xl mx-auto">
-            <div class="flex-1">
+        <div class="mt-2 flex justify-between items-start gap-6 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-4 mx-auto">
                 <div class="grid md:grid-cols-2 gap-2 text-gray-900">
-                    <div class="flex items-center gap-2">
+                    <div class="gap-2">
                         <x-mary-icon name="fas.clock" class="h-5 text-gray-600" title="Tempo necessário" />
                         <strong>Tempo:</strong> {{ $productionSetting->build['time'] }}h
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="gap-2">
                         <x-mary-icon name="fas.coins" class="h-5 text-yellow-600" title="Custo total" />
                         <strong>Custo:</strong> R$ {{ number_format($productionSetting->build['cost'], 2, ',', '.') }}
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="gap-2">
                         <x-mary-icon name="fas.object-group" class="h-5 text-green-600" title="Área utilizada" />
                         <strong>Área:</strong> {{ $productionSetting->build['area'] }} ha
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="gap-2">
                         <x-mary-icon name="fas.tint" class="h-5 text-blue-600" title="Consumo de água" />
                         <strong>Água:</strong> {{ $productionSetting->build['water'] }} m³
                     </div>
+                    @if (!empty($productionSetting->build['products']))
+                        <div class="md:col-span-2">
+                            <h4 class="text-md font-medium text-gray-900 mb-1">Necessário:</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                                @foreach ($productionSetting->build['products'] as $product)
+                                    <div class="p-2 flex items-center rounded shadow gap-2 bg-gray-200/80">
+                                        <img src="{{ $product->product->images[0] }}" alt="{{ $product->product->name }}"
+                                            class="h-6 object-cover rounded">
+                                        <div class="font-bold text-gray-900">{{ $product->product->name }}</div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                    
                 </div>
-            </div>
-            <div class="flex-none">
-                <x-selects.character-selector :characters="[
-                    ['id' => 1, 'name' => 'João'],
-                    ['id' => 2, 'name' => 'Maria'],
-                    ['id' => 3, 'name' => 'Carlos'],
-                    ['id' => 4, 'name' => 'Ana'],
-                ]" wire:model="selectedCharacter" button-label="Construir" />
+                <div >
+                    <x-selects.character-selector :characters="$availableCharacters" wire:model="selectedCharacter" button-label="Construir" />
+                </div>
             </div>
         </div>
-
-        @if (!empty($productionSetting->build['products']))
-            <div class="mt-4">
-                <h4 class="text-md font-medium text-gray-900 mb-1">Necessário:</h4>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-                    @foreach ($productionSetting->build['products'] as $product)
-                        <div class="bg-gray-200/80 p-2 rounded shadow text-center">
-                            <div class="font-bold text-gray-900">
-                                <x-mary-icon name="fas.cube" class="h-4 mr-1 inline" /> ID: {{ $product->id }}
-                            </div>
-                            <div class="text-gray-700">Qtd: {{ $product->qnt[0] }} - {{ $product->qnt[1] }}</div>
-                            <div class="text-gray-500">Chance: {{ $product->lottery }}%</div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        @endif
     @else
         {{-- Produzir --}}
         <h3 class="mt-6 text-2xl font-semibold text-gray-900 mb-2">Produzir</h3>
@@ -90,7 +83,7 @@
                     ['id' => 2, 'name' => 'Maria'],
                     ['id' => 3, 'name' => 'Carlos'],
                     ['id' => 4, 'name' => 'Ana'],
-                ]" wire:model="selectedCharacter" button-label="Produzir" />
+                ]" wire:model="selectedCharacter" button-label="Produzir"/>
             </div>
         </div>
 

@@ -54,7 +54,7 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
         });
 
         Route::prefix('production')->group(function () {
-            Route::get('/manage', ProductionManage::class)->name('production.manage');
+            Route::get('/', ProductionManage::class)->name('production.manage');
             Route::get('/create', ProductionCreate::class)->name('production.create');
         });
 

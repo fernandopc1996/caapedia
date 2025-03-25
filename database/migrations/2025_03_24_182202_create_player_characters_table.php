@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger('coid');
+            $table->tinyInteger('working')->default(0);
             $table->timestamps();
         });
     }
