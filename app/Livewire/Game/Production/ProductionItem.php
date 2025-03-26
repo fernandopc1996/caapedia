@@ -6,9 +6,14 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Session;
 use App\Models\Game\Player;
 use App\Repositories\{ProductionRepository, ProductRepository};
+use App\Services\Game\Production\ProductionService;
+
+use Mary\Traits\Toast;
 
 class ProductionItem extends Component
 {
+    use Toast;
+
     public $productionSetting;
     public $id = null;
     public $coid = null;
@@ -29,8 +34,33 @@ class ProductionItem extends Component
 
     public function characterSeletorAction()
     {
-        sleep(2);
-        //dd($this->selectedCharacter);
+        if($this->id == null){
+            $service = app(ProductionService::class);
+
+            $result = $service->createProduction(
+                $this->productionSetting,
+                $this->selectedCharacter,
+                $this->coid
+            );
+            //dd($result, "ssss");
+            if ($result !== true) {
+                $this->loadAvailableCharacters();
+                $this->dispatch('playerUpdated');
+                $this->error($result);
+            } else {
+
+                $this->success(
+                    'X criado com sucesso',
+                    redirectTo: route('production.manage'),
+                );
+            }
+
+        }else{
+            //gerar acao
+        }
+        
+
+        //dd($this->selectedCharacter, $this->coid, $this->id);
     }
 
     protected function loadAvailableCharacters()

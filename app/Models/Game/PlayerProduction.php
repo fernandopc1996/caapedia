@@ -5,9 +5,12 @@ namespace App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Repositories\ProductionRepository;
+use Mary\Traits\Toast;
 
 class PlayerProduction extends Model
 {
+    use Toast;
+
     protected $fillable = [
         'player_id',
         'type_area',

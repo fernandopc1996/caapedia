@@ -19,21 +19,35 @@
         <div class="mt-2 flex justify-between items-start gap-6 max-w-5xl mx-auto">
             <div class="grid md:grid-cols-2 gap-4 mx-auto">
                 <div class="grid md:grid-cols-2 gap-2 text-gray-900">
-                    <div class="gap-2">
-                        <x-mary-icon name="fas.clock" class="h-5 text-gray-600" title="Tempo necessário" />
-                        <strong>Tempo:</strong> {{ $productionSetting->build['time'] }}h
+                    <div class="flex flex-row md:inline-flex md:flex-col gap-1 sm:gap-0">
+                        <div class="flex items-center gap-2">
+                            <x-mary-icon name="fas.clock" class="h-5 text-gray-600" title="Tempo necessário" />
+                            <strong>Tempo:</strong>
+                        </div>
+                        <span class="sm:ml-7">{{ $productionSetting->build['time'] }}h</span>
                     </div>
-                    <div class="gap-2">
-                        <x-mary-icon name="fas.coins" class="h-5 text-yellow-600" title="Custo total" />
-                        <strong>Custo:</strong> R$ {{ number_format($productionSetting->build['cost'], 2, ',', '.') }}
+                    <div class="flex flex-row md:inline-flex md:flex-col gap-1 sm:gap-0">
+                        <div class="flex items-center gap-2">
+                            <x-mary-icon name="fas.coins" class="h-5 text-yellow-600" title="Custo total" />
+                            <strong>Custo:</strong>
+                        </div>
+                        <span class="sm:ml-7">R$ {{ number_format($productionSetting->build['cost'], 2, ',', '.') }}</span>
                     </div>
-                    <div class="gap-2">
-                        <x-mary-icon name="fas.object-group" class="h-5 text-green-600" title="Área utilizada" />
-                        <strong>Área:</strong> {{ $productionSetting->build['area'] }} ha
+                
+                    <div class="flex flex-row md:inline-flex md:flex-col gap-1 sm:gap-0">
+                        <div class="flex items-center gap-2">
+                            <x-mary-icon name="fas.object-group" class="h-5 text-green-600" title="Área utilizada" />
+                            <strong>Área:</strong>
+                        </div>
+                        <span class="sm:ml-7">{{ $productionSetting->build['area'] }} ha</span>
                     </div>
-                    <div class="gap-2">
-                        <x-mary-icon name="fas.tint" class="h-5 text-blue-600" title="Consumo de água" />
-                        <strong>Água:</strong> {{ $productionSetting->build['water'] }} m³
+                
+                    <div class="flex flex-row md:inline-flex md:flex-col gap-1 sm:gap-0">
+                        <div class="flex items-center gap-2">
+                            <x-mary-icon name="fas.tint" class="h-5 text-blue-600" title="Consumo de água" />
+                            <strong>Água:</strong>
+                        </div>
+                        <span class="sm:ml-7">{{ $productionSetting->build['water'] }} m³</span>
                     </div>
                     @if (!empty($productionSetting->build['products']))
                         <div class="md:col-span-2">
