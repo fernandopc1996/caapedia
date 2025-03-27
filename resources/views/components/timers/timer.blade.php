@@ -44,6 +44,13 @@
                     // Inicia o intervalo de atualização do tempo
                     this.interval = setInterval(() => {
                         this.time = new Date(this.time.getTime() + increment);
+
+                        window.dispatchEvent(new CustomEvent('virtual-time-tick', {
+                            detail: {
+                                currentTime: this.time.getTime()
+                            }
+                        }));
+
                     }, intervalTime); 
                 },
                 getTime() {
