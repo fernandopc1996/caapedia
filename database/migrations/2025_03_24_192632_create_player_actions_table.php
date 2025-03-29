@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('player_actions', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
             $table->foreignId('player_production_id')->constrained()->nullable();
             $table->foreignId('player_character_id')->constrained();

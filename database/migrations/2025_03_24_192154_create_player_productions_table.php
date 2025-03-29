@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('player_productions', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
             $table->boolean('type_area')->default(0);
             $table->unsignedInteger('coid');

@@ -5,11 +5,11 @@ namespace App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Repositories\ProductionRepository;
-use Mary\Traits\Toast;
+use Illuminate\Support\Str;
+
 
 class PlayerProduction extends Model
 {
-    use Toast;
 
     protected $fillable = [
         'player_id',
@@ -26,6 +26,13 @@ class PlayerProduction extends Model
     ];
 
     protected $appends = ['game_data'];
+
+    protected static function booted(): void
+    {
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     /**
      * Get the player that owns the production.

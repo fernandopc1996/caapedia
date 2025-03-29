@@ -4,6 +4,7 @@ namespace App\Models\Game;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class PlayerAction extends Model
 {
@@ -19,6 +20,13 @@ class PlayerAction extends Model
         'water',
         'amount',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     public function player(): BelongsTo
     {

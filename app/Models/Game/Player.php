@@ -5,6 +5,7 @@ namespace App\Models\Game;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Player extends Model
 {
@@ -26,6 +27,13 @@ class Player extends Model
         'water',
         'amount',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     /**
      * Get all productions related to the player.

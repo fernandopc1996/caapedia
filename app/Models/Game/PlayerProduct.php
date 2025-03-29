@@ -4,6 +4,7 @@ namespace App\Models\Game;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class PlayerProduct extends Model
 {
@@ -15,6 +16,13 @@ class PlayerProduct extends Model
         'op',
         'amount',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     /**
      * Get the player that owns the product.

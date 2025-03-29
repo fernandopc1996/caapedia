@@ -5,12 +5,12 @@ namespace App\Livewire\Game\Production;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Repositories\ProductionRepository;
+use App\Models\Game\PlayerProduction;
 
 class ProductionCreate extends Component{
     #[Title('Construir')] 
     public $productions;
-    public $id = null;
-    public $coid = null;
+    public ?int $coid = null;
 
     public function selectProduction($coid){
         $this->coid = $coid;

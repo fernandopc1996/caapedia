@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Game\Player;
 use App\Repositories\{ProductionRepository, ProductRepository};
 use App\Services\Game\Production\ProductionService;
+use App\Models\Game\PlayerProduction;
 
 use Mary\Traits\Toast;
 
@@ -15,26 +16,25 @@ class ProductionItem extends Component
     use Toast;
 
     public $productionSetting;
-    public $id = null;
+    public ?PlayerProduction $production = null;
     public $coid = null;
     public $selectedCharacter = null;
 
     public $availableCharacters = [];
 
-    public function mount(ProductionRepository $productionRepository, $id = null, $coid = null)
+    public function mount(ProductionRepository $productionRepository, PlayerProduction $production = null, $coid = null)
     {
         $productionRepository->clearCache();
-
-        $this->productionSetting = $productionRepository->find($coid);
-        $this->id = $id;
-        $this->coid = $coid;
+        $this->coid = $coid ?? $production?->coid;
+        $this->productionSetting = $productionRepository->find($this->coid);
+        
 
         $this->loadAvailableCharacters();
     }
 
     public function characterSeletorAction()
     {
-        if($this->id == null){
+        if($this->production == null){
             $service = app(ProductionService::class);
 
             $result = $service->createProduction(

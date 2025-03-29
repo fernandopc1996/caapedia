@@ -4,6 +4,7 @@ namespace App\Models\Game;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\CharacterRepository;
+use Illuminate\Support\Str;
 
 class PlayerCharacter extends Model
 {
@@ -14,6 +15,13 @@ class PlayerCharacter extends Model
     ];
 
     protected $appends = ['game_data'];
+
+    protected static function booted(): void
+    {
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     public function player(): BelongsTo
     {

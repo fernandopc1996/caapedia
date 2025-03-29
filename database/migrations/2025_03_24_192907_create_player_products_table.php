@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('player_products', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger('coid');
             $table->foreignId('player_action_id')->constrained()->nullable();
