@@ -16,7 +16,6 @@ class WeightedRandomPicker {
     public function pick(): mixed {
         $random = mt_rand(1, (int) ($this->totalWeight * 1000)) / 1000;
         $cumulativeWeight = 0;
-		echo $random." ";
         foreach ($this->items as $index => $item) {
             $cumulativeWeight += $this->weights[$index];
             if ($random <= $cumulativeWeight) {

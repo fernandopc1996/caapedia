@@ -6,6 +6,8 @@ use App\Models\Game\Player;
 use App\Models\Game\PlayerProduct;
 use Illuminate\Support\Facades\DB;
 
+use App\Services\Game\Mechanics\WeightedRandomPicker;
+
 class ProductionUpdateService
 {
     public function handle(Player $player): bool
@@ -46,7 +48,10 @@ class ProductionUpdateService
                 $action->completed = true;
                 $action->save();
 
-                //$this->createProducts($player, $action->playerCharacter, null, $action);
+                $action->playerCharacter->working -= 1;
+                $action->playerCharacter->save();
+
+                $this->createProducts($player, $action->playerProduction, $action);
                 return true;
             });
 
@@ -58,19 +63,46 @@ class ProductionUpdateService
         return $wasUpdated;
     }
 
-    private function createProducts(Player $player, $character, $production = null, $action = null): void
-    {
-        if (!$character || !$character->game_data?->products) return;
+    private function createProducts(Player $player, $production = null, $action = null): void
+    {   
+        if (!isset($production->game_data->production)) {
+            return;
+        }
+        
+        $productionConfig = $production->game_data->production;
+        $batch = $productionConfig['batch'] ?? 1;
+        $productsConfig = $productionConfig['products'] ?? [];
 
-        foreach ($character->game_data->products as $product) {
+        if (empty($productsConfig)) {
+            return;
+        }
+
+        $productMapping = [];
+        $weightMapping = [];
+        foreach ($productsConfig as $product) {
+            $productMapping[$product->id] = $product;
+            $weightMapping[$product->id] = $product->lottery;
+        }
+
+        $picker = new WeightedRandomPicker($weightMapping);
+
+        for ($i = 0; $i < $batch; $i++) {
+            $selectedId = $picker->pick();
+            $selectedProduct = $productMapping[$selectedId];
+
+            $min = $selectedProduct->qnt[0] ?? 1;
+            $max = $selectedProduct->qnt[1] ?? 1;
+            $amount = mt_rand($min, $max);
+
             PlayerProduct::create([
                 'player_id' => $player->id,
-                'coid' => $product->coid,
-                'op' => $product->op ?? 'default',
-                'amount' => $product->amount ?? 1,
+                'coid' => $selectedProduct->id,
+                'op' => 'C', 
+                'amount' => $amount,
                 'player_action_id' => $action?->id,
                 'player_production_id' => $production?->id,
             ]);
         }
     }
+
 }

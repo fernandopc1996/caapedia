@@ -2,7 +2,7 @@
     @if (!$production)
         <h2 class="text-3xl font-bold text-gray-900 mb-3">{{ $productionSetting->name }}</h2>
     @else
-        <x-layout.header title="Construir" />
+        <x-layout.header title="{{ $productionSetting->name }}" />
     @endif
 
     <div class="flex items-start gap-4 mb-4">

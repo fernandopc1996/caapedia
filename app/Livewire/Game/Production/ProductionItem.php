@@ -34,34 +34,41 @@ class ProductionItem extends Component
 
     public function characterSeletorAction()
     {
-        if($this->production == null){
-            $service = app(ProductionService::class);
+        $service = app(ProductionService::class);
 
+        if ($this->production == null) {
             $result = $service->createProduction(
                 $this->productionSetting,
                 $this->selectedCharacter,
                 $this->coid
             );
-            //dd($result, "ssss");
-            if ($result !== true) {
-                $this->loadAvailableCharacters();
-                $this->dispatch('playerUpdated');
-                $this->error($result);
-            } else {
+        } else {
+            $result = $service->createProductionAction(
+                $this->production,
+                $this->selectedCharacter,
+                $this->coid
+            );
+        }
 
+        if ($result !== true) {
+            $this->loadAvailableCharacters();
+            $this->dispatch('playerUpdated');
+            $this->error($result);
+        } else {
+            if ($this->production == null) {
                 $this->success(
-                    'X criado com sucesso',
-                    redirectTo: route('production.manage'),
+                    'Produção criada com sucesso',
+                    redirectTo: route('production.manage')
+                );
+            } else {
+                $this->success(
+                    'Ação criada com sucesso',
+                    redirectTo: route('production.manage')
                 );
             }
-
-        }else{
-            //gerar acao
         }
-        
-
-        //dd($this->selectedCharacter, $this->coid, $this->id);
     }
+
 
     protected function loadAvailableCharacters()
     {

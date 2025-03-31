@@ -62,12 +62,22 @@ class ProductionManage extends Component
     {
         if (!$this->player) return collect();
 
-        return $this->player
-            ->playerProductions()
-            ->with('playerCharacter')
-            ->where('completed', false)
+        return $this->player->playerProductions()
+            ->with([
+                'playerCharacter',
+                'playerActions' => function ($query) {
+                    $query->select('id', 'player_production_id', 'start', 'end', 'completed');
+                }
+            ])
+            ->where(function ($query) {
+                $query->where('completed', false)
+                    ->orWhereHas('playerActions', function ($q) {
+                        $q->where('completed', false);
+                    });
+            })
             ->get();
     }
+
 
     #[Computed]
     public function productionsCompleted()
@@ -78,6 +88,9 @@ class ProductionManage extends Component
             ->playerProductions()
             ->with('playerCharacter')
             ->where('completed', true)
+            ->whereDoesntHave('playerActions', function ($query) {
+                $query->where('completed', false);
+            })
             ->get();
     }
 

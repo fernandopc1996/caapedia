@@ -4,6 +4,7 @@ namespace App\Models\Game;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Repositories\ProductionRepository;
 use Illuminate\Support\Str;
 
@@ -45,6 +46,16 @@ class PlayerProduction extends Model
     public function playerCharacter(): BelongsTo
     {
         return $this->belongsTo(PlayerCharacter::class);
+    }
+
+    public function playerActions(): HasMany
+    {
+        return $this->hasMany(PlayerAction::class);
+    }
+
+    public function getPendingActionAttribute()
+    {
+        return $this->playerActions->firstWhere('completed', false);
     }
 
     public function getGameDataAttribute(): ?object

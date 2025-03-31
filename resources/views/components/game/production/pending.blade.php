@@ -3,11 +3,13 @@
 @foreach ($pending as $item)
     @php
         $character = $item->playerCharacter->game_data;
-        $start = \Carbon\Carbon::parse($item->start_build)->timestamp * 1000;
-        $end = \Carbon\Carbon::parse($item->end_build)->timestamp * 1000;
+        // Se existir pending_action, utiliza seus valores; caso contrário, usa os do playerProduction.
+        $start = \Carbon\Carbon::parse($item->pending_action->start ?? $item->start_build)->timestamp * 1000;
+        $end = \Carbon\Carbon::parse($item->pending_action->end ?? $item->end_build)->timestamp * 1000;
         $now = \Carbon\Carbon::parse($player->last_datetime)->timestamp * 1000;
         $duration = $end - $start;
         $initialProgress = max(0, min(100, (($now - $start) / $duration) * 100));
+        $statusLabel = $item->pending_action ? 'Produzindo' : 'Construindo/Preparando';
     @endphp
 
     <x-buttons.big class="h-50 p-4 flex flex-col items-start justify-between relative"
@@ -15,7 +17,7 @@
         data-end="{{ $end }}" wire:key="{{ $item->id }}">
         <div class="w-full">
             <h2 class="text-xl font-bold">{{ $item->game_data->name }}</h2>
-            <p class="text-sm text-gray-600">Construindo {{ $item->completed }}</p>
+            <p class="text-sm text-gray-600">{{ $statusLabel }}</p>
         </div>
 
         <div class="flex items-center gap-2 w-full mt-2">
@@ -29,7 +31,7 @@
                 style="width: {{ $initialProgress }}%;"></div>
         </div>
         <div class="w-full mt-1 text-right text-xs text-gray-500">
-            Termina em {{ \Carbon\Carbon::parse($item->end_build)->format('d/m/Y H:i') }}
+            Termina em {{ \Carbon\Carbon::parse($item->pending_action->end ?? $item->end_build)->format('d/m/Y H:i') }}
         </div>
     </x-buttons.big>
 @endforeach
