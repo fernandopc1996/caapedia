@@ -53,6 +53,11 @@ class PlayerProduction extends Model
         return $this->hasMany(PlayerAction::class);
     }
 
+    public function playerProducts(): HasMany
+    {
+        return $this->hasMany(PlayerProduct::class);
+    }
+
     public function getPendingActionAttribute()
     {
         return $this->playerActions->firstWhere('completed', false);

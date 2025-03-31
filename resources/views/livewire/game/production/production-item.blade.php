@@ -83,6 +83,11 @@
                 </div>
             </div>
         </div>
-
+        @if(isset($production) && $production->playerProducts->count() >= 1)
+        <h3 class="mt-6 text-2xl font-semibold text-gray-900 mb-2">Produzido</h3>
+        <div>
+            <livewire:game.production.production-produced :production="$production"/>
+        </div>
+        @endif
     @endif
 </div>

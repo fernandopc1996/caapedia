@@ -97,6 +97,8 @@ class ProductionUpdateService
             PlayerProduct::create([
                 'player_id' => $player->id,
                 'coid' => $selectedProduct->id,
+                'start' =>  $action?->start,
+                'end' =>  $action?->end,
                 'op' => 'C', 
                 'amount' => $amount,
                 'player_action_id' => $action?->id,

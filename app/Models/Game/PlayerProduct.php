@@ -5,6 +5,7 @@ namespace App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use App\Repositories\ProductRepository;
 
 class PlayerProduct extends Model
 {
@@ -15,7 +16,11 @@ class PlayerProduct extends Model
         'player_production_id',
         'op',
         'amount',
+        'start',
+        'end',
     ];
+
+    protected $appends = ['game_data'];
 
     protected static function booted(): void
     {
@@ -46,5 +51,11 @@ class PlayerProduct extends Model
     public function playerProduction(): BelongsTo
     {
         return $this->belongsTo(PlayerProduction::class);
+    }
+
+    public function getGameDataAttribute(): ?object
+    {
+        $repo = app(ProductRepository::class);
+        return $repo->find($this->coid);
     }
 }

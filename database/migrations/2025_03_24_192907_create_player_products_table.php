@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreignId('player_production_id')->constrained()->nullable();
             $table->char('op')->default('C');
             $table->decimal('amount', total: 12, places: 3);
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->timestamps();
         });
     }
