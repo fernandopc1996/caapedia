@@ -4,7 +4,7 @@
             <x-mary-loading class="text-primary loading-lg" />
         </div>
     </div>
-    <div class="group fixed w-100 hover:w-auto bottom-5 right-5 backdrop-blur-3xl border-t border-gray-800 shadow-lg">
+    <div class="group fixed w-55 hover:w-auto bottom-5 right-5 backdrop-blur-3xl border-t border-gray-800 shadow-lg">
         <div class="flex flex-col sm:flex-row container justify-between items-center gap-12 p-4">
 
             <div class="hidden group-hover:flex flex-col sm:flex-row gap-4">

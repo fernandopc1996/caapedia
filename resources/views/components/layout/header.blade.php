@@ -11,7 +11,7 @@
     </div>
 
     <div wire:loading>
-        <div class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
+        <div class="fixed inset-0 flex items-center justify-center bg-white/50 z-50">
             <x-mary-loading class="text-primary loading-lg" />
         </div>
     </div>

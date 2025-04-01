@@ -1,19 +1,78 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-
-.mary-table-pagination span[aria-current="page"] > span {
-    @apply text-gray-800 border-black;
-    background-color: rgba(255,255,255, .3);
+/* daisyUI */
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark;
 }
- 
+
+/* maryUI */
+@source "../../vendor/robsontenorio/mary/src/View/Components/**/*.php";
+
+/* Dark theme variant support */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Laravel 12 defaults */
+@source "../views";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+@source "../**/*.blade.php";
+@source "../**/*.js";
+
+
+@plugin "daisyui/theme" {
+    name: "caapedia";
+    default: true;
+    --color-primary: #021201;
+    --color-secondary: #f6d860;
+    --color-accent: #37cdbe;
+    --color-neutral: #3d4451;
+    --color-base-100: #ffffff;
+
+    --rounded-box: 1rem;
+    --rounded-btn: 0.5rem;
+    --rounded-badge: 1.9rem;
+    --animation-btn: 0.25s;
+    --animation-input: 0.2s;
+    --btn-focus-scale: 0.95;
+    --border-btn: 1px;
+    --tab-border: 1px;
+    --tab-radius: 0.5rem;
+}
+
+.input {
+    background-color: transparent;
+    border-color: #000000;
+}
+
+.input:focus {
+    border-color: #000000;
+    outline-color: #000000;
+}
+
+.input::placeholder {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.select {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #000000;
+}
+
+table, td, th, tr {
+    border-bottom: 1px solid #000;
+}
+
+.mary-table-pagination span[aria-current="page"]>span {
+    @apply text-gray-800 border-black;
+    background-color: rgba(255, 255, 255, .3);
+}
+
 /* For dark mode*/
 .mary-table-pagination span[aria-disabled="true"] span {
     @apply border-black;
-    background-color: rgba(255,255,255, .1);
+    background-color: rgba(255, 255, 255, .1);
 }
- 
+
 /* For dark mode*/
 .mary-table-pagination button {
     @apply text-gray-800 border-black;
