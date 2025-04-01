@@ -23,8 +23,9 @@ class ProductionProduced extends Component
     #[Computed]
     public function products()
     {
-        if ($this->production) return $this->production->playerProducts;
-
+        if ($this->production) 
+            return $this->production->playerProducts()->orderBy('end', 'desc')->limit(5)->get();
+        return [];
     }
 
     public function render()
