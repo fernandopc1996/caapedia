@@ -25,6 +25,7 @@
     class="{{ $finalClasses }} {{ $isDisabled ? 'cursor-default pointer-events-none' : '' }}"
     x-bind:disabled="clicked || {{ $isDisabled ? 'true' : 'false' }}"
     x-on:click="clicked = true"
+    wire:navigate
 >
     <x-mary-icon name="{{ $icon }}" class="h-10"/>
     <span class="text-xs font-semibold text-gray-900">{{ $title }}</span>

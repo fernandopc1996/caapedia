@@ -37,41 +37,50 @@
 @endforeach
 
 @once
-    <script>
-        function setupProgressBars() {
+<script>
+    (function() {
+        if (window.progressBarsInitialized) return;
+        window.progressBarsInitialized = true;
+        window.progressStates = window.progressStates || {};
+
+        const fallbackTime = {{ \Carbon\Carbon::parse($player->last_datetime)->timestamp * 1000 }};
+
+        window.updateProgressBars = function(currentTimestamp) {
             const bars = document.querySelectorAll('[data-start][data-end][wire\\:key]');
-            const progressStates = {};
+            bars.forEach(el => {
+                const id = el.getAttribute('wire:key');
+                const bar = el.querySelector('.progress-bar');
+                const start = parseInt(el.dataset.start);
+                const end = parseInt(el.dataset.end);
+                const total = end - start;
+                const elapsed = currentTimestamp - start;
+                const progress = Math.max(0, Math.min(100, (elapsed / total) * 100));
+                bar.style.width = `${progress}%`;
 
-            function updateProgressBars(currentTimestamp) {
-                bars.forEach(el => {
-                    const id = el.getAttribute('wire:key');
-                    const bar = el.querySelector('.progress-bar');
-                    const start = parseInt(el.dataset.start);
-                    const end = parseInt(el.dataset.end);
-                    const now = currentTimestamp;
+                if (progress >= 100 && !window.progressStates[id]) {
+                    window.progressStates[id] = true;
+                    setTimeout(() => {
+                        Livewire.dispatch('updatePlayerTimer');
+                    }, 2000);
+                }
+            });
+        };
 
-                    const total = end - start;
-                    const elapsed = now - start;
-                    const progress = Math.max(0, Math.min(100, (elapsed / total) * 100));
-                    if (progress <= 100) {
-                        bar.style.width = `${progress}%`;
-                    }
+        window.addEventListener('virtual-time-tick', function(event) {
+            window.updateProgressBars(event.detail.currentTime);
+        });
 
-                    if (progress >= 100 && !progressStates[id]) {
-                        progressStates[id] = true;
-                        setTimeout(() => {
-                            Livewire.dispatch('updatePlayerTimer');
-                        }, 2000);
-                    }
-                });
-            }
+        document.addEventListener('livewire:navigated', function() {
+            window.updateProgressBars(fallbackTime);
+        });
 
-            window.addEventListener('virtual-time-tick', (event) => {
-                updateProgressBars(event.detail.currentTime);
+        if (document.readyState !== 'loading') {
+            window.updateProgressBars(fallbackTime);
+        } else {
+            document.addEventListener('DOMContentLoaded', function() {
+                window.updateProgressBars(fallbackTime);
             });
         }
-
-        document.addEventListener('DOMContentLoaded', setupProgressBars);
-        document.addEventListener('livewire:navigated', setupProgressBars);
-    </script>
+    })();
+</script>
 @endonce

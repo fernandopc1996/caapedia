@@ -54,21 +54,21 @@
     
                     <x-mary-menu-separator />
                     <div class="grid grid-cols-3 gap-4">
-                        <x-menu.button-row href="{{route('history.events')}}" wire:navigate 
+                        <x-menu.button-row href="{{route('history.events')}}" 
                                     icon="fas.book-open" title="História"/>
-                        <x-menu.button-row href="{{route('people.manage')}}" wire:navigate 
+                        <x-menu.button-row href="{{route('people.manage')}}" 
                                     icon="fas.user-friends" title="Pessoas"/>
-                        <x-menu.button-row href="{{route('production.manage')}}" wire:navigate 
+                        <x-menu.button-row href="{{route('production.manage')}}" 
                                     icon="fas.cubes" title="Produção"/>
-                        <x-menu.button-row href="{{route('inventory.manage')}}" wire:navigate 
+                        <x-menu.button-row href="{{route('inventory.manage')}}" 
                                     icon="fas.warehouse" title="Estoque"/>
-                        <x-menu.button-row href="{{route('explore.manage')}}" wire:navigate
+                        <x-menu.button-row href="{{route('explore.manage')}}"
                                     icon="fas.leaf" title="Explorar"/>
-                        <x-menu.button-row href="{{route('news.newspaper')}}" wire:navigate 
+                        <x-menu.button-row href="{{route('news.newspaper')}}" 
                                     icon="fas.newspaper" title="Notícias"/>
-                        <x-menu.button-row href="{{route('market.manage')}}" wire:navigate 
+                        <x-menu.button-row href="{{route('market.manage')}}" 
                                     icon="fas.cash-register" title="Comércio"/>
-                        <x-menu.button-row href="{{route('finance.manage')}}" wire:navigate 
+                        <x-menu.button-row href="{{route('finance.manage')}}" 
                                     icon="fas.piggy-bank" title="Finanças"/>
                     </div>
 

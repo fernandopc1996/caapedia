@@ -34,7 +34,7 @@
                     if (this.mode === 1) {
                         // Velocidade 1 - cada 100 ms = 1/10 hora (3600000/10 ms)
                         increment = 3600000 / 10; 
-                        intervalTime = 100; 
+                        intervalTime = 100 * 1.3; 
                     } else if (this.mode === 2) {
                         // Velocidade 2 - cada 1000 ms = 1 dia (86400000 ms)
                         increment = 86400000;
@@ -62,10 +62,10 @@
                     return this.formatDate(this.time);
                 },
                 formatDate(date) {
-                    return moment(date).locale('{{ str_replace('_', '-', app()->getLocale()) }}').format('DD MMMM, YYYY');
+                    return moment.utc(date).locale('{{ str_replace('_', '-', app()->getLocale()) }}').format('DD MMMM, YYYY');
                 },
                 formatDateTime(date) {
-                    return moment(date).locale('{{ str_replace('_', '-', app()->getLocale()) }}').format('DD MMMM, YYYY HH:mm:ss');
+                    return moment.utc(date).locale('{{ str_replace('_', '-', app()->getLocale()) }}').format('DD MMMM, YYYY HH:mm:ss');
                 },
                 cleanup() {
                     clearInterval(this.interval); 
