@@ -1,6 +1,6 @@
 <div>
     <div class="hidden lg:block">
-        <x-mary-header title="{{$title}}" separator/>
+        <x-mary-header title="{{$title}}" size="text-4xl" separator/>
     </div>
 
     <div wire:offline>
