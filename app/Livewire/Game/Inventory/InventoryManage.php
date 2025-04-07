@@ -16,10 +16,12 @@ class InventoryManage extends Component
 
     #[Title('Estoque')] 
     public $headers = [
-        ['key' => 'coid', 'label' => 'Produto'],
+        ['key' => 'product', 'label' => 'Produto', 'sortable' => false],
         ['key' => 'balance', 'label' => 'Saldo', 'class' => 'font-bold text-right', 'format' => ['currency', '0,.', '']],
         ['key' => 'sell', 'label' => 'Vender', 'sortable' => false], 
     ];
+
+    public array $expanded = [];
 
     public ?Player $player = null;
 
@@ -33,6 +35,16 @@ class InventoryManage extends Component
     {
         if (! is_array($property) && $property != "") {
             $this->resetPage();
+        }
+    }
+
+    public function toggleExpanded($coid)
+    {
+        if (($key = array_search($coid, $this->expanded)) !== false) {
+            unset($this->expanded[$key]);
+            $this->expanded = array_values($this->expanded);
+        } else {
+            $this->expanded[] = $coid;
         }
     }
 
