@@ -26,6 +26,8 @@ class Player extends Model
         'degration',
         'water',
         'amount',
+        'rate_buy',
+        'rate_sell',
     ];
 
     protected static function booted(): void
@@ -62,5 +64,10 @@ class Player extends Model
     public function playerProducts(): HasMany
     {
         return $this->hasMany(PlayerProduct::class);
+    }
+
+    public function getInflationValue($value, $op){
+        $rate = $op == "D" ? $this->rate_sell : $this->rate_buy; 
+        return $value * ($rate ?? 1);
     }
 }

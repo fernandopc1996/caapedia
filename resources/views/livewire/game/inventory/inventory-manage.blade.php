@@ -13,12 +13,14 @@
                 <div class="font-bold text-gray-900">{{ $product->game_data->name }}</div>
             </div>
         @endscope
-        @scope('actions', $product)
+        @scope('cell_sell', $product)
             <x-mary-button icon="fas.arrow-right-from-bracket" x-on:click="toggleExpand({{$product->coid}})" 
                 label="Vender" spinner class="btn-sm" />
         @endscope
         @scope('expansion', $product)
-        <x-game.inventory.sell-input :product="$product" />
+        <div class="flex">
+            <x-game.inventory.sell-input :product="$product" />
+        </div>
         @endscope
     </x-mary-table>
 </div>

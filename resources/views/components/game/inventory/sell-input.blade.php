@@ -1,5 +1,6 @@
 <div x-data="{
     quantity: 0,
+    unit_value: {{ $product->unit_value }},
     max: {{ $product->balance }},
     increment(delta) {
         let newQty = this.quantity + delta;
@@ -45,7 +46,7 @@
     <button type="button" 
             wire:click="sell({{ $product->coid }}, quantity)" 
             :disabled="quantity <= 0" 
-            class="w-10 h-10 flex items-center justify-center bg-transparent border border-black rounded-r border-l-0 hover:bg-gray-200/80 active:scale-95 transition-transform duration-100">
-        Vender
+            class="h-10 px-5 font-bold flex items-center justify-center bg-transparent border border-black rounded-r border-l-0 hover:bg-gray-200/80 active:scale-95 transition-transform duration-100">
+        <span x-text="'Vender por R$ ' + (quantity * unit_value).toFixed(2).replace('.', ',')"></span>
     </button>
 </div>

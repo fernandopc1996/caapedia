@@ -23,6 +23,9 @@ return new class extends Migration
             $table->decimal('degration', total: 15, places: 6)->default(0.1);
             $table->decimal('water', total: 16, places: 3)->default(1);
             $table->decimal('amount', total: 16, places: 2)->default(10000);
+
+            $table->decimal('rate_sell', total: 6, places: 4)->default(1);
+            $table->decimal('rate_buy', total: 6, places: 4)->default(1);
             $table->timestamps();
         });
     }

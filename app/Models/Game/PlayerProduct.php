@@ -16,6 +16,7 @@ class PlayerProduct extends Model
         'player_production_id',
         'op',
         'amount',
+        'unit_value',
         'start',
         'end',
     ];
