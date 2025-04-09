@@ -1,20 +1,26 @@
 <div>
     <x-layout.header title="Comércio"/>
-    <x-mary-tabs wire:model="selectedTab" label-div-class="">
-        <x-mary-tab name="users-tab" label="Comprar" icon="o-users">
-            <div>Comprar</div>
-        </x-mary-tab>
-        <x-mary-tab name="tricks-tab" label="Vender" icon="o-sparkles">
-            <div>Vender</div>
-        </x-mary-tab>
-    </x-tabs>
-
-    <div role="tablist" class="tabs tabs-border">
-        <a role="tab" class="tab">
-            <x-mary-icon name="o-envelope" label="Comprar" />
-        </a>
-        <a role="tab" class="tab tab-active">
-            <x-mary-icon name="o-envelope" label="Vender" />
-        </a>
-      </div>
+    <div class="flex justify-end mb-5">
+        <x-mary-input wire:model.live="search" icon="s-magnifying-glass" 
+        placeholder="Procurar" clearable class="w-full lg:w-64"/>
+    </div>
+    <x-mary-table :headers="$headers" :rows="$products" :sort-by="$sortBy"
+    with-pagination wire:model="expanded" expandable>
+        @scope('cell_name', $product)
+            <div class="flex gap-2">
+                <img src="{{ $product->images[0] }}" alt="{{ $product->name }}"
+                    class="h-6 object-cover rounded">
+                <div class="font-bold text-gray-900">{{ $product->name }}</div>
+            </div>
+        @endscope
+        @scope('cell_buy', $product)
+            <x-mary-button icon="fas.arrow-right-to-bracket" x-on:click="toggleExpand({{$product->id}})" 
+                label="Comprar" spinner class="btn-sm" />
+        @endscope
+        @scope('expansion', $product, $player)
+        <div class="flex justify-center">
+            <x-game.market.buy-input :product="$product" :player="$player"/>
+        </div>
+        @endscope
+    </x-mary-table>
 </div>

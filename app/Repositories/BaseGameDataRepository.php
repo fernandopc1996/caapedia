@@ -5,6 +5,8 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 abstract class BaseGameDataRepository
 {
@@ -79,6 +81,39 @@ abstract class BaseGameDataRepository
         })->values();
     }
 
+
+    public function paginateSearch(array $criteria, int $perPage = 15, ?array $sortBy = null): LengthAwarePaginator
+    {
+        $results = empty($criteria) ? $this->all() : $this->search($criteria);
+
+
+        if (!empty($sortBy) && isset($sortBy['column'], $sortBy['direction']) && !empty($sortBy['column'])) {
+            $column = $sortBy['column'];
+            $direction = strtolower($sortBy['direction']);
+
+            if ($direction === 'asc') {
+                $results = $results->sortBy($column);
+            } else {
+                $results = $results->sortByDesc($column);
+            }
+            $results = $results->values();
+        }
+
+        $currentPage = Paginator::resolveCurrentPage() ?: 1;
+
+        $currentItems = $results->forPage($currentPage, $perPage);
+
+        return new LengthAwarePaginator(
+            $currentItems,      
+            $results->count(),  
+            $perPage,           
+            $currentPage,       
+            [
+                'path' => Paginator::resolveCurrentPath(), 
+                'pageName' => 'page',
+            ]
+        );
+    }
 
     public function clearCache(): void
     {

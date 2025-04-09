@@ -19,6 +19,7 @@ class InventoryManage extends Component
     public $headers = [
         ['key' => 'product', 'label' => 'Produto', 'sortable' => false],
         ['key' => 'unit', 'label' => 'Unidade', 'sortable' => false], 
+        ['key' => 'unit_value', 'label' => 'Preço (R$)', 'class' => 'font-bold text-right', 'format' => ['currency', '2,.', ''], 'sortable' => false],
         ['key' => 'balance', 'label' => 'Saldo', 'class' => 'font-bold text-right', 'format' => ['currency', '0,.', '']],
         ['key' => 'sell', 'label' => 'Vender', 'sortable' => false], 
     ];
@@ -79,6 +80,8 @@ class InventoryManage extends Component
                     'op'         => 'D', 
                     'amount'     => $qnt,
                     'unit_value' => $unitValue,
+                    'start' => $this->player->last_datetime,
+                    'end' => $this->player->last_datetime,
                 ]);
 
                 $totalSaleValue = $qnt * $unitValue;

@@ -5,7 +5,7 @@
         placeholder="Procurar" clearable class="w-full lg:w-64"/>
     </div>
     <x-mary-table :headers="$headers" :rows="$products" :sort-by="$sortBy" wire:model="expanded" 
-    with-pagination expandable expandable-key="coid" >
+    with-pagination expandable expandable-key="coid">
         @scope('cell_product', $product)
             <div class="flex gap-2">
                 <img src="{{ $product->game_data->images[0] }}" alt="{{ $product->game_data->name }}"
@@ -18,9 +18,12 @@
                 label="Vender" spinner class="btn-sm" />
         @endscope
         @scope('expansion', $product)
-        <div class="flex">
+        <div class="flex justify-center">
             <x-game.inventory.sell-input :product="$product" />
         </div>
         @endscope
+        <x-slot:empty>
+            <x-mary-icon name="o-cube" label="Você não possui nenhum produto em estoque. Dê uma olhada em Produção, Explorar ou Comércio!" />
+        </x-slot:empty>
     </x-mary-table>
 </div>
