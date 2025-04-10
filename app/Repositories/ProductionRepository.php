@@ -24,12 +24,20 @@ class ProductionRepository extends BaseGameDataRepository
             $content['images'] = [];
         }
 
-        // Carregar os objetos dos produtos em build.products
-        if (!empty($content['build']['products']) && is_array($content['build']['products'])) {
-            $content['build']['products'] = array_map(function ($productInfo) {
+        // Carregar os objetos dos produtos em build.products.required
+        if (!empty($content['build']['products']['required']) && is_array($content['build']['products']['required'])) {
+            $content['build']['products']['required'] = array_map(function ($productInfo) {
                 $product = $this->productRepository->find($productInfo['id'] ?? null);
                 return $product ? (object) array_merge($productInfo, ['product' => $product]) : (object) $productInfo;
-            }, $content['build']['products']);
+            }, $content['build']['products']['required']);
+        }
+
+        // Carregar os objetos dos produtos em build.products.optional
+        if (!empty($content['build']['products']['optional']) && is_array($content['build']['products']['optional'])) {
+            $content['build']['products']['optional'] = array_map(function ($productInfo) {
+                $product = $this->productRepository->find($productInfo['id'] ?? null);
+                return $product ? (object) array_merge($productInfo, ['product' => $product]) : (object) $productInfo;
+            }, $content['build']['products']['optional']);
         }
         
         // Carregar os objetos dos produtos em production.products

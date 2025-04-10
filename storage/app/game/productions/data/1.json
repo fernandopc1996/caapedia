@@ -9,7 +9,10 @@
         "area": 0.0004,
         "water": -0.004,
         "degration": -0.0004,
-        "products":[]
+        "products":{
+            "required": [],
+            "optional": []
+        }
     },
     "production":{
         "time": 24,

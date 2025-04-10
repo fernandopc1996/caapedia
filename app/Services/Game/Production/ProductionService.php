@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Game\PlayerCharacter;
 use App\Models\Game\PlayerProduction;
 use App\Models\Game\PlayerAction;
+use App\Models\Game\PlayerProduct;
 use App\Traits\LoadsPlayerFromSession;
 use Carbon\Carbon;
 
@@ -31,35 +32,61 @@ class ProductionService
                 return 'Personagem está ocupado.';
             }
 
-            if (
-                $player->amount < abs($productionSetting->build['cost']) ||
-                $player->water < abs($productionSetting->build['water'])
-            ) {
-                return 'Recursos insuficientes.';
+            $createdProducts = [];
+
+            if (isset($productionSetting->build['products']['required']) && is_array($productionSetting->build['products']['required'])) {
+                foreach ($productionSetting->build['products']['required'] as $requiredProduct) {
+                    $currentBalance = PlayerProduct::where('player_id', $player->id)
+                        ->where('coid', $requiredProduct->id)
+                        ->selectRaw("SUM(CASE WHEN op = 'C' THEN amount ELSE -amount END) as balance")
+                        ->value('balance');
+
+                    if ($currentBalance < $requiredProduct->qnt) {
+                        return 'Produtos insuficientes para a produção.';
+                    }
+                }
+
+                foreach ($productionSetting->build['products']['required'] as $requiredProduct) {
+                    $createdProducts[] = PlayerProduct::create([
+                        'player_id'  => $player->id,
+                        'coid'       => $requiredProduct->id,
+                        'op'         => 'D',
+                        'amount'     => $requiredProduct->qnt,
+                        'unit_value' => 0,
+                        'start'      => $player->last_datetime,
+                        'end'        => $player->last_datetime,
+                    ]);
+                }
             }
 
-            $player->amount += $productionSetting->build['cost'];
-            $player->water += $productionSetting->build['water'];
-            $player->area += $productionSetting->build['area'];
+            $player->amount    += $productionSetting->build['cost'];
+            $player->water     += $productionSetting->build['water'];
+            $player->area      += $productionSetting->build['area'];
             $player->degration += $productionSetting->build['degration'];
             $player->save();
 
             $playerCharacter->working++;
             $playerCharacter->save();
 
-            PlayerProduction::create([
-                'player_id' => $player->id,
-                'player_character_id' => $playerCharacterId,
-                'coid' => $coid,
-                'type_area' => $typeArea,
-                'start_build' => $player->last_datetime,
-                'end_build' => Carbon::parse($player->last_datetime)->addHours($productionSetting->build['time']),
-                'completed' => false,
-                'area' => $productionSetting->build['area'],
-                'degration' => $productionSetting->build['degration'],
-                'water' => $productionSetting->build['water'],
-                'amount' => $productionSetting->build['cost'],
+            $playerProduction = PlayerProduction::create([
+                'player_id'            => $player->id,
+                'player_character_id'  => $playerCharacterId,
+                'coid'                 => $coid,
+                'type_area'            => $typeArea,
+                'start_build'          => $player->last_datetime,
+                'end_build'            => Carbon::parse($player->last_datetime)->addHours($productionSetting->build['time']),
+                'completed'            => false,
+                'area'                 => $productionSetting->build['area'],
+                'degration'            => $productionSetting->build['degration'],
+                'water'                => $productionSetting->build['water'],
+                'amount'               => $productionSetting->build['cost'],
             ]);
+
+            foreach ($createdProducts as $product) {
+                $product->update([
+                    'player_production_id' => $playerProduction->id,
+                ]);
+            }
 
             return $player;
         });
@@ -72,6 +99,7 @@ class ProductionService
 
         return true;
     }
+
 
     public function createProductionAction(PlayerProduction $playerProduction, int $playerCharacterId, int $coid, int $typeArea = 0): bool|string
     {

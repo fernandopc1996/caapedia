@@ -32,13 +32,12 @@
                         value="{{ $productionSetting->build['area'] }} ha" color="green-600" />
                     <x-game.production.build-item icon="fas.tint" label="Água"
                         value="{{ $productionSetting->build['water'] }}h" color="blue-600" />
-
-                    @if (!empty($productionSetting->production['products']))
+                    @if (!empty($productionSetting->build['products']['required']))
                         <div class="md:col-span-2">
                             <h4 class="text-md font-medium text-gray-900 mb-1">Necessário:</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                                @foreach ($productionSetting->production['products'] as $product)
-                                    <x-game.production.product-item :product="$product->product" />
+                                @foreach ($productionSetting->build['products']['required'] as $product)
+                                    <x-game.production.product-item :product="$product->product" :qnt="$product->qnt"/>
                                 @endforeach
                             </div>
                         </div>
