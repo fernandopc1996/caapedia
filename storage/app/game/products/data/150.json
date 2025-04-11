@@ -1,0 +1,13 @@
+{
+    "id": 150,
+    "type": 5,
+    "name": "Bioestimulante Natural",
+    "unit": "LT",
+    "unit_value": 50.00,
+    "salable": true,
+    "description": "Bioestimulante natural à base de compostos orgânicos que atua no desenvolvimento das plantas, estimulando o crescimento radicular, a brotação e o vigor vegetativo de forma saudável e sustentável.",
+    "source": null,
+    
+    
+    "images": ["t5/150.png"]
+}

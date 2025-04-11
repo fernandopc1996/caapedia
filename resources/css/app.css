@@ -2,14 +2,11 @@
 
 /* daisyUI */
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark;
+    themes: light --default;
 }
 
 /* maryUI */
 @source "../../vendor/robsontenorio/mary/src/View/Components/**/*.php";
-
-/* Dark theme variant support */
-@custom-variant dark (&:where(.dark, .dark *));
 
 /* Laravel 12 defaults */
 @source "../views";

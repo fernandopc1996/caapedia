@@ -1,0 +1,13 @@
+{
+    "id": 151,
+    "type": 5,
+    "name": "Fertilizante NPK",
+    "unit": "LT",
+    "unit_value": 15.00,
+    "salable": true,
+    "description": "O fertilizante NPK é uma solução para nutrição vegetal, formulado com altos teores de nitrogênio, fósforo e potássio. Indicado para todas as fases de desenvolvimento das plantas, ele melhora o metabolismo, promove crescimento vigoroso, enraizamento e floração.",
+    "source": null,
+    
+    
+    "images": ["t5/151.png"]
+}

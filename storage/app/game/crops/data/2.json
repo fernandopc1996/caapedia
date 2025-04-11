@@ -1,0 +1,114 @@
+{
+    "id": 2,
+    "type": 2,
+    "name": "Mangueira 10x10 - 100 plantas/ha",
+    "description": "A mangueira é uma cultura perene que pode produzir por vários anos. A produção se reinicia após a poda, mantendo a planta ativa em ciclos sucessivos.",
+    "source": "https://www.todafruta.com.br/manga-mangifera-indica-l/",
+    "images": ["t2/manga.jpg"],
+    "build": {
+      "area": 0.5,
+      "water": -0.15,
+      "cost": -2500,
+      "degration": -0.0009,
+      "start_cycle": {
+        "time": 18,
+        "phases": [
+          {
+            "name": "Plantio",
+            "percent": 10,
+            "products": {
+              "required": [
+                { "id": 101, "qnt": 50 } 
+              ],
+              "optional": [
+                { "id": 201, "qnt": 1 } // Gel de enraizamento
+              ]
+            }
+          },
+          {
+            "name": "Crescimento",
+            "percent": 30,
+            "products": {
+              "optional": [
+                { "id": 202, "qnt": 2 } // Adubo orgânico
+              ]
+            }
+          },
+          {
+            "name": "Poda",
+            "percent": 10,
+            "products": {
+              "optional": [
+                { "id": 203, "qnt": 1 } // Ferramenta de poda / mão de obra
+              ]
+            }
+          },
+          {
+            "name": "Floração",
+            "percent": 25,
+            "products": {
+              "optional": [
+                { "id": 204, "qnt": 1 } // Estimulante floral
+              ]
+            }
+          },
+          {
+            "name": "Frutificação",
+            "percent": 25,
+            "products": {
+              "optional": [
+                { "id": 205, "qnt": 1 } // Irrigação regulada
+              ]
+            }
+          }
+        ]
+      },
+      "continue_cycle": {
+        "time": 16,
+        "rest_time": 2,
+        "max_cycles": 6,
+        "productivity_decay": 0.15,
+        "phases": [
+          {
+            "name": "Poda",
+            "percent": 15,
+            "products": {
+              "optional": [
+                { "id": 203, "qnt": 1 } // Reutiliza item da poda
+              ]
+            }
+          },
+          {
+            "name": "Floração",
+            "percent": 40,
+            "products": {
+              "optional": [
+                { "id": 204, "qnt": 1 }
+              ]
+            }
+          },
+          {
+            "name": "Frutificação",
+            "percent": 45,
+            "products": {
+              "optional": [
+                { "id": 205, "qnt": 1 }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "production": {
+      "time": 4,
+      "cost": -500,
+      "area": 0,
+      "water": -0.015,
+      "degration": -0.00005,
+      "batch": 8,
+      "products": [
+        { "id": 11, "qnt": [20, 40], "lottery": 100 } // Mangas
+      ]
+    }
+  }
+  

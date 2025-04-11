@@ -1,0 +1,13 @@
+{
+    "id": 153,
+    "type": 5,
+    "name": "Fertilizante Nitrogenado",
+    "unit": "LT",
+    "unit_value": 15.00,
+    "salable": true,
+    "description": "Fertilizante nitrogenado é ideal para estimular o crescimento vegetativo e o desenvolvimento saudável das plantas.",
+    "source": null,
+    
+    
+    "images": ["t5/153.png"]
+}

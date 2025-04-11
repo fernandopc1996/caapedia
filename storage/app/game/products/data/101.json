@@ -1,0 +1,13 @@
+{
+    "id": 101,
+    "type": 2,
+    "name": "Muda de Mangueira",
+    "unit": "UN",
+    "unit_value": 1.00,
+    "salable": true,
+    "description": "Produzida a partir de enxertia ou semente selecionada, é vigorosa e pronta para o plantio em áreas definitivas",
+    "source": "",
+    
+    
+    "images": ["t2/101.png"]
+}

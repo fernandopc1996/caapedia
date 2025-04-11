@@ -1,0 +1,71 @@
+{
+    "id": 1,
+    "type": 2,
+    "name": "Plantação de Milho",
+    "description": "Milho é uma cultura de ciclo curto e precisa ser replantada após cada colheita. Ideal para produção de grãos, forragem e alimentação animal.",
+    "source": "https://www.agrolink.com.br/milho/introducao_1123.html",
+    "images": ["t2/milho.jpg"],
+    "build": {
+      "area": 0.0025,
+      "water": -0.08,
+      "cost": -800,
+      "degration": -0.0007,
+      "start_cycle": {
+        "time": 8,
+        "phases": [
+          {
+            "name": "Germinação",
+            "percent": 15,
+            "products": {
+              "required": [
+                { "id": 100, "qnt": 32 }
+              ],
+              "optional": [
+                { "id": 150, "qnt": 1 }
+              ]
+            }
+          },
+          {
+            "name": "Vegetativo",
+            "percent": 35,
+            "products": {
+              "optional": [
+                { "id": 151, "qnt": 2 },
+                { "id": 103, "qnt": 1 }  // Herbicida natural
+              ]
+            }
+          },
+          {
+            "name": "Florescimento",
+            "percent": 25,
+            "products": {
+              "optional": [
+                { "id": 152, "qnt": 1 }
+              ]
+            }
+          },
+          {
+            "name": "Maturação",
+            "percent": 25,
+            "products": {
+              "optional": [
+                { "id": 105, "qnt": 1 } // Irrigação extra ou cobertura
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "production": {
+      "time": 3,
+      "cost": -300,
+      "area": 0,
+      "water": -0.01,
+      "degration": -0.0001,
+      "batch": 5,
+      "products": [
+        { "id": 10, "qnt": [80, 120], "lottery": 100 } // Espigas de milho
+      ]
+    }
+  }
+  

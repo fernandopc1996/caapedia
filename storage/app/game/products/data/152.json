@@ -1,0 +1,13 @@
+{
+    "id": 152,
+    "type": 5,
+    "name": "Fertilizante Fosfatado",
+    "unit": "LT",
+    "unit_value": 15.00,
+    "salable": true,
+    "description": "Fertilizante fosfatado é formulado com alta concentração de fósforo (P), essencial para o desenvolvimento radicular, a formação de flores e frutos e o crescimento inicial das plantas.",
+    "source": null,
+    
+    
+    "images": ["t5/152.png"]
+}

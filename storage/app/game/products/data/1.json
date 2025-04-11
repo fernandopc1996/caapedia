@@ -1,5 +1,6 @@
 {
     "id": 1,
+    "type": 1,
     "name": "Galinha 1",
     "unit": "UN",
     "unit_value": 10.00,

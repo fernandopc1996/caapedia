@@ -1,5 +1,6 @@
 {
     "id": 4,
+    "type": 2,
     "name": "Ovo 2",
     "unit": "UN",
     "unit_value": 0.25,
