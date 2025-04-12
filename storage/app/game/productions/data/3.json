@@ -1,0 +1,34 @@
+{
+    "id": 3,
+    "name": "Criação de Abelha Jandaíra",
+    "description": "A produção de mel e derivados da abelha Jandaíra no sertão brasileiro, especialmente na caatinga, representa uma alternativa sustentável e altamente adaptada às condições ambientais semiáridas.",
+    "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/produ%C3%A7%C3%A3o/cria%C3%A7%C3%A3o-de-abelha-janda%C3%ADra",
+    "build":{
+        "time": 48,
+        "cost": -3500,
+        "area": 0.0008,
+        "water": -0.040,
+        "degration": -0.0004,
+        "products":{
+            "required": [
+                {"id": 10, "qnt": 10}
+            ],
+            "optional": []
+        }
+    },
+    "production":{
+        "time": 4320,
+        "cost": -100,
+        "area": 0,
+        "water": -0.004,
+        "degration": -0.00004,
+        "batch": 2,
+        "products":[
+            {"id": 10, "qnt": [1, 1], "lottery": 25},
+            {"id": 11, "qnt": [5, 10], "lottery": 70},
+            {"id": 12, "qnt": [1, 1], "lottery": 5}
+        ]
+    },
+    
+    "images": ["p3/3.jpg"]
+}

@@ -1,0 +1,13 @@
+{
+    "id": 11,
+    "type": 4,
+    "name": "Mel de Abelha Jandaíra",
+    "unit": "LT",
+    "unit_value": 50.00,
+    "salable": true,
+    "description": "É um produto nobre e de altíssimo valor nutritivo e medicinal, produzido por abelhas nativas sem ferrão da caatinga. Com sabor suave, aroma floral marcante e textura leve, esse mel é naturalmente mais ácido e menos viscoso que o mel comum, características que reforçam suas propriedades terapêuticas e o tornam ideal para uso medicinal e gourmet.",
+    "source": "",
+    
+    
+    "images": ["t4/11.png"]
+}

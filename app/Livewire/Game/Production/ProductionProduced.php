@@ -24,7 +24,7 @@ class ProductionProduced extends Component
     public function products()
     {
         if ($this->production) 
-            return $this->production->playerProducts()->orderBy('end', 'desc')->limit(5)->get();
+            return $this->production->playerProducts()->where('op', 'C')->orderBy('end', 'desc')->limit(5)->get();
         return [];
     }
 

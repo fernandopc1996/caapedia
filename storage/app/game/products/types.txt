@@ -1,0 +1,7 @@
+1 - Animais
+2 - Mudas e sementes
+3 - Vegetais, raízes, Legumes e Frutas
+4 - Produtos de origem animal
+5 - Fertilizantes / Agrotóxicos
+6 - 
+7 - 

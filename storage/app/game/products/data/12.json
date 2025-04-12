@@ -1,0 +1,13 @@
+{
+    "id": 12,
+    "type": 4,
+    "name": "Própolis Bruto de Abelha Jandaíra",
+    "unit": "kG",
+    "unit_value": 70.00,
+    "salable": true,
+    "description": "O Própolis Bruto de Abelha Jandaíra é um composto natural e altamente concentrado, produzido a partir da mistura de resinas vegetais, cerume e secreções das próprias abelhas nativas do sertão.",
+    "source": "",
+    
+    
+    "images": ["t4/12.png"]
+}

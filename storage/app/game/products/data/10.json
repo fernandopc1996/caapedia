@@ -1,0 +1,13 @@
+{
+    "id": 10,
+    "type": 1,
+    "name": "Enxame de abelha jandaíra",
+    "unit": "CX",
+    "unit_value": 200.00,
+    "salable": true,
+    "description": "O Enxame de Abelha Jandaíra (Melipona subnitida) é a base ideal para quem deseja iniciar ou expandir a criação de abelhas nativas no semiárido nordestino. Adaptada naturalmente ao clima seco e à flora da caatinga, a Jandaíra é uma espécie rústica, sem ferrão, de fácil manejo e excelente produtividade mesmo em condições adversas.",
+    "source": "",
+    
+    
+    "images": ["t1/10.jpg"]
+}

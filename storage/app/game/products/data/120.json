@@ -1,0 +1,13 @@
+{
+    "id": 120,
+    "type": 3,
+    "name": "MILHO",
+    "unit": "KG",
+    "unit_value": 0.75,
+    "salable": true,
+    "description": "O milho é uma planta cerealífera essencial para a segurança alimentar e produção agrícola no sertão brasileiro. Com crescimento rápido e grande adaptabilidade, ele serve como base para alimentação humana, ração animal e matéria-prima para diversos produtos.",
+    "source": "",
+    
+    
+    "images": ["t3/120.png"]
+}
