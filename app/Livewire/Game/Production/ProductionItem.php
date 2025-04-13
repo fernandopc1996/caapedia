@@ -11,6 +11,7 @@ use App\Models\Game\PlayerProduction;
 
 use Mary\Traits\Toast;
 
+//TypeAreaProduction::Breeding or TypeAreaProduction::Manufacturing
 class ProductionItem extends Component
 {
     use Toast;

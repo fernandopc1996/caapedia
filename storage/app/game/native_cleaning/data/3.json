@@ -1,0 +1,18 @@
+{
+    "id": 3,
+    "name": "Mecanizado",
+    "description": "Método mecanizado que utiliza tratores com implementos como grades e lâminas para remoção da vegetação nativa. É eficiente para grandes áreas, mas causa impacto significativo no solo.",
+    "source": "https://www.embrapa.br/busca-de-noticias/-/noticia/37634263",
+    "available": true,
+    "execution": {
+      "time": 8,
+      "cost": -2500,
+      "area": 0.5,
+      "water": -0.0015,
+      "degration": -0.0035,
+      "batch": 1,
+      "products": []
+    },
+    "images": ["t1/3.jpg"]
+  }
+  

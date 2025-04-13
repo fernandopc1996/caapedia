@@ -1,0 +1,21 @@
+{
+    "id": 2,
+    "name": "Roço Manual",
+    "description": "Forma manual de limpeza que remove plantas rasteiras, arbustos e espécies arbóreas menores, permitindo a preservação de árvores nativas. Possui impacto ambiental reduzido, porém exige mais tempo e mão de obra.",
+    "source": "https://ainfo.cnptia.embrapa.br/digital/bitstream/item/192739/1/Doc-210.pdf",
+    "available": true,
+    "execution": {
+        "time": 72,
+        "cost": -50,
+        "area": 0.5,
+        "water": -0.0005,
+        "degration": -0.0004,
+        "batch": 10,
+        "products": [
+            { "id": 120, "qnt": [5, 15], "lottery": 100 } 
+        ]
+    },
+    "images": [
+        "t2/2.jpg"
+    ]
+}

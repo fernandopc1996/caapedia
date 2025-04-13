@@ -11,22 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('player_productions', function (Blueprint $table) {
+        Schema::create('player_action_areas', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
-            $table->tinyInteger('type_area')->default(1);
-            $table->tinyInteger('status_area')->nullable();
-            $table->unsignedInteger('sequence')->default(1);
-            $table->unsignedInteger('native_cleaning_coid')->nullable();
-            $table->unsignedInteger('crop_coid')->nullable();
-            $table->string('name', 100)->nullable();
-            $table->unsignedInteger('coid')->nullable();
-            $table->dateTime('start_build')->nullable();
-            $table->dateTime('end_build')->nullable();
+            $table->foreignId('player_production_id')->constrained()->nullable();
             $table->foreignId('player_character_id')->constrained();
+            $table->smallInteger('cycles')->default(1);
+            $table->unsignedInteger('coid');
             $table->boolean('completed')->default(0);
-            $table->decimal('area', total: 12, places: 4);
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
+            $table->decimal('increase_production', total: 9, places: 6);
             $table->decimal('degration', total: 15, places: 6);
             $table->decimal('water', total: 16, places: 3);
             $table->decimal('amount', total: 16, places: 2);
@@ -39,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('player_productions');
+        Schema::dropIfExists('player_action_areas');
     }
 };

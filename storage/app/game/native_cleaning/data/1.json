@@ -1,0 +1,19 @@
+{
+    "id": 1,
+    "name": "Derruba e Queima",
+    "description": "Método tradicional que consiste em derrubar a vegetação nativa e queimá-la para preparar o solo. Embora seja rápido, causa alta degradação ambiental.",
+    "source": "https://www.embrapa.br/busca-de-noticias/-/noticia/4383457/uso-do-fogo-na-agricultura-precisa-ser-melhor-entendido",
+    "available": true,
+    "execution": {
+        "time": 24,
+        "cost": -100,
+        "area": 0.5,
+        "water": -0.001,
+        "degration": -0.003,
+        "batch": 1,
+        "products": []
+    },
+    "images": [
+        "t1/1.jpg"
+    ]
+}

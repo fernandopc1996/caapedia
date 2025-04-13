@@ -3,20 +3,25 @@
 @foreach ($pending as $item)
     @php
         $character = $item->playerCharacter->game_data;
-        // Se existir pending_action, utiliza seus valores; caso contrário, usa os do playerProduction.
         $start = \Carbon\Carbon::parse($item->pending_action->start ?? $item->start_build)->timestamp * 1000;
         $end = \Carbon\Carbon::parse($item->pending_action->end ?? $item->end_build)->timestamp * 1000;
         $now = \Carbon\Carbon::parse($player->last_datetime)->timestamp * 1000;
         $duration = $end - $start;
         $initialProgress = max(0, min(100, (($now - $start) / $duration) * 100));
         $statusLabel = $item->pending_action ? 'Produzindo' : 'Construindo/Preparando';
+        $title = $item->type_area === \App\Enums\TypeAreaProduction::Cultivation
+            ? $item->native_cleaning_data->name
+            : $item->game_data->name;
+        $keyPrefix = $item->type_area->value;
     @endphp
 
-    <x-buttons.big class="h-50 p-4 flex flex-col items-start justify-between relative"
-        wire:navigate :disabled="true" data-start="{{ $start }}"
-        data-end="{{ $end }}" wire:key="{{ $item->id }}">
+    <div class="h-50 p-4 flex flex-col items-start justify-between relative border border-black rounded-md bg-transparent"
+        data-start="{{ $start }}"
+        data-end="{{ $end }}" wire:key="{{ $keyPrefix }}-{{ $item->id }}">
+        
         <div class="w-full">
-            <h2 class="text-xl font-bold">{{ $item->game_data->name }}</h2>
+            <span class="text-xs border border-black px-2 py-0.5 rounded-md font-bold">{{ $item->name }}</span>
+            <h2 class="text-xl font-bold">{{ $title }}</h2>
             <p class="text-sm text-gray-600">{{ $statusLabel }}</p>
         </div>
 
@@ -33,8 +38,9 @@
         <div class="w-full mt-1 text-right text-xs text-gray-500">
             Termina em {{ \Carbon\Carbon::parse($item->pending_action->end ?? $item->end_build)->format('d/m/Y H:i') }}
         </div>
-    </x-buttons.big>
+    </div>
 @endforeach
+
 
 @once
 <script>

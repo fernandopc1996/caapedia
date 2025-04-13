@@ -7,15 +7,15 @@
     "images": ["t2/manga.jpg"],
     "production": {
       "area": 0.5,
-      "water": -0.15,
-      "cost": -2500,
-      "degration": -0.0009,
+      "water": -13000,
+      "cost": -7000,
+      "degration": -0.0119,
       "start_cycle": {
-        "time": 18,
+        "time": 26280,
         "phases": [
           {
             "name": "Plantio",
-            "percent": 10,
+            "percent": 1,
             "products": {
               "required": [
                 { "id": 101, "qnt": 50 } 
@@ -27,7 +27,7 @@
           },
           {
             "name": "Crescimento",
-            "percent": 30,
+            "percent": 39,
             "products": {
               "optional": [
                 { "id": 151, "qnt": 1 }
@@ -36,7 +36,7 @@
           },
           {
             "name": "Poda",
-            "percent": 10,
+            "percent": 1,
             "products": {
               "optional": [
                 { "id": 152, "qnt": 1 }
@@ -54,7 +54,7 @@
           },
           {
             "name": "Frutificação",
-            "percent": 25,
+            "percent": 34,
             "products": {
               "optional": [
                 { "id": 152, "qnt": 1 }
@@ -64,10 +64,12 @@
         ]
       },
       "continue_cycle": {
-        "time": 16,
-        "rest_time": 2,
-        "max_cycles": 6,
-        "productivity_decay": 0.15,
+        "time": 8760,
+        "max_cycles": 30,
+        "water": -4500,
+        "cost": -2000,
+        "degration": -0.0119,
+        "productivity_decay": 0.05,
         "phases": [
           {
             "name": "Poda",

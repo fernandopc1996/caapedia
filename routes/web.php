@@ -13,7 +13,7 @@ use App\Livewire\Game\Finance\{FinanceManage};
 use App\Livewire\Game\Inventory\{InventoryManage};
 use App\Livewire\Game\Market\{MarketManage};
 use App\Livewire\Game\People\{PeopleManage};
-use App\Livewire\Game\Production\{ProductionManage, ProductionCreate, ProductionItem};
+use App\Livewire\Game\Production\{ProductionManage, ProductionCreate, ProductionItem, ProductionAreaCrop};
 use App\Livewire\Game\News\{Newspaper};
 use App\Livewire\Game\History\{EventsView};
 
@@ -56,7 +56,8 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
         Route::prefix('production')->group(function () {
             Route::get('/', ProductionManage::class)->name('production.manage');
             Route::get('/create', ProductionCreate::class)->name('production.create');
-            Route::get('/item/{production:uuid?}', ProductionItem::class)->name('production.item');
+            Route::get('/item/i/{production:uuid?}', ProductionItem::class)->name('production.item');
+            Route::get('/item/area/i/{production:uuid?}', ProductionAreaCrop::class)->name('production.area');
         });
 
         Route::prefix('news')->group(function () {

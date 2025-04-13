@@ -41,7 +41,7 @@ class MarketManage extends Component
     public function products() {
         $productRepository = app(ProductRepository::class);
         $search = $this->search ? ["name" => $this->search] : [];
-        $products = $productRepository->paginateSearch($search, 2, $this->sortBy);
+        $products = $productRepository->paginateSearch($search, 5, $this->sortBy);
         //dd($products);
         return $products->through(function ($item) {
             $item->unit_value = $this->player->getInflationValue($item->unit_value, "C");

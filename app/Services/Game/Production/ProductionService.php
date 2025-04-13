@@ -9,12 +9,13 @@ use App\Models\Game\PlayerAction;
 use App\Models\Game\PlayerProduct;
 use App\Traits\LoadsPlayerFromSession;
 use Carbon\Carbon;
+use App\Enums\TypeAreaProduction;
 
 class ProductionService
 {
     use LoadsPlayerFromSession;
 
-    public function createProduction(object $productionSetting, int $playerCharacterId, int $coid, int $typeArea = 0): bool|string
+    public function createProduction(object $productionSetting, int $playerCharacterId, int $coid, TypeAreaProduction $typeArea = TypeAreaProduction::Breeding): bool|string
     {
         $result = DB::transaction(function () use ($productionSetting, $playerCharacterId, $coid, $typeArea) {
             $player = $this->getPlayerFromSession();
@@ -30,6 +31,13 @@ class ProductionService
 
             if ($playerCharacter->working >= 3) {
                 return 'Personagem está ocupado.';
+            }
+
+            if (
+                $player->amount < abs($productionSetting->build['cost']) ||
+                $player->water < abs($productionSetting->build['water'])
+            ) {
+                return 'Recursos insuficientes.';
             }
 
             $createdProducts = [];
@@ -162,6 +170,63 @@ class ProductionService
         return true;
     }
 
+    public function createProductionAreaCrop(object $nativeCleaningSetting, int $playerCharacterId): bool|string{
+        $result = DB::transaction(function () use ($nativeCleaningSetting, $playerCharacterId) {
+            $player = $this->getPlayerFromSession();
+
+            if (!$player) {
+                return 'Jogador não encontrado.';
+            }
+
+            $playerCharacter = PlayerCharacter::find($playerCharacterId);
+            if (!$playerCharacter || $playerCharacter->player_id !== $player->id) {
+                return 'Personagem inválido.';
+            }
+
+            if ($playerCharacter->working >= 3) {
+                return 'Personagem está ocupado.';
+            }
+
+            $cost  = abs($nativeCleaningSetting->execution['cost']);
+            $water = abs($nativeCleaningSetting->execution['water']);
+
+            if ($player->amount < $cost || $player->water < $water) {
+                return 'Recursos insuficientes.';
+            }
+
+            $player->amount    -= $cost;
+            $player->water     -= $water;
+            $player->area      += $nativeCleaningSetting->execution['area'];
+            $player->degration += $nativeCleaningSetting->execution['degration'];
+            $player->save();
+
+            $playerCharacter->working++;
+            $playerCharacter->save();
+
+            $playerProduction = PlayerProduction::create([
+                'player_id'           => $player->id,
+                'player_character_id' => $playerCharacterId,
+                'native_cleaning_coid' => $nativeCleaningSetting->id,
+                'type_area'           => TypeAreaProduction::Cultivation,
+                'status_area'         => 1, 
+                'start_build'         => $player->last_datetime,
+                'end_build'           => Carbon::parse($player->last_datetime)->addHours($nativeCleaningSetting->execution['time']),
+                'completed'           => false,
+                'area'                => $nativeCleaningSetting->execution['area'],
+                'degration'           => $nativeCleaningSetting->execution['degration'],
+                'water'               => $nativeCleaningSetting->execution['water'],
+                'amount'              => $nativeCleaningSetting->execution['cost'],
+            ]);
+            return $player;
+        });
+
+        if (is_string($result)) {
+            return $result;
+        }
+
+        $this->updatePlayerInSession($result->fresh(['playerCharacters']));
+        return true;
+    }
 
 
 }

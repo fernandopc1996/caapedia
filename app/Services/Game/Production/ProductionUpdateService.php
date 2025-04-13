@@ -15,7 +15,7 @@ class ProductionUpdateService
         $now = $player->last_datetime;
         $wasUpdated = false;
 
-        // Processa produções
+        // Processa produções finalizadas
         $productions = $player->playerProductions()
             ->where('completed', false)
             ->where('end_build', '<=', $now)
@@ -28,7 +28,11 @@ class ProductionUpdateService
 
                 $production->playerCharacter->working -= 1;
                 $production->playerCharacter->save();
-                //$this->createProducts($player, $production->playerCharacter, $production, null);
+
+                if ($production->type_area === \App\Enums\TypeAreaProduction::Cultivation) {
+                    $this->createProductsFromNativeCleaning($player, $production);
+                }
+
                 return true;
             });
 
@@ -51,7 +55,7 @@ class ProductionUpdateService
                 $action->playerCharacter->working -= 1;
                 $action->playerCharacter->save();
 
-                $this->createProducts($player, $action->playerProduction, $action);
+                $this->createProductsFromProductionAction($player, $action->playerProduction, $action);
                 return true;
             });
 
@@ -63,28 +67,75 @@ class ProductionUpdateService
         return $wasUpdated;
     }
 
-    private function createProducts(Player $player, $production = null, $action = null): void
-    {   
+    private function createProductsFromProductionAction(Player $player, $production = null, $action = null): void
+    {
         if (!isset($production->game_data->production)) {
             return;
         }
-        
-        $productionConfig = $production->game_data->production;
-        $batch = $productionConfig['batch'] ?? 1;
-        $productsConfig = $productionConfig['products'] ?? [];
+
+        $config = $production->game_data->production;
+        $productsConfig = $config['products'] ?? [];
+        $batch = $config['batch'] ?? 1;
 
         if (empty($productsConfig)) {
             return;
         }
 
+        $grouped = $this->generateGroupedProducts($productsConfig, $batch);
+
+        foreach ($grouped as $data) {
+            PlayerProduct::create([
+                'player_id'            => $player->id,
+                'coid'                 => $data['product']->id,
+                'amount'               => $data['amount'],
+                'op'                   => 'C',
+                'start'                => $action?->start,
+                'end'                  => $action?->end,
+                'player_action_id'     => $action?->id,
+                'player_production_id' => $production?->id,
+            ]);
+        }
+    }
+
+
+    private function createProductsFromNativeCleaning(Player $player, $production): void
+    {
+        $cleaning = $production->native_cleaning_data;
+
+        if (empty($cleaning?->execution['products'])) {
+            return;
+        }
+
+        $productsConfig = $cleaning->execution['products'];
+        $batch = $cleaning->execution['batch'] ?? 1;
+
+        $grouped = $this->generateGroupedProducts($productsConfig, $batch);
+
+        foreach ($grouped as $data) {
+            PlayerProduct::create([
+                'player_id'            => $player->id,
+                'coid'                 => $data['product']->id,
+                'amount'               => $data['amount'],
+                'op'                   => 'C',
+                'start'                => $production->start_build,
+                'end'                  => $production->end_build,
+                'player_production_id' => $production->id,
+            ]);
+        }
+    }
+
+    private function generateGroupedProducts(array $productsConfig, int $batch): array
+    {
         $productMapping = [];
         $weightMapping = [];
+
         foreach ($productsConfig as $product) {
             $productMapping[$product->id] = $product;
-            $weightMapping[$product->id] = $product->lottery;
+            $weightMapping[$product->id] = $product->lottery ?? 100;
         }
 
         $picker = new WeightedRandomPicker($weightMapping);
+        $grouped = [];
 
         for ($i = 0; $i < $batch; $i++) {
             $selectedId = $picker->pick();
@@ -94,17 +145,17 @@ class ProductionUpdateService
             $max = $selectedProduct->qnt[1] ?? 1;
             $amount = mt_rand($min, $max);
 
-            PlayerProduct::create([
-                'player_id' => $player->id,
-                'coid' => $selectedProduct->id,
-                'start' =>  $action?->start,
-                'end' =>  $action?->end,
-                'op' => 'C', 
-                'amount' => $amount,
-                'player_action_id' => $action?->id,
-                'player_production_id' => $production?->id,
-            ]);
+            if (isset($grouped[$selectedId])) {
+                $grouped[$selectedId]['amount'] += $amount;
+            } else {
+                $grouped[$selectedId] = [
+                    'product' => $selectedProduct,
+                    'amount'  => $amount,
+                ];
+            }
         }
+
+        return $grouped;
     }
 
 }

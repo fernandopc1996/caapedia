@@ -7,7 +7,8 @@
     "salable": true,
     "description": "Fertilizante fosfatado é formulado com alta concentração de fósforo (P), essencial para o desenvolvimento radicular, a formação de flores e frutos e o crescimento inicial das plantas.",
     "source": null,
-    
+    "increase_production": 0.1,
+    "degration": 0.0007,
     
     "images": ["t5/152.png"]
 }

@@ -16,6 +16,10 @@ class ProductionCreate extends Component{
         $this->coid = $coid;
     }
 
+    public function prepareArea(){
+        $this->redirectRoute('production.area');
+    }
+
     public function mount(ProductionRepository $productionRepository) {
         $productionRepository->clearCache();
         $this->productions = $productionRepository->all();

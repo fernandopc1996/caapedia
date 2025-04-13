@@ -1,0 +1,18 @@
+{
+    "id": 5,
+    "name": "Sistema Agroflorestal",
+    "description": "Integração de culturas agrícolas com árvores nativas, sem remoção total da vegetação. Sustentável e benéfico a longo prazo.",
+    "source": "https://www.embrapa.br/agroflorestas",
+    "available": false,
+    "execution": {
+      "time": 96,
+      "cost": -120,
+      "area": 0.5,
+      "water": -0.0001,
+      "degration": -0.0001,
+      "batch": 1,
+      "products": []
+    },
+    "images": ["t2/5.jpg"]
+  }
+  

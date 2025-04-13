@@ -4,9 +4,10 @@ namespace App\Models\Game;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Repositories\CropRepository;
 use Illuminate\Support\Str;
 
-class PlayerAction extends Model
+class PlayerActionArea extends Model
 {
     protected $fillable = [
         'player_id',
@@ -18,11 +19,12 @@ class PlayerAction extends Model
         'start',
         'end',
         'increase_production',
-        'area',
         'degration',
         'water',
         'amount',
     ];
+
+    protected $appends = ['game_data'];
 
     protected static function booted(): void
     {
@@ -44,5 +46,11 @@ class PlayerAction extends Model
     public function playerProduction(): BelongsTo
     {
         return $this->belongsTo(PlayerProduction::class);
+    }
+
+    public function getGameDataAttribute(): ?object
+    {
+        $repo = app(CropRepository::class);
+        return $repo->find($this->coid);
     }
 }

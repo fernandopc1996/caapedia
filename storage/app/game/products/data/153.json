@@ -7,7 +7,8 @@
     "salable": true,
     "description": "Fertilizante nitrogenado é ideal para estimular o crescimento vegetativo e o desenvolvimento saudável das plantas.",
     "source": null,
-    
+    "increase_production": 0.1,
+    "degration": 0.0007,
     
     "images": ["t5/153.png"]
 }

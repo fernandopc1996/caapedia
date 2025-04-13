@@ -4,7 +4,7 @@
     <livewire:game.production.production-item :coid="$coid"/>
     @else
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <x-buttons.big>
+        <x-buttons.big wire:click="prepareArea">
             <div class="flex-none p-4">
                 <x-mary-icon name="fas.object-group" class="h-20"/>
             </div>
@@ -16,7 +16,7 @@
         <x-buttons.big  wire:click="selectProduction({{ $production->id }})">
             <div class="flex-none p-4">
                 <img src="{{ $production->images[0] }}" alt="{{ $production->name }}"
-                                class="w-20 object-cover">
+                                class="w-20 h-20 rounded-lg object-cover">
             </div>
             <div class="flex-1">
                 <h3 class="text-lg font-bold">{{ $production->name }}</h3>
