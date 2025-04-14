@@ -54,6 +54,7 @@ class ProductionAreaCrop extends Component
             $this->loadAvailableCharacters();
             $this->dispatch('playerUpdated');
             $this->error($result);
+            return;
         }
         $this->success(
             'Preparação de área iniciada com sucesso',

@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Game\Player;
 use App\Services\Game\Player\PlayerTimerService;
-use App\Services\Game\Production\ProductionUpdateService;
+use App\Services\Game\Exploration\ExplorationUpdateService;
 use App\Repositories\{ExplorationRepository};
 use App\Traits\LoadsPlayerFromSession;
 
@@ -25,10 +25,22 @@ class ExploreManage extends Component{
 
     public function updatePlayerTimer(
         PlayerTimerService $playerTimerService,
-        ProductionUpdateService $productionUpdateService
+        ExplorationUpdateService $explorationUpdateService
     ) {
+        $this->player = $playerTimerService
+            ->setNow(now())
+            ->setPlayer($this->player)
+            ->updatePlayerTime();
 
+        $this->updatePlayerInSession($this->player);
+
+        $wasUpdated = $explorationUpdateService->handle($this->player);
+
+        if ($wasUpdated) {
+            $this->player->refresh();
+        }
     }
+
     #[Computed]
     public function explorationPending()
     {
@@ -37,7 +49,7 @@ class ExploreManage extends Component{
         return $this->player->playerActions()
             ->where('completed', false)
             ->where('coid_type', ExplorationRepository::class)
-            ->first();
+            ->get();
     }
 
 
@@ -48,10 +60,11 @@ class ExploreManage extends Component{
 
         return $this->player
             ->playerActions()
-            ->with('playerCharacter')
+            ->with('playerCharacter', 'playerProducts')
             ->where('completed', true)
             ->where('coid_type', ExplorationRepository::class)
-            ->get();
+            ->orderBy('end', 'desc')
+            ->limit(5)->get();
     }
 
     public function mount() {

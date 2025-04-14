@@ -4,7 +4,7 @@ namespace App\Livewire\Game\Explore;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Session;
-use App\Services\Game\Production\ProductionService;
+use App\Services\Game\Exploration\ExplorationService;
 use App\Models\Game\{Player};
 use App\Repositories\ExplorationRepository;
 use Mary\Traits\Toast;
@@ -29,7 +29,22 @@ class ExploreAction extends Component
     public function characterSeletorAction($params = [])
     {
         $this->selectedExplore = $params['selectedExplore'] ?? null;
-        dd($this->selectedExplore, $this->selectedCharacter);
+        $service = app(ExplorationService::class);
+        $result = $service->initExplorationAction(
+            $this->selectedExplore,
+            $this->selectedCharacter,
+        );
+
+        if ($result !== true) {
+            $this->loadAvailableCharacters();
+            $this->dispatch('playerUpdated');
+            $this->error($result);
+            return;
+        }
+        $this->success(
+            'Exploração iniciada com sucesso',
+            redirectTo: route('explore.manage')
+        );
     }
 
     protected function loadAvailableCharacters()

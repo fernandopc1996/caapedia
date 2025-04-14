@@ -106,5 +106,13 @@
     </div>
         {{-- Toast --}}
         <x-mary-toast />
+
+        <script>
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                    window.location.reload();
+                }
+            });
+        </script>
     </body>
 </html>

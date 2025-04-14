@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
-            $table->foreignId('player_production_id')->constrained()->nullable();
+            $table->foreignId('player_production_id')->nullable()->constrained();
             $table->foreignId('player_character_id')->constrained();
             $table->smallInteger('cycles')->nullable();
             $table->string('coid_type')->nullable();

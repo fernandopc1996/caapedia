@@ -1,6 +1,6 @@
 {
   "id": 2,
-  "name": "Explorar vegetação nativa próxima",
+  "name": "Vegetação nativa próxima",
   "description": "Busca por ervas medicinais, sementes e materiais naturais entre a vegetação da Caatinga.",
   "source": "",
   "exploration": {
@@ -9,7 +9,7 @@
     "area": 0,
     "water": -0.003,
     "degration": -0.00008,
-    "batch": 8,
+    "batch": 10,
     "products": [
       {
         "id": 1,

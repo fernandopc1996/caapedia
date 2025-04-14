@@ -1,6 +1,6 @@
 {
     "id": 1,
-    "name": "Explorar arredores próximos",
+    "name": "Arredores próximos",
     "description": "Conhecer os arredores para identificar recursos naturais próximos",
     "source": "",
     "exploration": {
@@ -9,7 +9,7 @@
         "area": 0,
         "water": -0.002,
         "degration": -0.00004,
-        "batch": 10,
+        "batch": 8,
         "products": [
             {
                 "id": 3,

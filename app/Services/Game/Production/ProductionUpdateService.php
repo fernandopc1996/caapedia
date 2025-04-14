@@ -43,6 +43,7 @@ class ProductionUpdateService
 
         // Processa ações
         $actions = $player->playerActions()
+            ->whereNotNull('player_production_id')
             ->where('completed', false)
             ->where('end', '<=', $now)
             ->get();

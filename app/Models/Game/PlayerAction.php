@@ -4,6 +4,7 @@ namespace App\Models\Game;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class PlayerAction extends Model
@@ -25,6 +26,8 @@ class PlayerAction extends Model
         'amount',
     ];
 
+    protected $appends = ['game_data'];
+
     protected static function booted(): void
     {
         static::creating(function ($model) {
@@ -45,5 +48,16 @@ class PlayerAction extends Model
     public function playerProduction(): BelongsTo
     {
         return $this->belongsTo(PlayerProduction::class);
+    }
+
+    public function playerProducts()
+    {
+        return $this->hasMany(PlayerProduct::class);
+    }
+
+    public function getGameDataAttribute(): ?object
+    {
+        $repo = app($this->coid_type);
+        return $repo->find($this->coid);
     }
 }

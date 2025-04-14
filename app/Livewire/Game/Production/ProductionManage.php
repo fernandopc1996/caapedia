@@ -72,7 +72,7 @@ class ProductionManage extends Component
             ->where(function ($query) {
                 $query->where('completed', false)
                     ->orWhereHas('playerActions', function ($q) {
-                        $q->where('completed', false);
+                        $q->where('completed', false)->whereNotNull('player_production_id');
                     });
             })
             ->get();
@@ -89,7 +89,7 @@ class ProductionManage extends Component
             ->with('playerCharacter')
             ->where('completed', true)
             ->whereDoesntHave('playerActions', function ($query) {
-                $query->where('completed', false);
+                $query->where('completed', false)->whereNotNull('player_production_id');
             })
             ->get();
     }
