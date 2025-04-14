@@ -1,5 +1,5 @@
 <div class="">
-    @if (!$production)
+    @if (!$production->crop_coid)
         <h2 class="text-2xl font-bold mb-4">Escolha o cultivo</h2>
         <select wire:model.live="selectedCrop" class="w-full border p-2 rounded mb-6">
             <option value="">-- Selecione um cultivo --</option>
