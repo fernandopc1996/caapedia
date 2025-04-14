@@ -10,7 +10,7 @@
     @endif
     @if ($selectedCropData)
         @php
-            $cycleNumber = $cyclo ?? 1;
+            $cycleNumber = $cycle ?? 1;
             $production = (array) $selectedCropData->production ?? [];
             $startCycle = (array) ($production['start_cycle'] ?? []);
             $continueCycle = (array) ($production['continue_cycle'] ?? []);
@@ -24,7 +24,6 @@
             if ($cycleNumber > 1 && !empty($continueCycle['phases'])) {
                 $phases = $continueCycle['phases'];
             }
-
             $expectedProducts = $production['products'] ?? [];
         @endphp
 
