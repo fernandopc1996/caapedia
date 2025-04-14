@@ -13,6 +13,7 @@ class PlayerAction extends Model
         'player_production_id',
         'player_character_id',
         'cycles',
+        'coid_type',
         'coid',
         'completed',
         'start',

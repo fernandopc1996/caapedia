@@ -8,7 +8,7 @@
         "cost": -2000,
         "area": 0.0016,
         "water": -0.040,
-        "degration": -0.0004,
+        "degration": 0.0014,
         "products":{
             "required": [
                 {"id": 1, "qnt": 15}

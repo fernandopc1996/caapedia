@@ -8,7 +8,7 @@
         "cost": -200,
         "area": 0.0004,
         "water": -0.004,
-        "degration": -0.0004,
+        "degration": 0.0007,
         "products":{
             "required": [],
             "optional": []

@@ -15,10 +15,10 @@
         @foreach ($completed as $item)
             @php
                 $isCultivation = $item->type_area === \App\Enums\TypeAreaProduction::Cultivation;
-                $hasCrop = isset($item->game_data->crop_data);
+                $hasCrop = isset($item->crop_data->name);
                 $data = $isCultivation
                     ? ($hasCrop
-                        ? $item->game_data->crop_data
+                        ? $item->crop_data
                         : $item->native_cleaning_data)
                     : $item->game_data;
 

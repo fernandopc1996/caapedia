@@ -21,7 +21,7 @@
         "cost": -100,
         "area": 0,
         "water": -0.004,
-        "degration": -0.00004,
+        "degration": 0.00004,
         "batch": 2,
         "products":[
             {"id": 10, "qnt": [1, 1], "lottery": 25},

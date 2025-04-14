@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('player_production_id')->constrained()->nullable();
             $table->foreignId('player_character_id')->constrained();
             $table->smallInteger('cycles')->nullable();
+            $table->string('coid_type')->nullable();
             $table->unsignedInteger('coid')->nullable();
             $table->boolean('completed')->default(0);
             $table->dateTime('start')->nullable();

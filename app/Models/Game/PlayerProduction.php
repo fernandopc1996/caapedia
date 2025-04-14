@@ -103,7 +103,7 @@ class PlayerProduction extends Model
         return $repo->find($this->native_cleaning_coid);
     }
 
-    public function getCropAttribute(): ?object
+    public function getCropDataAttribute(): ?object
     {
         if($this->crop_coid == null) return collect([]);
         $repo = app(CropRepository::class);

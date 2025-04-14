@@ -1,109 +1,145 @@
 {
-    "id": 2,
-    "type": 2,
-    "name": "Mangueira 10x10 - 100 plantas/ha",
-    "description": "A mangueira é uma cultura perene que pode produzir por vários anos. A produção se reinicia após a poda, mantendo a planta ativa em ciclos sucessivos.",
-    "source": "https://www.todafruta.com.br/manga-mangifera-indica-l/",
-    "images": ["t2/manga.jpg"],
-    "production": {
+  "id": 2,
+  "type": 2,
+  "name": "Mangueira",
+  "subname": "Linhas 10x10 - 100 plantas/ha",
+  "description": "A mangueira é uma cultura perene que pode produzir por vários anos. A produção se reinicia após a poda, mantendo a planta ativa em ciclos sucessivos.",
+  "source": "https://www.todafruta.com.br/manga-mangifera-indica-l/",
+  "images": [
+    "c2/2.jpg"
+  ],
+  "production": {
+    "start_cycle": {
+      "time": 26280,
       "area": 0.5,
       "water": -13000,
       "cost": -7000,
-      "degration": -0.0119,
-      "start_cycle": {
-        "time": 26280,
-        "phases": [
-          {
-            "name": "Plantio",
-            "percent": 1,
-            "products": {
-              "required": [
-                { "id": 101, "qnt": 50 } 
-              ],
-              "optional": [
-                { "id": 150, "qnt": 1 }
-              ]
-            }
-          },
-          {
-            "name": "Crescimento",
-            "percent": 39,
-            "products": {
-              "optional": [
-                { "id": 151, "qnt": 1 }
-              ]
-            }
-          },
-          {
-            "name": "Poda",
-            "percent": 1,
-            "products": {
-              "optional": [
-                { "id": 152, "qnt": 1 }
-              ]
-            }
-          },
-          {
-            "name": "Floração",
-            "percent": 25,
-            "products": {
-              "optional": [
-                { "id": 153, "qnt": 1 }
-              ]
-            }
-          },
-          {
-            "name": "Frutificação",
-            "percent": 34,
-            "products": {
-              "optional": [
-                { "id": 152, "qnt": 1 }
-              ]
-            }
+      "degration": 0.1119,
+      "phases": [
+        {
+          "name": "Plantio",
+          "percent": 1,
+          "products": {
+            "required": [
+              {
+                "id": 101,
+                "qnt": 50
+              }
+            ],
+            "optional": [
+              {
+                "id": 150,
+                "qnt": 1
+              }
+            ]
           }
-        ]
-      },
-      "continue_cycle": {
-        "time": 8760,
-        "max_cycles": 30,
-        "water": -4500,
-        "cost": -2000,
-        "degration": -0.0119,
-        "productivity_decay": 0.05,
-        "phases": [
-          {
-            "name": "Poda",
-            "percent": 15,
-            "products": {
-              "optional": [
-                { "id": 152, "qnt": 1 }
-              ]
-            }
-          },
-          {
-            "name": "Floração",
-            "percent": 40,
-            "products": {
-              "optional": [
-                { "id": 151, "qnt": 1 }
-              ]
-            }
-          },
-          {
-            "name": "Frutificação",
-            "percent": 45,
-            "products": {
-              "optional": [
-                { "id": 152, "qnt": 1 }
-              ]
-            }
+        },
+        {
+          "name": "Crescimento",
+          "percent": 39,
+          "products": {
+            "optional": [
+              {
+                "id": 151,
+                "qnt": 1
+              }
+            ]
           }
-        ]
-      },
-      "batch": 1,
-      "products": [
-        { "id": 121, "qnt": [6500, 7500], "lottery": 100 } 
+        },
+        {
+          "name": "Poda",
+          "percent": 1,
+          "products": {
+            "optional": [
+              {
+                "id": 152,
+                "qnt": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Floração",
+          "percent": 25,
+          "products": {
+            "optional": [
+              {
+                "id": 153,
+                "qnt": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frutificação",
+          "percent": 34,
+          "products": {
+            "optional": [
+              {
+                "id": 152,
+                "qnt": 1
+              }
+            ]
+          }
+        }
       ]
-    }
+    },
+    "continue_cycle": {
+      "time": 8760,
+      "max_cycles": 30,
+      "water": -4500,
+      "cost": -2000,
+      "degration": 0.0119,
+      "productivity_decay": 0.05,
+      "phases": [
+        {
+          "name": "Poda",
+          "percent": 15,
+          "products": {
+            "optional": [
+              {
+                "id": 152,
+                "qnt": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Floração",
+          "percent": 40,
+          "products": {
+            "optional": [
+              {
+                "id": 151,
+                "qnt": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frutificação",
+          "percent": 45,
+          "products": {
+            "optional": [
+              {
+                "id": 152,
+                "qnt": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "batch": 1,
+    "products": [
+      {
+        "id": 121,
+        "qnt": [
+          6500,
+          7500
+        ],
+        "lottery": 100
+      }
+    ]
   }
-  
+}

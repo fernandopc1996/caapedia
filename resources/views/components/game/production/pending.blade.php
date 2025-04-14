@@ -9,9 +9,13 @@
         $duration = $end - $start;
         $initialProgress = max(0, min(100, (($now - $start) / $duration) * 100));
         $statusLabel = $item->pending_action ? 'Produzindo' : 'Construindo/Preparando';
-        $title = $item->type_area === \App\Enums\TypeAreaProduction::Cultivation
-            ? $item->native_cleaning_data->name
-            : $item->game_data->name;
+        /* $title = $item->type_area === \App\Enums\TypeAreaProduction::Cultivation
+            ? (!empty($item->crop_data) ? $item->crop_data->name : $item->native_cleaning_data->name)
+            : $item->game_data->name; */
+        if(isset($item->game_data->name)) $title = $item->game_data->name;
+        if(isset($item->native_cleaning_data->name)) $title = $item->native_cleaning_data->name;
+        if(isset($item->crop_data->name)) $title = $item->crop_data->name;
+        
         $keyPrefix = $item->type_area->value;
     @endphp
 

@@ -69,11 +69,13 @@ class ProductionUpdateService
 
     private function createProductsFromProductionAction(Player $player, $production = null, $action = null): void
     {
-        if (!isset($production->game_data->production)) {
+        $productionData = $production->crop_data ?? $production->game_data;
+
+        if (!isset($productionData->production)) {
             return;
         }
 
-        $config = $production->game_data->production;
+        $config = $productionData->production;
         $productsConfig = $config['products'] ?? [];
         $batch = $config['batch'] ?? 1;
 
@@ -83,11 +85,17 @@ class ProductionUpdateService
 
         $grouped = $this->generateGroupedProducts($productsConfig, $batch);
 
+        $increase = $action?->increase_production ?? 0; 
+        $degration = $action?->degration ?? 0;
+        $factor = 1 + $increase - $degration;
+
         foreach ($grouped as $data) {
+            $finalAmount = max(1, (int) round($data['amount'] * $factor));
+
             PlayerProduct::create([
                 'player_id'            => $player->id,
                 'coid'                 => $data['product']->id,
-                'amount'               => $data['amount'],
+                'amount'               => $finalAmount,
                 'op'                   => 'C',
                 'start'                => $action?->start,
                 'end'                  => $action?->end,
@@ -96,6 +104,7 @@ class ProductionUpdateService
             ]);
         }
     }
+
 
 
     private function createProductsFromNativeCleaning(Player $player, $production): void

@@ -5,7 +5,7 @@ namespace App\Livewire\Game\Production;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Facades\Session;
-use App\Models\Game\{Player, PlayerProduction, PlayerActionArea};
+use App\Models\Game\{Player, PlayerProduction};
 use App\Repositories\{NativeCleaningRepository};
 use App\Services\Game\Production\ProductionService;
 
@@ -21,7 +21,6 @@ class ProductionAreaCrop extends Component
     #[Title('Preparar área')] 
     public $nativeCleaning;
     public ?PlayerProduction $production = null;
-    public ?PlayerActionArea $actionArea = null;
     public ?Player $player = null;
     public ?int $native_cleaning_coid = null;
 
@@ -91,7 +90,7 @@ class ProductionAreaCrop extends Component
                 redirectTo: route('production.manage')
             );
         }elseif(isset($this->production)){
-            dd("inicializar");
+            //dd("inicializar");
         }else{
             $this->nativeCleaning = $nativeCleaningRepository->all();
             //dd($this->nativeCleaning);
