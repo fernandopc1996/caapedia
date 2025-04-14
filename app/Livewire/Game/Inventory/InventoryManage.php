@@ -109,7 +109,7 @@ class InventoryManage extends Component
         $query->select('coid', \DB::raw("SUM(CASE WHEN op = 'C' THEN amount ELSE -amount END) as balance"))
                 ->groupBy('coid')->having('balance', '!=', 0);
         return $query->orderBy(...array_values($this->sortBy))
-                ->paginate(2)
+                ->paginate(5)
                 ->through(function ($item) use ($productRepository) {
                     $item->game_data = $productRepository->find($item->coid);
                     $item->unit_value = $this->player->getInflationValue($item->game_data->unit_value, "D");

@@ -1,0 +1,35 @@
+{
+    "id": 1,
+    "name": "Explorar arredores próximos",
+    "description": "Conhecer os arredores para identificar recursos naturais próximos",
+    "source": "",
+    "exploration": {
+        "time": 24,
+        "cost": -20,
+        "area": 0,
+        "water": -0.002,
+        "degration": -0.00004,
+        "batch": 10,
+        "products": [
+            {
+                "id": 3,
+                "qnt": [
+                    1,
+                    2
+                ],
+                "lottery": 70
+            },
+            {
+                "id": 4,
+                "qnt": [
+                    1,
+                    2
+                ],
+                "lottery": 30
+            }
+        ]
+    },
+    "images": [
+        "e1/1.jpg"
+    ]
+}

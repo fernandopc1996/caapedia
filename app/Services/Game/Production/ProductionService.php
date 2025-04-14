@@ -357,6 +357,7 @@ class ProductionService
                 'player_production_id' => $playerProduction->id,
                 'player_character_id'  => $playerCharacterId,
                 'cycles'               => $cyclo,
+                'coid_type'            => CropRepository::class,
                 'coid'                 => $coid,
                 'completed'            => false,
                 'start'                => $player->last_datetime,
