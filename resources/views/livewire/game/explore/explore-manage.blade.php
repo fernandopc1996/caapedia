@@ -20,7 +20,7 @@
 
             <div class="grid md:grid-cols-2 gap-4 border border-black rounded-md p-4 mb-4 bg-transparent">
                 {{-- Dados da exploração --}}
-                <div class="flex gap-4 items-start">
+                <div class="flex gap-4 items-center">
                     <img src="{{ $data->images[0] ?? '/placeholder.png' }}" alt="{{ $data->name }}"
                         class="h-20 w-20 rounded-lg object-cover border border-black">
                     <div>

@@ -1,0 +1,13 @@
+{
+    "id": 51,
+    "type": 4,
+    "name": "Carne de Bode",
+    "unit": "KG",
+    "unit_value": 38.00,
+    "salable": true,
+    "description": "É um alimento tradicional e valorizado no sertão brasileiro, reconhecido por seu sabor marcante, textura macia e alto valor nutricional.",
+    "source": "",
+    
+    
+    "images": ["t4/51.png"]
+}

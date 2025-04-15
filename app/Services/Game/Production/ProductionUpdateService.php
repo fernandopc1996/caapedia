@@ -70,7 +70,7 @@ class ProductionUpdateService
 
     private function createProductsFromProductionAction(Player $player, $production = null, $action = null): void
     {
-        $productionData = $production->crop_data ?? $production->game_data;
+        $productionData = $production->crop_data->isNotEmpty() ? $production->crop_data : $production->game_data;
 
         if (!isset($productionData->production)) {
             return;

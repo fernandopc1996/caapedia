@@ -1,0 +1,13 @@
+{
+    "id": 50,
+    "type": 4,
+    "name": "Leite de Cabra",
+    "unit": "LT",
+    "unit_value": 25.00,
+    "salable": true,
+    "description": "É uma bebida nutritiva e naturalmente adaptada ao sertão brasileiro, produzido a partir de cabras criadas de forma sustentável na Caatinga, este leite é rico em cálcio, proteínas e vitaminas, além de possuir alta digestibilidade.",
+    "source": "",
+    
+    
+    "images": ["t4/50.png"]
+}
