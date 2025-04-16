@@ -2,7 +2,7 @@
     "id": 5,
     "name": "Sistema Agroflorestal",
     "description": "Integração de culturas agrícolas com árvores nativas, sem remoção total da vegetação. Sustentável e benéfico a longo prazo.",
-    "source": "https://www.embrapa.br/agroflorestas",
+    "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/cultivo/manejo-do-solo",
     "available": false,
     "execution": {
       "time": 96,

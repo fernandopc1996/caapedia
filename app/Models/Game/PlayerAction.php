@@ -57,6 +57,7 @@ class PlayerAction extends Model
 
     public function getGameDataAttribute(): ?object
     {
+        if($this->coid_type == null) return null;
         $repo = app($this->coid_type);
         return $repo->find($this->coid);
     }

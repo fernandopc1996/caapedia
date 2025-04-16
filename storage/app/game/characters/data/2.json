@@ -1,8 +1,9 @@
 {
     "id": 2,
     "name": "Rita",
+    "description": "Chefe da família",
     "sex": 2,
-    "start_age": 30,
+    "start_age": 37,
 
     
     "front_square": "c2/02_fs.png",

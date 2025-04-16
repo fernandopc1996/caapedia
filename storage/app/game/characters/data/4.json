@@ -1,8 +1,9 @@
 {
     "id": 4,
     "name": "Miguel",
+    "description": "Filho",
     "sex": 1,
-    "start_age": 15,
+    "start_age": 16,
 
     
     "front_square": "c4/04_fs.png",

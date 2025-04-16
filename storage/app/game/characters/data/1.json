@@ -1,8 +1,9 @@
 {
     "id": 1,
     "name": "Pedro",
+    "description": "Chefe da família",
     "sex": 1,
-    "start_age": 30,
+    "start_age": 35,
 
     
     "front_square": "c1/01_fs.png",

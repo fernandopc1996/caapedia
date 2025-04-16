@@ -14,9 +14,9 @@ class PeopleManage extends Component
 
     public function mount() {
         $player = Session::get('player');
-        $this->characters = $player->playerCharacters()->get()->map(function ($pc) {
-            return $pc->game_data;
-        });
+        $this->characters = $player->playerCharacters()
+        ->with(['playerProductions', 'playerActions'])
+        ->get();
         //dd($this->characters);
     }
 

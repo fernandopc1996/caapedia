@@ -25,7 +25,7 @@ Route::prefix('guest')->controller(GuestUserController::class)->group(function (
     Route::get('/create', 'create')->name('guest.create');
 });
 
-Route::middleware(['auth', UserHasPlayer::class])->group(function () {
+Route::middleware(['auth', UserHasPlayer::class, 'throttle:60,1'])->group(function () {
     Route::prefix('player')->group(function () {
         Route::get('/create', CreatePlayer::class)->name('player.create');
     });
@@ -71,11 +71,11 @@ Route::middleware(['auth', UserHasPlayer::class])->group(function () {
 
 });
 
-Route::prefix('i')->controller(ImageController::class)->group(function () {
-    Route::get('/{path}', 'getImage')->name('get.image')->where('path', '.*'); 
-});
-
 Route::middleware(['auth'])->group(function () {
+    Route::prefix('i')->controller(ImageController::class)->group(function () {
+        Route::get('/{path}', 'getImage')->name('get.image')->where('path', '.*'); 
+    });
+    
     Route::prefix('general')->group(function () {
         Route::prefix('person')->group(function () {
             Route::get('/index', PersonIndexPage::class)->name('general.person.index');

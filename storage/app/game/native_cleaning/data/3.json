@@ -2,7 +2,7 @@
     "id": 3,
     "name": "Mecanizado",
     "description": "Método mecanizado que utiliza tratores com implementos como grades e lâminas para remoção da vegetação nativa. É eficiente para grandes áreas, mas causa impacto significativo no solo.",
-    "source": "https://www.embrapa.br/busca-de-noticias/-/noticia/37634263",
+    "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/cultivo/manejo-do-solo",
     "available": true,
     "execution": {
       "time": 8,
