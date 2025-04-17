@@ -15,7 +15,7 @@ use App\Livewire\Game\Market\{MarketManage};
 use App\Livewire\Game\People\{PeopleManage};
 use App\Livewire\Game\Production\{ProductionManage, ProductionCreate, ProductionItem, ProductionAreaCrop};
 use App\Livewire\Game\News\{Newspaper};
-use App\Livewire\Game\History\{EventsView};
+use App\Livewire\Game\Story\{EventsView};
 
 use App\Livewire\General\Person\{PersonIndexPage, PersonFormPage};
 

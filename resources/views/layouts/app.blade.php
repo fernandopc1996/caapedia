@@ -96,12 +96,13 @@
                 
                 {{ $slot }}  
 
+                <livewire:game.story.interaction-action/>
+
                 <div class="mt-12"></div>
                 @session('player')
                     <livewire:game.player.control-timer>
                 @endsession
             </x-slot:content>
-            
         </x-mary-main>
     </div>
         {{-- Toast --}}
