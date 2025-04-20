@@ -29,7 +29,7 @@ class StoryActionExecutor
     {
         return preg_replace_callback('/\{([\w\.]+)\}/', function ($matches) {
             return match ($matches[1]) {
-                'player.name' => $this->player->name,
+                'player.name' => $this->player->nickname,
                 default       => $matches[0],
             };
         }, $text);

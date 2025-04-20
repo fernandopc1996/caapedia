@@ -1,0 +1,20 @@
+{
+    "id": 2,
+    "type": "dialogue",
+    "character_id": 4,
+    "character_image": "front_partial",
+    "text": "O caapedia é um jogo com mecânicas simples focado na gestão de recursos e simulação",
+    "images": ["t1/1.jpg"],
+    "choices": [
+        {
+            "text": "Eu entendo que todos os valores, tempo e consequências são fícticios",
+            "description": null,
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": 3
+                }
+            ]
+        }
+    ]
+}

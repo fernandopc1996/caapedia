@@ -1,13 +1,13 @@
 {
-    "id": 1,
+    "id": 3,
     "type": "dialogue",
     "character_id": 4,
     "character_image": "front_partial",
-    "text": "Seja bem vindo ao Caapedia, {player.name}. Para começarmos, preciso que você esteja de acordo com algumas coisas",
+    "text": "As informações disponibilizadas no jogo não devem ser utilizadas como base para decisões reais, especialmente relacionadas à agricultura, pecuária, economia ou meio ambiente.",
     "images": ["t1/1.jpg"],
     "choices": [
         {
-            "text": "Vamos começar!",
+            "text": "Eu concordo que o Caapedia não substitui orientação técnica, científica, jurídica ou profissional em qualquer área",
             "description": null,
             "actions": [
                 {
@@ -17,7 +17,7 @@
                 },
                 {
                     "type": "branch_to",
-                    "target_id": 2
+                    "target_id": 4
                 }
             ]
         },

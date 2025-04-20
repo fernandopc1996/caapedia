@@ -1,23 +1,19 @@
 {
-    "id": 1,
+    "id": 4,
     "type": "dialogue",
     "character_id": 4,
     "character_image": "front_partial",
-    "text": "Seja bem vindo ao Caapedia, {player.name}. Para começarmos, preciso que você esteja de acordo com algumas coisas",
+    "text": "A fins de pesquisa, o jogo irá coletar informações acerca do seu padrão de uso, mas não serão relacionados com suas informações pessoais utilizadas para autenticação",
+    "link": "https://caapedia.fernandopc.dev.br/documentos/termos-caatinga-quiz",
     "images": ["t1/1.jpg"],
     "choices": [
         {
-            "text": "Vamos começar!",
+            "text": "Eu concordo e aceito os termos",
             "description": null,
             "actions": [
                 {
-                    "type": "increment_variable",
-                    "variable": "introduction_seen",
-                    "value": 1
-                },
-                {
                     "type": "branch_to",
-                    "target_id": 2
+                    "target_id": 5
                 }
             ]
         },
