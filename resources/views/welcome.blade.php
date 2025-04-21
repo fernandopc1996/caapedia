@@ -28,7 +28,7 @@
                     <x-mary-button 
                         label="Entrar com Google" 
                         icon="fab.google" 
-                        link="{{-- route('google.login') --}}" 
+                        link="{{route('google.redirect')}}" 
                         no-wire-navigate 
                         class="btn-info  btn-lg w-72" />
 

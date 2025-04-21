@@ -46,7 +46,7 @@ class CreatePlayer extends Component
 
         $this->success(
             'Seu personagem foi criado com sucesso',
-            redirectTo: route('dashboard'),
+            redirectTo: route('story.events'),
         );
     }
 

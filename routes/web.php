@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\{UserHasPlayer, CheckPlayerTime};
 
-use App\Http\Controllers\Auth\GuestUserController;
+use App\Http\Controllers\Auth\{GuestUserController, GoogleLoginController};
 use App\Http\Controllers\General\ImageController;
 
 use App\Livewire\Game\Player\{CreatePlayer, PlayerFinished};
@@ -20,9 +20,15 @@ use App\Livewire\Game\Story\{EventsView};
 use App\Livewire\General\Person\{PersonIndexPage, PersonFormPage};
 
 Route::view('/', 'welcome');
+Route::permanentRedirect('/login', '/');
 
 Route::prefix('guest')->controller(GuestUserController::class)->group(function () {
     Route::get('/create', 'create')->name('guest.create');
+});
+
+Route::controller(GoogleLoginController::class)->group(function () {
+    Route::get('/google/redirect', 'redirectToGoogle')->name('google.redirect');
+    Route::get('/google/callback', 'handleGoogleCallback')->name('google.callback');
 });
 
 Route::middleware(['auth', UserHasPlayer::class, 'throttle:60,1'])->group(function () {
@@ -32,7 +38,8 @@ Route::middleware(['auth', UserHasPlayer::class, 'throttle:60,1'])->group(functi
     });
 
     Route::middleware([CheckPlayerTime::class])->group(function () {
-        Route::view('dashboard', 'dashboard')->name('dashboard');
+        //Route::view('dashboard', 'dashboard')->name('dashboard');
+        Route::redirect('/dashboard', '/story/events');
 
         Route::prefix('people')->group(function () {
             Route::get('/manage', PeopleManage::class)->name('people.manage');
@@ -65,8 +72,8 @@ Route::middleware(['auth', UserHasPlayer::class, 'throttle:60,1'])->group(functi
             Route::get('/newspaper', Newspaper::class)->name('news.newspaper');
         });
 
-        Route::prefix('history')->group(function () {
-            Route::get('/events', EventsView::class)->name('history.events');
+        Route::prefix('story')->group(function () {
+            Route::get('/events', EventsView::class)->name('story.events');
         });
     });
 

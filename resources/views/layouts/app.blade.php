@@ -53,7 +53,7 @@
                     @if(Session::get('player')->finished == false)
                     <x-mary-menu-separator />
                     <div class="grid grid-cols-3 gap-4">
-                        <x-menu.button-row href="{{route('history.events')}}" 
+                        <x-menu.button-row href="{{route('story.events')}}" 
                                     icon="fas.book-open" title="História"/>
                         <x-menu.button-row href="{{route('people.manage')}}" 
                                     icon="fas.user-friends" title="Pessoas"/>

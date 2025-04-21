@@ -15,7 +15,7 @@ class GuestUserController extends Controller
 {
     public function create(Request $request){
         
-        if(Auth::check()) return redirect()->route('dashboard');
+        if(Auth::check()) return redirect()->route('story.events');
 
         $user = new User();
         $user->name = Str::uuid();
@@ -24,6 +24,6 @@ class GuestUserController extends Controller
         $user->save();
 
         Auth::login($user, $remember = true);
-        return redirect()->route('dashboard');
+        return redirect()->route('story.events');
     }
 }
