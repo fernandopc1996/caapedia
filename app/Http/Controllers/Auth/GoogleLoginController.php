@@ -20,14 +20,15 @@ class GoogleLoginController extends Controller
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
         $user = User::where('google_email', $googleUser->email)->first();
-        if(!$user)
-        {
+        if(!$user) {
             $user = User::create([
                 'name' => $googleUser->name, 
                 'email' => $googleUser->email, 
                 'google_email' => $googleUser->email, 
                 'password' => \Hash::make(rand(100000,999999))
             ]);
+        }else{
+            $user->google_email = $googleUser->email;
         }
 
         Auth::login($user, $remember = true);
