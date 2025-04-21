@@ -42,7 +42,7 @@
                                 class="w-full px-4 py-2 italic rounded-md border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring animate-fade-in-left"
                                 @click.prevent="
                                     exit = true;
-                                    setTimeout(() => { $wire.action('{{ $choice->text }}') }, 500);
+                                    setTimeout(() => { $wire.action(@js($choice->text)) }, 500);
                                 ">
                                 {{ $choice->text }}
                             </button>

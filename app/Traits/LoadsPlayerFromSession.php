@@ -21,8 +21,9 @@ trait LoadsPlayerFromSession
         return $user->players()->first();
     }
 
-    public function updatePlayerInSession(Player $player): void
+    public function updatePlayerInSession(Player $player, bool $new = false): void
     {
+        if($new) Session::forget('player');
         $player->fresh([
             'playerCharacters',
         ]);

@@ -40,6 +40,7 @@ class StoryRepository extends BaseGameDataRepository
             $content['choices'] = array_map(function ($choice) {
                 $processedChoice = [
                     'text'    => $choice['text'] ?? '',
+                    'description'    => $choice['description'] ?? null,
                     'actions' => [],
                 ];
 

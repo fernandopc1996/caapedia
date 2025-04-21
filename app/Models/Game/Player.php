@@ -28,6 +28,10 @@ class Player extends Model
         'amount',
         'rate_buy',
         'rate_sell',
+        'finished',
+        'finished_story',
+        'finished_choice',
+        'current_story',
     ];
 
     protected static function booted(): void

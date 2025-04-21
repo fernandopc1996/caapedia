@@ -14,7 +14,7 @@ class ProductionUpdateService
     {
         $now = $player->last_datetime;
         $wasUpdated = false;
-
+        //dd($player, $now);
         // Processa produções finalizadas
         $productions = $player->playerProductions()
             ->where('completed', false)

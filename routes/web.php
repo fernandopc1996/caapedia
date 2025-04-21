@@ -7,7 +7,7 @@ use App\Http\Middleware\{UserHasPlayer, CheckPlayerTime};
 use App\Http\Controllers\Auth\GuestUserController;
 use App\Http\Controllers\General\ImageController;
 
-use App\Livewire\Game\Player\{CreatePlayer};
+use App\Livewire\Game\Player\{CreatePlayer, PlayerFinished};
 use App\Livewire\Game\Explore\{ExploreManage};
 use App\Livewire\Game\Finance\{FinanceManage};
 use App\Livewire\Game\Inventory\{InventoryManage};
@@ -28,6 +28,7 @@ Route::prefix('guest')->controller(GuestUserController::class)->group(function (
 Route::middleware(['auth', UserHasPlayer::class, 'throttle:60,1'])->group(function () {
     Route::prefix('player')->group(function () {
         Route::get('/create', CreatePlayer::class)->name('player.create');
+        Route::get('/finished', PlayerFinished::class)->name('player.finished');
     });
 
     Route::middleware([CheckPlayerTime::class])->group(function () {

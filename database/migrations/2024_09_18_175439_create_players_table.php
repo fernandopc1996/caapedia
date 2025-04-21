@@ -26,6 +26,11 @@ return new class extends Migration
 
             $table->decimal('rate_sell', total: 6, places: 4)->default(1);
             $table->decimal('rate_buy', total: 6, places: 4)->default(1);
+
+            $table->unsignedTinyInteger('finished')->default(0);
+            $table->unsignedInteger('finished_story')->nullable();
+            $table->text('finished_choice')->nullable();
+            $table->unsignedInteger('current_story')->nullable()->default(1);
             $table->timestamps();
         });
     }

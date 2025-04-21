@@ -3,7 +3,7 @@
     "type": "dialogue",
     "character_id": 4,
     "character_image": "front_partial",
-    "text": "Seja bem vindo ao Caapedia, {player.name}. Para começarmos, preciso que você esteja de acordo com algumas coisas",
+    "text": "Seja bem vindo ao Caapedia, {player.nickname}. Para começarmos, preciso que você esteja de acordo com algumas coisas",
     "images": ["t1/1.jpg"],
     "choices": [
         {
@@ -12,8 +12,8 @@
             "actions": [
                 {
                     "type": "increment_variable",
-                    "variable": "introduction_seen",
-                    "value": 1
+                    "variable": "amount",
+                    "value": 17
                 },
                 {
                     "type": "branch_to",
@@ -23,7 +23,7 @@
         },
         {
             "text": "Não quero jogar agora.",
-            "description": null,
+            "description": "Você optou por não jogar agora",
             "actions": [
                 {
                     "type": "end_story"

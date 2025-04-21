@@ -13,7 +13,7 @@
             "actions": [
                 {
                     "type": "branch_to",
-                    "target_id": 5
+                    "target_id": null
                 }
             ]
         },

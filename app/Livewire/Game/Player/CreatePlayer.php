@@ -8,10 +8,12 @@ use Mary\Traits\Toast;
 
 use App\Models\Game\{Player, PlayerCharacter};
 use App\Repositories\CharacterRepository;
+use App\Traits\LoadsPlayerFromSession;
 
 class CreatePlayer extends Component
 {
     use Toast;
+    use LoadsPlayerFromSession;
 
     public String $nickname = '';
 
@@ -23,7 +25,7 @@ class CreatePlayer extends Component
             'unique' => 'O nome :input já está sendo utilizado.',
         ]);
 
-        DB::transaction(function () use ($characterRepository) {
+        $player = DB::transaction(function () use ($characterRepository) {
             $player = Player::create([
                 'nickname' => $this->nickname,
                 'user_id' => auth()->user()->id,
@@ -36,7 +38,11 @@ class CreatePlayer extends Component
                     'coid' => $character->id, 
                 ]);
             }
+
+            return $player;
         });
+        $this->updatePlayerInSession($player->fresh(), true);
+        $this->dispatch('playerUpdated');
 
         $this->success(
             'Seu personagem foi criado com sucesso',

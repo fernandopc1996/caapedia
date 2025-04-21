@@ -18,16 +18,21 @@ class UserHasPlayer
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect('/login');
+            return redirect('/');
         }
 
         $user = Auth::user();
 
-        if ($user->players()->count() === 0 and !Route::is('player.create')) {
+        if (!$request->session()->has('player')) {
+            $request->session()->put('player', $user->players()->orderBy('created_at', 'desc')->first());
+        }
+
+        if ($request->session()->get('player') == null and !Route::is('player.create')) {
             return redirect()->route('player.create');
         }
-        if ($request->session()->missing('player')) {
-            $request->session()->put('player', $user->players()->first());
+
+        if($request->session()->has('player') && $request->session()->get('player')->finished == true && !Route::is('player.finished') && !Route::is('player.create')){
+            return redirect()->route('player.finished');
         }
        
         return $next($request);

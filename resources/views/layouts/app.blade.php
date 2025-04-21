@@ -50,8 +50,7 @@
                     
                     @session('player')
                         <livewire:game.player.player-resources>
-                    @endsession
-    
+                    @if(Session::get('player')->finished == false)
                     <x-mary-menu-separator />
                     <div class="grid grid-cols-3 gap-4">
                         <x-menu.button-row href="{{route('history.events')}}" 
@@ -71,7 +70,8 @@
                         <x-menu.button-row href="{{route('finance.manage')}}" 
                                     icon="fas.piggy-bank" title="Finanças"/>
                     </div>
-
+                    @endif
+                    @endsession
                     <x-mary-menu-separator />
 
                     <x-mary-menu-item title="Ranking" icon="fas.ranking-star"/>
