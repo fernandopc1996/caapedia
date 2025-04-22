@@ -3,11 +3,36 @@
 namespace App\Livewire\Game\Story;
 
 use Livewire\Component;
+use App\Models\Game\Player;
+use App\Models\Game\PlayerStory;
+use App\Traits\LoadsPlayerFromSession;
+use App\Services\Game\Story\StoryActionExecutor;
 
 class EventsView extends Component
 {
+    use LoadsPlayerFromSession;
+
+    public ?Player $player = null;
+
+    public function mount(): void
+    {
+        $this->player = $this->getPlayerFromSession();
+    }
+
     public function render()
     {
-        return view('livewire.game.story.events-view');
+        $stories = PlayerStory::with('playerCharacter')
+            ->where('player_id', $this->player?->id)
+            ->orderByDesc('created_at')
+            ->take(100)
+            ->get()
+            ->reverse();
+
+        $executor = new StoryActionExecutor($this->player);
+
+        return view('livewire.game.story.events-view', [
+            'stories' => $stories,
+            'executor' => $executor,
+        ]);
     }
 }
