@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Repositories\{ProductionRepository, NativeCleaningRepository, CropRepository};
 use Illuminate\Support\Str;
+use App\Services\Game\Finance\FinancialStatementService;
+use Carbon\Carbon;
 
 use App\Enums\TypeAreaProduction;
 
@@ -47,6 +49,25 @@ class PlayerProduction extends Model
 
             $model->name = $model->type_area->label() . ' ' . $model->sequence;
         });
+
+        static::created(function ($model) {
+            $model->clearStatementCache();
+        });
+    
+        static::updated(function ($model) {
+            $model->clearStatementCache();
+        });
+
+        static::deleted(function ($model) {
+            $model->clearStatementCache();
+        });
+    }
+    
+    public function clearStatementCache(): void
+    {
+        $date = $this->end_build ?? $this->start_build ?? now();
+        $year = Carbon::parse($date)->year;
+        app(FinancialStatementService::class)->clearCache($this->player_id, $year);
     }
 
     protected function casts(): array

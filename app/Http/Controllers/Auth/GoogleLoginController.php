@@ -31,7 +31,7 @@ class GoogleLoginController extends Controller
             return redirect()->route('story.events');
         }
 
-        $user = User::where('google_email', $googleUser->email)->first();
+        $user = User::where('google_email', $googleUser->email)->orWhere('email', $googleUser->email)->first();
 
         if (!$user) {
             $user = User::create([

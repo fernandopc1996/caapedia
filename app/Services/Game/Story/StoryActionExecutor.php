@@ -11,6 +11,7 @@ class StoryActionExecutor
     protected Player $player;
     protected $story = null;
     protected ?string $lastChoiceText = null;
+    protected array $updatedFields = [];
 
     public function __construct(Player $player)
     {
@@ -21,6 +22,7 @@ class StoryActionExecutor
     {
         $this->story = $story;
         $this->lastChoiceText = $choiceText;
+        $this->updatedFields = [];
 
         return DB::transaction(function () use ($actions) {
             foreach ($actions as $action) {
@@ -58,20 +60,20 @@ class StoryActionExecutor
 
         $this->player->{$field} += $value;
         $this->player->save();
-    }
 
+        if (in_array($field, ['degration', 'water', 'amount'])) {
+            $this->updatedFields[$field] = $value;
+        }
+    }
 
     protected function branchTo($action): void
     {
-        PlayerStory::create([
+        PlayerStory::create(array_merge([
             'player_id' => $this->player->id,
             'coid'      => $this->story->id,
             'date'      => $this->player->last_datetime,
             'choice'    => $this->lastChoiceText,
-            'degration' => $this->player->degration,
-            'water'     => $this->player->water,
-            'amount'    => $this->player->amount,
-        ]);
+        ], $this->buildTrackedAttributes()));
 
         $this->player->current_story = $action->target_id ?? null;
         $this->player->save();
@@ -79,20 +81,26 @@ class StoryActionExecutor
 
     protected function endStory(): void
     {
-        PlayerStory::create([
+        PlayerStory::create(array_merge([
             'player_id' => $this->player->id,
             'coid'      => $this->story->id,
             'date'      => $this->player->last_datetime,
             'choice'    => $this->lastChoiceText ?? 'end',
-            'degration' => $this->player->degration,
-            'water'     => $this->player->water,
-            'amount'    => $this->player->amount,
-        ]);
+        ], $this->buildTrackedAttributes()));
 
         $this->player->current_story = null;
         $this->player->finished = true;
         $this->player->finished_story = $this->story->id;
         $this->player->finished_choice = $this->lastChoiceText ?? 'end';
         $this->player->save();
+    }
+
+    protected function buildTrackedAttributes(): array
+    {
+        return [
+            'degration' => $this->updatedFields['degration'] ?? null,
+            'water'     => $this->updatedFields['water'] ?? null,
+            'amount'    => $this->updatedFields['amount'] ?? null,
+        ];
     }
 }

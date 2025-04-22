@@ -4,6 +4,7 @@
     "character_id": 4,
     "character_image": "front_partial",
     "text": "Seja bem vindo ao Caapedia, {player.nickname}. Para começarmos, preciso que você esteja de acordo com algumas coisas",
+    "event": "Começo da história",
     "images": ["t1/1.jpg"],
     "choices": [
         {
