@@ -133,9 +133,9 @@ class FinancialStatementService
             ->whereYear('date', $year)
             ->get()
             ->each(function ($story) use ($entries) {
-                if ($story->amount <= 0) return;
-    
+                if ($story->amount == 0) return;
                 $date = Carbon::parse($story->date);
+                $type = $story->amount < 0 ? 'débito' : 'crédito';
                 $entries->push([
                     'date'   => $date->startOfMonth()->format('Y-m'),
                     'label'  => $story->game_data->event ?? 'Evento',

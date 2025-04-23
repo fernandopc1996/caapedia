@@ -2,8 +2,8 @@
   "id": 1,
   "type": 2,
   "name": "Milho",
-  "description": "Milho é uma cultura de ciclo curto e precisa ser replantada após cada colheita. Ideal para produção de grãos, forragem e alimentação animal.",
-  "source": "https://www.agrolink.com.br/milho/introducao_1123.html",
+  "description": "Cultura de ciclo curto comum no Semiárido, o milho exige replantio após cada colheita. É base da alimentação humana e animal, sendo amplamente usado por agricultores familiares.",
+  "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/cultivo/milho",
   "images": [
     "c1/1.jpg"
   ],

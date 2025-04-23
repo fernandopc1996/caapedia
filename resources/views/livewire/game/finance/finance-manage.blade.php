@@ -31,7 +31,7 @@
         <div class="shadow rounded-xl p-4">
             <h2 class="text-lg font-bold text-gray-800 mb-2 uppercase">{{ \Carbon\Carbon::parse($month)->translatedFormat('F Y') }}</h2>
 
-            <div class="text-sm mb-2">
+            <div class="flex justify-between text-sm mb-2">
                 <span class="text-green-900 font-semibold">Total Crédito: R$ {{ number_format($credit, 2, ',', '.') }}</span>
                 <span class="text-red-900 font-semibold ml-4">Total Débito: R$ {{ number_format($debit, 2, ',', '.') }}</span>
                 <span class="ml-4 font-semibold {{ $balance >= 0 ? 'text-green-700' : 'text-red-700' }}">
