@@ -1,0 +1,32 @@
+{
+    "id": 5,
+    "type": "dialogue",
+    "character_id": 4,
+    "character_image": "front_partial",
+    "text": "Acredito que é isso, para lhe ajudar, irei lhe dar alguns recursos iniciais. Explore os menus e opções do Caapedia e qualquer dúvida acesse esse link: ",
+    "event": "Recursos iniciais",
+    "link": "https://caapedia.fernandopc.dev.br/caapedia/caapedia",
+    "images": ["t1/1.jpg"],
+    "choices": [
+        {
+            "text": "Eu aceito",
+            "description": null,
+            "actions": [
+                {
+                    "type": "increment_variable",
+                    "variable": "water",
+                    "value": 1000
+                },
+                {
+                    "type": "increment_variable",
+                    "variable": "amount",
+                    "value": 10000
+                },
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        }
+    ]
+}

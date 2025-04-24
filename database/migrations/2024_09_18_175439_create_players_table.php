@@ -21,8 +21,8 @@ return new class extends Migration
             $table->dateTime('last_execution')->nullable();
             $table->decimal('area', total: 12, places: 4)->default(0.0025);
             $table->decimal('degration', total: 15, places: 6)->default(0.1);
-            $table->decimal('water', total: 16, places: 3)->default(100000);
-            $table->decimal('amount', total: 16, places: 2)->default(100000);
+            $table->decimal('water', total: 16, places: 3)->default(0);
+            $table->decimal('amount', total: 16, places: 2)->default(0);
 
             $table->decimal('rate_sell', total: 6, places: 4)->default(1);
             $table->decimal('rate_buy', total: 6, places: 4)->default(1);

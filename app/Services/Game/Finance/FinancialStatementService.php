@@ -139,7 +139,7 @@ class FinancialStatementService
                 $entries->push([
                     'date'   => $date->startOfMonth()->format('Y-m'),
                     'label'  => $story->game_data->event ?? 'Evento',
-                    'type'   => 'débito',
+                    'type'   => $type,
                     'amount' => $story->amount,
                 ]);
             });

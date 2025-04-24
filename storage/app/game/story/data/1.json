@@ -12,11 +12,6 @@
             "description": null,
             "actions": [
                 {
-                    "type": "increment_variable",
-                    "variable": "amount",
-                    "value": 17
-                },
-                {
                     "type": "branch_to",
                     "target_id": 2
                 }

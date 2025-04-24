@@ -4,6 +4,7 @@
     "character_id": 4,
     "character_image": "front_partial",
     "text": "A fins de pesquisa, o jogo irá coletar informações acerca do seu padrão de uso, mas não serão relacionados com suas informações pessoais utilizadas para autenticação",
+    "event": "Começo da história",
     "link": "https://caapedia.fernandopc.dev.br/documentos/termos-caatinga-quiz",
     "images": ["t1/1.jpg"],
     "choices": [
@@ -13,7 +14,7 @@
             "actions": [
                 {
                     "type": "branch_to",
-                    "target_id": null
+                    "target_id": 5
                 }
             ]
         },

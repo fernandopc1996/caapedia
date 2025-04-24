@@ -48,7 +48,7 @@
                             </h3>
                             <ul class="mt-2 space-y-1">
                                 @foreach($types[$type] as $entry)
-                                    <li class="flex justify-between text-sm text-gray-700">
+                                    <li class="flex justify-between text-sm text-gray-900">
                                         <span>{{ $entry['label'] }}</span>
                                         <span class="font-medium">
                                             R$ {{ number_format($entry['amount'], 2, ',', '.') }}

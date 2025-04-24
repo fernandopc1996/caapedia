@@ -48,8 +48,8 @@
                 <x-mary-menu activate-by-route>
                     {{-- User --}}
                     
-                    @session('player')
-                        <livewire:game.player.player-resources>
+                    @if(Session::has('player'))
+                    <livewire:game.player.player-resources>
                     @if(Session::get('player')->finished == false)
                     <x-mary-menu-separator />
                     <div class="grid grid-cols-3 gap-4">
@@ -71,7 +71,9 @@
                                     icon="fas.piggy-bank" title="Finanças"/>
                     </div>
                     @endif
-                    @endsession
+                    @else
+                    <x-mary-menu-item title="Criar personagem" icon="far.plus-square" link="{{route('player.create')}}" />
+                    @endif
                     <x-mary-menu-separator />
 
                     <x-mary-menu-item title="Ranking" icon="fas.ranking-star"/>
