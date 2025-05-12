@@ -5,6 +5,7 @@ namespace App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Repositories\StoryRepository;
+use App\Repositories\EventRepository;
 use Illuminate\Support\Str;
 use App\Services\Game\Finance\FinancialStatementService;
 use Carbon\Carbon;
@@ -15,6 +16,7 @@ class PlayerStory extends Model
         'uuid',
         'player_id',
         'player_character_id',
+        'coid_type',
         'coid',
         'date',
         'choice',
@@ -62,7 +64,8 @@ class PlayerStory extends Model
 
     public function getGameDataAttribute(): ?object
     {
-        $repo = app(StoryRepository::class);
+        if($this->coid_type == null) return null;
+        $repo = app($this->coid_type);
         return $repo->find($this->coid);
     }
 }

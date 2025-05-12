@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
             $table->foreignId('player_character_id')->nullable()->constrained();
+            $table->string('coid_type');
             $table->unsignedInteger('coid');
             $table->dateTime('date')->nullable();
             $table->text('choice')->nullable();

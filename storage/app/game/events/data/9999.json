@@ -1,0 +1,15 @@
+{
+    "id": 9999,
+    "type": "event",
+    "character_id": 4,
+    "character_image": "front_partial",
+    "text": "",
+    "event": "Fim da história",
+    "images": ["t1/1.jpg"],
+    "actions": [ 
+        {
+            "type": "branch_to",
+            "target_id": 2
+        }
+    ]
+}

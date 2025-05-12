@@ -7,11 +7,12 @@ use App\Models\Game\Player;
 use App\Models\Game\PlayerStory;
 use App\Traits\LoadsPlayerFromSession;
 use App\Services\Game\Story\StoryActionExecutor;
+use Livewire\Attributes\On;
 
 class EventsView extends Component
 {
     use LoadsPlayerFromSession;
-
+    
     public ?Player $player = null;
 
     public function mount(): void
@@ -19,6 +20,7 @@ class EventsView extends Component
         $this->player = $this->getPlayerFromSession();
     }
 
+    #[On('storyUpdated')]
     public function render()
     {
         $stories = PlayerStory::with('playerCharacter')

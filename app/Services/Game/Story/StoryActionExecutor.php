@@ -6,6 +6,8 @@ use App\Models\Game\Player;
 use App\Models\Game\PlayerStory;
 use Illuminate\Support\Facades\DB;
 
+use App\Repositories\StoryRepository;
+
 class StoryActionExecutor
 {
     protected Player $player;
@@ -70,6 +72,7 @@ class StoryActionExecutor
     {
         PlayerStory::create(array_merge([
             'player_id' => $this->player->id,
+            'coid_type' => StoryRepository::class,
             'coid'      => $this->story->id,
             'date'      => $this->player->last_datetime,
             'choice'    => $this->lastChoiceText,
@@ -83,6 +86,7 @@ class StoryActionExecutor
     {
         PlayerStory::create(array_merge([
             'player_id' => $this->player->id,
+            'coid_type' => StoryRepository::class,
             'coid'      => $this->story->id,
             'date'      => $this->player->last_datetime,
             'choice'    => $this->lastChoiceText ?? 'end',

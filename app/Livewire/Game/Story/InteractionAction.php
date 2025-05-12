@@ -52,6 +52,7 @@ class InteractionAction extends Component
             $executor = new StoryActionExecutor($this->player);
             $this->player = $executor->execute($this->activeStory, $choice->actions, $choiceText);
             $this->dispatch('playerUpdated');
+            $this->dispatch('storyUpdated');
             $this->updatePlayerInSession($this->player);
             if($this->player->finished) return $this->redirectRoute('player.finished');
         }

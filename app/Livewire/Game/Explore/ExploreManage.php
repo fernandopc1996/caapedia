@@ -69,6 +69,7 @@ class ExploreManage extends Component{
 
     public function mount() {
         $this->player = $this->getPlayerFromSession();
+        $this->dispatch("updatePlayerTimer");
         //$wasUpdated = $productionUpdateService->handle($this->player);
     }
 
