@@ -70,8 +70,16 @@ class Player extends Model
         return $this->hasMany(PlayerProduct::class);
     }
 
-    public function getInflationValue($value, $op){
-        $rate = $op == "D" ? $this->rate_sell : $this->rate_buy; 
-        return $value * ($rate ?? 1);
+    public function getInflationValue($value, $op)
+    {
+        $operations = [
+            'D' => fn() => ($this->rate_sell ?? 1) - ($this->degration ?? 0),
+            'C' => fn() => ($this->rate_buy ?? 1) + ($this->degration ?? 0),
+        ];
+
+        $rate = $operations[$op]() ?? 1;
+
+        return $value * $rate;
     }
+
 }

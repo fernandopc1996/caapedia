@@ -4,7 +4,7 @@ namespace App\Services\Game\Finance;
 
 use App\Models\Game\{
     PlayerProduction, PlayerAction, PlayerActionArea,
-    PlayerProduct, PlayerStory, Player
+    PlayerProduct, PlayerStory, PlayerWater, Player
 };
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -141,6 +141,26 @@ class FinancialStatementService
                     'label'  => $story->game_data->event ?? 'Evento',
                     'type'   => $type,
                     'amount' => $story->amount,
+                ]);
+            });
+
+        PlayerWater::where('player_id', $playerId)
+            ->whereYear('date', $year)
+            ->get()
+            ->each(function ($water) use ($entries) {
+                if ($water->amount === 0 || $water->water === 0) return;
+
+                $date = Carbon::parse($water->date)->startOfMonth()->format('Y-m');
+                $isPurchase = $water->water > 0;
+                $type = $isPurchase ? 'débito' : 'crédito';
+                $label = $isPurchase ? 'Compra de água' : 'Venda de água';
+                $total = abs($water->amount); 
+
+                $entries->push([
+                    'date'   => $date,
+                    'label'  => $label,
+                    'type'   => $type,
+                    'amount' => $total,
                 ]);
             });
     

@@ -24,8 +24,8 @@ return new class extends Migration
             $table->decimal('water', total: 16, places: 3)->default(0);
             $table->decimal('amount', total: 16, places: 2)->default(0);
 
-            $table->decimal('rate_sell', total: 6, places: 4)->default(1);
-            $table->decimal('rate_buy', total: 6, places: 4)->default(1);
+            $table->decimal('rate_sell', total: 6, places: 4)->default(0.8);
+            $table->decimal('rate_buy', total: 6, places: 4)->default(1.1);
 
             $table->unsignedTinyInteger('finished')->default(0);
             $table->unsignedInteger('finished_story')->nullable();

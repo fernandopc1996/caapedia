@@ -23,4 +23,6 @@
         </div>
         @endscope
     </x-mary-table>
+
+    <livewire:game.market.water-purchase />
 </div>
