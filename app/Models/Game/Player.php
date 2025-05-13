@@ -70,6 +70,11 @@ class Player extends Model
         return $this->hasMany(PlayerProduct::class);
     }
 
+    public function playerFinances(): HasMany
+    {
+        return $this->hasMany(PlayerFinance::class);
+    }
+
     public function getInflationValue($value, $op)
     {
         $operations = [

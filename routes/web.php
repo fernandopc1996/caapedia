@@ -9,7 +9,7 @@ use App\Http\Controllers\General\ImageController;
 
 use App\Livewire\Game\Player\{CreatePlayer, PlayerFinished};
 use App\Livewire\Game\Explore\{ExploreManage};
-use App\Livewire\Game\Finance\{FinanceManage};
+use App\Livewire\Game\Finance\{FinanceManage, LoanManage};
 use App\Livewire\Game\Inventory\{InventoryManage};
 use App\Livewire\Game\Market\{MarketManage};
 use App\Livewire\Game\People\{PeopleManage};
@@ -59,6 +59,7 @@ Route::middleware(['auth', UserHasPlayer::class, 'throttle:60,1'])->group(functi
 
         Route::prefix('finance')->group(function () {
             Route::get('/manage', FinanceManage::class)->name('finance.manage');
+            Route::get('/manage/loan', LoanManage::class)->name('finance.laon.manage');
         });
 
         Route::prefix('production')->group(function () {

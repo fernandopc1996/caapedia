@@ -1,0 +1,30 @@
+{
+  "id": 4,
+  "name": "Crédito para Investimento Estrutural",
+  "description": "Financiamento voltado à construção de galpões, cisternas, currais ou instalações permanentes na propriedade.",
+  "source": "",
+  "type": "produtivo",
+  "loan": {
+    "max_amount": 30000,
+    "allowed_uses": [
+      "Construção de galpões",
+      "Construção de currais",
+      "Construção de cisternas",
+      "Infraestrutura permanente"
+    ],
+    "installments": [12, 18, 24, 36],
+    "grace_period": 6,
+    "rates": {
+      "12": 0.02,
+      "18": 0.025,
+      "24": 0.03,
+      "36": 0.035
+    },
+    "late_fee": 0.025,
+    "min_trust": 1.5,
+    "requires_production": true
+  },
+  "images": [
+    "l4/1.jpg"
+  ]
+}

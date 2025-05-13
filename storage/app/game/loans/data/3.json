@@ -1,0 +1,28 @@
+{
+  "id": 3,
+  "name": "Crédito Emergencial",
+  "description": "Ajuda financeira liberada rapidamente para cobrir prejuízos causados por seca, pragas ou eventos imprevistos.",
+  "source": "",
+  "type": "pessoal",
+  "loan": {
+    "max_amount": 8000,
+    "allowed_uses": [
+      "Reposição de perdas",
+      "Manutenção da propriedade",
+      "Compra de água ou alimentos"
+    ],
+    "installments": [3, 6, 9],
+    "grace_period": 0,
+    "rates": {
+      "3": 0.01,
+      "6": 0.015,
+      "9": 0.02
+    },
+    "late_fee": 0.05,
+    "min_trust": 0.5,
+    "requires_production": false
+  },
+  "images": [
+    "l3/1.jpg"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": 7,
+  "name": "Crédito de Expansão Empresarial",
+  "description": "Financiamento para médio produtor expandir significativamente suas atividades com foco em escala, armazenamento e logística.",
+  "source": "",
+  "type": "produtivo",
+  "loan": {
+    "max_amount": 500000,
+    "allowed_uses": [
+      "Construção de armazéns",
+      "Compra de veículos e tratores",
+      "Aquisição de grande rebanho",
+      "Instalações industriais"
+    ],
+    "installments": [36, 48, 60],
+    "grace_period": 12,
+    "rates": {
+      "36": 0.015,
+      "48": 0.017,
+      "60": 0.019
+    },
+    "late_fee": 0.03,
+    "min_trust": 5.95,
+    "requires_production": true
+  },
+  "images": [
+    "l7/1.jpg"
+  ]
+}

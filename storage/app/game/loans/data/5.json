@@ -1,0 +1,28 @@
+{
+  "id": 5,
+  "name": "Crédito Jovem Agricultor",
+  "description": "Linha especial para jovens iniciando suas atividades produtivas no campo, com juros reduzidos e maior carência.",
+  "source": "",
+  "type": "produtivo",
+  "loan": {
+    "max_amount": 12000,
+    "allowed_uses": [
+      "Primeiro investimento",
+      "Compra de insumos",
+      "Estrutura inicial"
+    ],
+    "installments": [12, 18, 24],
+    "grace_period": 6,
+    "rates": {
+      "12": 0.01,
+      "18": 0.015,
+      "24": 0.02
+    },
+    "late_fee": 0.015,
+    "min_trust": 2.6,
+    "requires_production": false
+  },
+  "images": [
+    "l5/1.jpg"
+  ]
+}

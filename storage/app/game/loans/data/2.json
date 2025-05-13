@@ -1,0 +1,28 @@
+{
+  "id": 2,
+  "name": "Microcrédito Rural",
+  "description": "Linha de crédito voltada para pequenos investimentos de agricultores familiares. Permite iniciar ou ampliar atividades produtivas com carência inicial.",
+  "source": "",
+  "type": "produtivo",
+  "loan": {
+    "max_amount": 10000,
+    "allowed_uses": [
+      "Compra de insumos",
+      "Reparo em estruturas",
+      "Investimento em produção"
+    ],
+    "installments": [6, 12, 18],
+    "grace_period": 3,
+    "rates": {
+      "6": 0.015,
+      "12": 0.018,
+      "18": 0.02
+    },
+    "late_fee": 0.02,
+    "min_trust": 1.2,
+    "requires_production": true
+  },
+  "images": [
+    "l1/1.jpg"
+  ]
+}

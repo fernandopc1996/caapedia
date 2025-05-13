@@ -1,0 +1,27 @@
+{
+  "id": 1,
+  "name": "Empréstimo Pessoal Simples",
+  "description": "Crédito pessoal para atender necessidades emergenciais do jogador, como saúde, moradia ou consumo.",
+  "source": "",
+  "type": "pessoal",
+  "loan": {
+    "max_amount": 15000,
+    "allowed_uses": [
+      "Uso livre"
+    ],
+    "installments": [6, 12, 18, 24],
+    "grace_period": 0,
+    "rates": {
+      "6": 0.03,
+      "12": 0.035,
+      "18": 0.038,
+      "24": 0.04
+    },
+    "late_fee": 0.03,
+    "min_trust": 1,
+    "requires_production": false
+  },
+  "images": [
+    "l2/1.jpg"
+  ]
+}

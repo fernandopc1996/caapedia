@@ -1,0 +1,29 @@
+{
+  "id": 6,
+  "name": "Crédito de Expansão Produtiva",
+  "description": "Linha de crédito para agricultores familiares ampliarem sua produção com foco em mecanização, irrigação ou aquisição de animais.",
+  "source": "",
+  "type": "produtivo",
+  "loan": {
+    "max_amount": 100000,
+    "allowed_uses": [
+      "Compra de máquinas",
+      "Irrigação",
+      "Aquisição de animais",
+      "Modernização da estrutura"
+    ],
+    "installments": [24, 36, 48],
+    "grace_period": 12,
+    "rates": {
+      "24": 0.012,
+      "36": 0.014,
+      "48": 0.016
+    },
+    "late_fee": 0.02,
+    "min_trust": 4.85,
+    "requires_production": true
+  },
+  "images": [
+    "l6/1.jpg"
+  ]
+}

@@ -1,6 +1,12 @@
 <div class="p-4 space-y-6">
-    <x-layout.header title="Finanças" />
-
+    <x-layout.header title="Finanças"/>
+    <div class="flex items-center justify-end">
+        <x-mary-button 
+                icon="fas.money-check-dollar" 
+                class="btn-primary btn-outline"
+                label="Empréstimos" 
+                link="{{route('finance.laon.manage')}}"/>
+    </div>
     <div class="flex items-center justify-between mb-4">
         <x-mary-button 
             icon="fas.arrow-left" 

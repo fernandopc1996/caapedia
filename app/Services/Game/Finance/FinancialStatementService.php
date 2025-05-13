@@ -4,7 +4,7 @@ namespace App\Services\Game\Finance;
 
 use App\Models\Game\{
     PlayerProduction, PlayerAction, PlayerActionArea,
-    PlayerProduct, PlayerStory, PlayerWater, Player
+    PlayerProduct, PlayerStory, PlayerWater, PlayerFinance, Player
 };
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -163,6 +163,25 @@ class FinancialStatementService
                     'amount' => $total,
                 ]);
             });
+
+        PlayerFinance::where('player_id', $playerId)
+            ->whereYear('date', $year)
+            ->get()
+            ->each(function ($finance) use ($entries) {
+                if ($finance->amount == 0) return;
+
+                $date = Carbon::parse($finance->date)->startOfMonth()->format('Y-m');
+                $type = $finance->op === 'C' ? 'crédito' : 'débito';
+                $label = $finance->description ?? 'Movimento financeiro';
+
+                $entries->push([
+                    'date'   => $date,
+                    'label'  => $label,
+                    'type'   => $type,
+                    'amount' => $finance->amount,
+                ]);
+            });
+
     
         return $entries->groupBy('date')->map(function ($items) {
             return $items->groupBy('type')->map(function ($grouped) {
