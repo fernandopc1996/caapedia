@@ -25,7 +25,7 @@ return new class extends Migration
             $table->smallInteger('installment')->nullable();
             $table->smallInteger('installments')->nullable();
             $table->decimal('amount', total: 16, places: 2)->nullable();
-            $table->string('description', 50)->nullable();
+            $table->string('description', 100)->nullable();
             $table->boolean('completed')->default(0);
             $table->timestamps();
         });

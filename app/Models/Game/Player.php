@@ -78,8 +78,8 @@ class Player extends Model
     public function getInflationValue($value, $op)
     {
         $operations = [
-            'D' => fn() => ($this->rate_sell ?? 1) - ($this->degration ?? 0),
-            'C' => fn() => ($this->rate_buy ?? 1) + ($this->degration ?? 0),
+            'D' => fn() => ($this->rate_sell ?? 1) + ($this->degration ?? 0),
+            'C' => fn() => ($this->rate_buy ?? 1) - ($this->degration ?? 0),
         ];
 
         $rate = $operations[$op]() ?? 1;

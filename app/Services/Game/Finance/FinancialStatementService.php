@@ -183,7 +183,7 @@ class FinancialStatementService
             });
 
     
-        return $entries->groupBy('date')->map(function ($items) {
+        return $entries->sortBy('date')->groupBy('date')->map(function ($items) {
             return $items->groupBy('type')->map(function ($grouped) {
                 return $grouped->map(fn ($item) => [
                     'label'  => $item['label'],

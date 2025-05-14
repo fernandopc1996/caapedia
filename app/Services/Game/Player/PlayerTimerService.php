@@ -3,6 +3,8 @@
 namespace App\Services\Game\Player;
 
 use App\Models\Game\Player;
+use App\Jobs\Events\ProcessPlayerEvent;
+use App\Enums\TypeEvent;
 use Carbon\Carbon;
 use Session;
 
@@ -28,6 +30,8 @@ class PlayerTimerService
     {
         $this->updateTime();
 
+        $previousDatetime = Carbon::parse($this->player->last_datetime);
+
         switch ($this->player->mode_time) {
             case 1:
                 $this->updateModePrimary();
@@ -36,6 +40,9 @@ class PlayerTimerService
                 $this->updateModeSecondary();
                 break;
         }
+
+        $currentDatetime = Carbon::parse($this->player->last_datetime);
+        $this->checkAndDispatchEvents($previousDatetime, $currentDatetime);
 
         $this->player->last_execution = $this->now;
         $this->player->save();
@@ -61,5 +68,20 @@ class PlayerTimerService
     {
         $lastExecution = Carbon::parse($this->player->last_execution ?? $this->player->updated_at);
         return $lastExecution->diffInSeconds($this->now);
+    }
+
+    private function checkAndDispatchEvents(Carbon $before, Carbon $after): void
+    {
+        if ($before->month !== $after->month || $before->year !== $after->year) {
+            ProcessPlayerEvent::dispatch($this->player->id, TypeEvent::Monthly, $after->toDateTimeString());
+        }
+
+        if ($before->year !== $after->year) {
+            ProcessPlayerEvent::dispatch($this->player->id, TypeEvent::Yearly, $after->toDateTimeString());
+        }
+
+        if (random_int(1, 100) === 1) {
+            ProcessPlayerEvent::dispatch($this->player->id, TypeEvent::Random, $after->toDateTimeString());
+        }
     }
 }

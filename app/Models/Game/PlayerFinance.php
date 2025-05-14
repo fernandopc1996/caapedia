@@ -76,12 +76,12 @@ class PlayerFinance extends Model
 
     public function finance(): BelongsTo
     {
-        return $this->belongsTo(PlayerFinance::class, 'player_finances_id');
+        return $this->belongsTo(PlayerFinance::class, 'player_finance_id');
     }
 
     public function finances(): HasMany
     {
-        return $this->hasMany(PlayerFinance::class, 'player_finances_id');
+        return $this->hasMany(PlayerFinance::class, 'player_finance_id');
     }
 
     public function getGameDataAttribute(): ?object
