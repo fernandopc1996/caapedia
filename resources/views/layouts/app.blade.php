@@ -47,10 +47,9 @@
                 {{-- MENU --}}
                 <x-mary-menu activate-by-route>
                     {{-- User --}}
-                    
-                    @if(Session::has('player'))
+                    @if($player)
                     <livewire:game.player.player-resources>
-                    @if(Session::get('player')->finished == false)
+                    @if($player->finished == false)
                     <x-mary-menu-separator />
                     <div class="grid grid-cols-3 gap-4">
                         <x-menu.button-row href="{{route('story.events')}}" 

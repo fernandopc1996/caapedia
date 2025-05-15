@@ -25,7 +25,7 @@ class FamilyCostService
             $endDate = $date->copy()->startOfMonth();
 
             while ($startDate->lessThanOrEqualTo($endDate)) {
-                $amount = $characters * $player->getInflationValue(500, 'D');
+                $amount = $characters * $player->getInflationValue(200, 'D');
 
                 PlayerFinance::create([
                     'player_id' => $player->id,

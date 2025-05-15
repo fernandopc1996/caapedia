@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 
 use App\Models\User;
 
@@ -18,8 +19,9 @@ class GuestUserController extends Controller
         if(Auth::check()) return redirect()->route('story.events');
 
         $user = new User();
-        $user->name = Str::uuid();
-        $user->email = $user->name."@caapedia";
+        $faker = Faker::create();
+        $user->name = $faker->name;
+        $user->email = Str::uuid()."@caapedia";
         $user->password = Hash::make(Str::random(10));
         $user->save();
 

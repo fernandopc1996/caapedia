@@ -12,11 +12,12 @@ use App\Services\Game\Production\ProductionService;
 use App\Enums\TypeAreaProduction;
 
 use Mary\Traits\Toast;
+use App\Traits\LoadsPlayerFromSession;
 
 //TypeAreaProduction::Cultivation
 class ProductionAreaCrop extends Component
 {
-    use Toast;
+    use Toast, LoadsPlayerFromSession;
 
     #[Title('Preparar área')] 
     public $nativeCleaning;
@@ -64,7 +65,7 @@ class ProductionAreaCrop extends Component
 
     protected function loadAvailableCharacters()
     {
-        $player = Session::get('player');
+        $player = $this->getPlayerFromSession();
 
         if (!$player) {
             $this->availableCharacters = [];

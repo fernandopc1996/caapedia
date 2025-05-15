@@ -24,6 +24,8 @@ class FinanceManage extends Component
         $this->year = $this->resolveYearFromPlayer();
 
         $this->loadStatement($service);
+
+        $this->dispatch('playerUpdated');
     }
 
     public function previousYear(FinancialStatementService $service)

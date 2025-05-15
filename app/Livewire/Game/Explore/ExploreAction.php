@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Session;
 use App\Services\Game\Exploration\ExplorationService;
 use App\Models\Game\{Player};
 use App\Repositories\ExplorationRepository;
+
+use App\Traits\LoadsPlayerFromSession;
 use Mary\Traits\Toast;
 
 class ExploreAction extends Component
 {
-    use Toast;
+    use Toast, LoadsPlayerFromSession;
 
     public ?Player $player = null;
     public $explorations = [];
@@ -49,7 +51,7 @@ class ExploreAction extends Component
 
     protected function loadAvailableCharacters()
     {
-        $player = Session::get('player');
+        $player = $this->getPlayerFromSession();;
 
         if (!$player) {
             $this->availableCharacters = [];

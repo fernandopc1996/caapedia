@@ -5,18 +5,23 @@ namespace App\Livewire\Game\People;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Repositories\CharacterRepository;
+
+use App\Traits\LoadsPlayerFromSession;
 use Session;
 
 class PeopleManage extends Component
 {
+    use LoadsPlayerFromSession;
+
     #[Title('Pessoas')] 
     public $characters;
 
     public function mount() {
-        $player = Session::get('player');
+        $player =  $this->getPlayerFromSession();
         $this->characters = $player->playerCharacters()
         ->with(['playerProductions', 'playerActions'])
         ->get();
+        $this->dispatch('playerUpdated');
         //dd($this->characters);
     }
 

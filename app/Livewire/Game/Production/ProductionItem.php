@@ -9,12 +9,13 @@ use App\Repositories\{ProductionRepository, ProductRepository};
 use App\Services\Game\Production\ProductionService;
 use App\Models\Game\PlayerProduction;
 
+use App\Traits\LoadsPlayerFromSession;
 use Mary\Traits\Toast;
 
 //TypeAreaProduction::Breeding or TypeAreaProduction::Manufacturing
 class ProductionItem extends Component
 {
-    use Toast;
+    use Toast, LoadsPlayerFromSession;
 
     public $productionSetting;
     public ?PlayerProduction $production = null;
@@ -73,7 +74,7 @@ class ProductionItem extends Component
 
     protected function loadAvailableCharacters()
     {
-        $player = Session::get('player');
+        $player = $this->getPlayerFromSession();;
 
         if (!$player) {
             $this->availableCharacters = [];

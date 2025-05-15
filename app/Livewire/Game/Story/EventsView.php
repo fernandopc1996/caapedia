@@ -18,6 +18,7 @@ class EventsView extends Component
     public function mount(): void
     {
         $this->player = $this->getPlayerFromSession();
+        $this->dispatch('playerUpdated');
     }
 
     #[On('storyUpdated')]

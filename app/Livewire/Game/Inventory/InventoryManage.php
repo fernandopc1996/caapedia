@@ -120,6 +120,7 @@ class InventoryManage extends Component
 
     public function mount(){
         $this->player = $this->getPlayerFromSession();
+        $this->dispatch('playerUpdated');
     }
 
     public function render()

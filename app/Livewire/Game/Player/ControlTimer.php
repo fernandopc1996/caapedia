@@ -8,7 +8,11 @@ use App\Models\Game\Player;
 use Carbon\Carbon;
 use Session;
 
+use App\Traits\LoadsPlayerFromSession;
+
 class ControlTimer extends Component{
+
+    use LoadsPlayerFromSession;
 
     public Player $player;      
 
@@ -22,12 +26,12 @@ class ControlTimer extends Component{
 
         $this->player->mode_time = $mode;
         $this->player->save();
-        Session::put('player', $this->player);
+        $this->updatePlayerInSession($this->player);
         $this->dispatch('timer-mode-updated', startTime: $this->player->last_datetime, mode: $this->player->mode_time); 
     }
 
     public function mount(){
-        $this->player = Session::get('player');
+        $this->player = $this->getPlayerFromSession();
     }
 
     public function render(){

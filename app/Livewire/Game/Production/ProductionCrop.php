@@ -8,12 +8,13 @@ use App\Services\Game\Production\ProductionService;
 use App\Models\Game\{Player, PlayerProduction};
 use App\Repositories\CropRepository;
 use App\Enums\TypeAreaProduction;
+
+use App\Traits\LoadsPlayerFromSession;
 use Mary\Traits\Toast;
 
 class ProductionCrop extends Component
 {
-    use Toast;
-
+    use Toast, LoadsPlayerFromSession;
     public ?PlayerProduction $production = null;
     public ?Player $player = null;
     public $crops = [];
@@ -53,7 +54,7 @@ class ProductionCrop extends Component
 
     protected function loadAvailableCharacters()
     {
-        $player = Session::get('player');
+        $player = $this->getPlayerFromSession();;
 
         if (!$player) {
             $this->availableCharacters = [];

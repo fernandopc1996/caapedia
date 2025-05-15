@@ -55,6 +55,7 @@ class ProductionManage extends Component
         $this->player = $this->getPlayerFromSession();
 
         $wasUpdated = $productionUpdateService->handle($this->player);
+        $this->dispatch('playerUpdated');
     }
 
     #[Computed]
