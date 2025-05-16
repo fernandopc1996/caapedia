@@ -60,14 +60,18 @@
                                     icon="fas.cubes" title="Produção"/>
                         <x-menu.button-row href="{{route('inventory.manage')}}" 
                                     icon="fas.warehouse" title="Estoque"/>
-                        <x-menu.button-row href="{{route('explore.manage')}}"
-                                    icon="fas.leaf" title="Explorar"/>
-                        <x-menu.button-row href="{{route('news.newspaper')}}" 
-                                    icon="fas.newspaper" title="Notícias"/>
                         <x-menu.button-row href="{{route('market.manage')}}" 
                                     icon="fas.cash-register" title="Comércio"/>
+                        <x-menu.button-row href="{{route('explore.manage')}}"
+                                    icon="fas.leaf" title="Explorar"/>
                         <x-menu.button-row href="{{route('finance.manage')}}" 
                                     icon="fas.piggy-bank" title="Finanças"/>
+                        <x-menu.button-row href="{{route('news.newspaper')}}" 
+                                    icon="fas.newspaper" title="Notícias" :disabled="true"/>
+                        <x-menu.button-row href="#" 
+                                    icon="fas.school" title="Educação" :disabled="true"/>
+                                    
+                        
                     </div>
                     @endif
                     @else
@@ -75,8 +79,15 @@
                     @endif
                     <x-mary-menu-separator />
 
-                    <x-mary-menu-item title="Ranking" icon="fas.ranking-star"/>
-                    <x-mary-menu-item title="Sua conta" icon="fas.user" link="{{route('profile')}}" />
+                    <x-mary-menu-item title="Ranking" icon="fas.ranking-star" link="{{route('general.score.ranking')}}"/>
+                    <x-mary-menu-item icon="fas.user" link="{{route('profile')}}">
+                        <div class="flex justify-between items-center w-full">
+                            <span>Perfil</span>
+                            @if(auth()->user()->google_email == null)
+                                <x-mary-icon name="fas.exclamation-circle" class="w-7 h-7 text-yellow-500"/>
+                            @endif
+                        </div>
+                    </x-mary-menu-item>
                     <x-mary-menu-sub title="Configurações" icon="o-cog-6-tooth">
                         <x-mary-menu-item title="Contas" icon="fas.users-gear" link="####" />
                         <x-mary-menu-sub title="Cadastros" icon="fas.square-plus">

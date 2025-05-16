@@ -80,6 +80,36 @@ new class extends Component {
         </x-slot:actions>
     </x-mary-header>
 
+    @if (is_null(Auth::user()->google_email))
+    <div class="my-6 p-4 border-l-4 border-yellow-500 bg-yellow-100 rounded-md flex items-start gap-4 shadow">
+        <x-mary-icon name="fas.exclamation-triangle" class="w-6 h-6 text-yellow-600 mt-1" />
+        <div class="flex-1">
+            <h4 class="text-yellow-800 font-semibold mb-1">Conta não vinculada</h4>
+            <p class="text-sm text-yellow-800">
+                Seu progresso está sendo armazenado apenas nesta sessão temporária do navegador.
+                Isso significa que você <strong>perderá todo seu progresso</strong> se:
+            </p>
+            <ul class="list-disc list-inside text-sm text-yellow-800 mt-1 space-y-1">
+                <li>A sessão expirar por inatividade ou problema de rede</li>
+                <li>Mudar de dispositivo ou navegador</li>
+                <li>Limpar os dados de navegação</li>
+                <li>Entre outros</li>
+            </ul>
+            <p class="text-sm text-yellow-800 mt-3">
+                <strong>Recomendamos fortemente vincular sua conta ao Google</strong> para garantir que seu progresso seja salvo com segurança.
+            </p>
+        </div>
+        <x-mary-button 
+            label="Vincular agora" 
+            icon="fab.google" 
+            link="{{ route('google.redirect') }}" 
+            no-wire-navigate 
+            class="btn-warning"
+        />
+    </div>
+    @endif
+
+
     <x-mary-form wire:submit="updateProfileInformation">
         <div>
             <x-mary-input label="{{ __('Name') }}" wire:model="name" required autofocus />

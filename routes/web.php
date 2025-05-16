@@ -18,6 +18,7 @@ use App\Livewire\Game\News\{Newspaper};
 use App\Livewire\Game\Story\{EventsView};
 
 use App\Livewire\General\Person\{PersonIndexPage, PersonFormPage};
+use App\Livewire\General\Score\{RankingView};
 
 Route::view('/', 'welcome');
 Route::permanentRedirect('/login', '/');
@@ -86,6 +87,10 @@ Route::middleware(['auth'])->group(function () {
     });
     
     Route::prefix('general')->group(function () {
+        Route::prefix('score')->group(function () {
+            Route::get('/ranking', RankingView::class)->name('general.score.ranking');
+        });
+
         Route::prefix('person')->group(function () {
             Route::get('/index', PersonIndexPage::class)->name('general.person.index');
             Route::get('/form', PersonFormPage::class)->name('general.person.form');
