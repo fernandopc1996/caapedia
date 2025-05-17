@@ -84,7 +84,7 @@
                         <div class="flex justify-between items-center w-full">
                             <span>Perfil</span>
                             @if(auth()->user()->google_email == null)
-                                <x-mary-icon name="fas.exclamation-circle" class="w-7 h-7 text-yellow-500"/>
+                                <x-mary-icon name="fas.exclamation-circle" class="w-5 h-5 text-yellow-500 animate-pulse-scale"/>
                             @endif
                         </div>
                     </x-mary-menu-item>

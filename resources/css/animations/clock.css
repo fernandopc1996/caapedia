@@ -1,0 +1,25 @@
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.clock-hand {
+  transform-origin: center center;
+}
+
+.animate-clock-paused .clock-hand {
+  transform: rotate(0deg);
+}
+
+.animate-clock-slow .clock-hand {
+  animation: rotate-slow 30s linear infinite;
+}
+
+.animate-clock-fast .clock-hand {
+  animation: rotate-fast 1s linear infinite;
+}

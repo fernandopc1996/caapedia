@@ -1,6 +1,6 @@
 <div>
     <div x-data="appFooterComponent('{{ $startTime }}', {{ $mode }})">
-        <div>
+        <div class="text-center">
             <span x-text="getTime()" class="select-none"></span>
         </div>
     </div>
