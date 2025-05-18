@@ -92,6 +92,7 @@
                             @endif
                         </div>
                     </x-mary-menu-item>
+                    @can('access_admin_panel')
                     <x-mary-menu-sub title="Configurações" icon="o-cog-6-tooth">
                         <x-mary-menu-item title="Contas" icon="fas.users-gear" link="####" />
                         <x-mary-menu-sub title="Cadastros" icon="fas.square-plus">
@@ -103,6 +104,7 @@
                             <x-mary-menu-item title="Eventos" icon="fas.calendar-alt" link="####" />
                         </x-mary-menu-sub>
                     </x-mary-menu-sub>
+                    @endcan
                 </x-mary-menu>
                 </div>
             </x-slot:sidebar>
@@ -115,9 +117,9 @@
                 <livewire:game.story.interaction-action/>
 
                 <div class="mt-12"></div>
-                @session('player')
+                @if(isset($player) && $player->finished == false)
                     <livewire:game.player.control-timer>
-                @endsession
+                @endif
             </x-slot:content>
         </x-mary-main>
     </div>

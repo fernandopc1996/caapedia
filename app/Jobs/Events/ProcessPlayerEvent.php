@@ -33,7 +33,7 @@ class ProcessPlayerEvent implements ShouldQueue
 
     public function uniqueId(): string
     {
-        return "player_event_{$this->playerId}_{$this->simulatedDate->format('Ymd')}";
+        return "player_event_{$this->playerId}";
     }
 
     public function middleware(): array
