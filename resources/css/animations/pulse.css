@@ -10,3 +10,16 @@
 .animate-pulse-scale {
   animation: pulse-scale 1.2s infinite ease-in-out;
 }
+
+@keyframes pulse-scale-small {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-scale-small {
+  animation: pulse-scale-small 1.2s infinite ease-in-out;
+}

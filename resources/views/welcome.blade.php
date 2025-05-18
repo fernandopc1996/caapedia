@@ -46,10 +46,9 @@
         <div class="container mx-auto px-4 flex flex-row justify-between items-center py-4 space-y-4 md:space-y-0">
             <!-- Links -->
             <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 text-left">
-                <a href="#" class="text-white hover:text-gray-300">Sobre</a>
-                <a href="#" class="text-white hover:text-gray-300">Regras</a>
-                <a href="#" class="text-white hover:text-gray-300">Termos de Uso</a>
-                <a href="#" class="text-white hover:text-gray-300">Políticas de Privacidade</a>
+                <a target="_blank" href="https://caapedia.fernandopc.dev.br/caapedia/sobre" class="text-white hover:text-gray-300">Sobre</a>
+                <a target="_blank" href="https://caapedia.fernandopc.dev.br/caapedia/termos/termos-de-uso" class="text-white hover:text-gray-300">Termos de Uso</a>
+                <a target="_blank" href="https://caapedia.fernandopc.dev.br/caapedia/termos/pol%C3%ADticas-de-privacidade" class="text-white hover:text-gray-300">Políticas de Privacidade</a>
             </div>
 
             <!-- Logos -->

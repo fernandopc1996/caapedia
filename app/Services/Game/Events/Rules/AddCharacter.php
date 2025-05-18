@@ -8,7 +8,7 @@ use App\Services\Game\Story\AddCharacterToStoryService;
 
 class AddCharacter
 {
-    protected int $maxCharactersAvailable = 5;
+    protected int $maxCharactersAvailable = 4;
 
     public function handle(Player $player): void
     {

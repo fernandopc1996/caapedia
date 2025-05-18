@@ -26,7 +26,7 @@
             </x-slot:brand>
             <x-slot:actions>
                 <label for="main-drawer" class="lg:hidden mr-3">
-                    <img class="h-12 hover:scale-125 active:rotate-45 duration-300" src="{{url('/a/images/logo.png')}}">
+                    <img id="menu-logo" class="h-12 hover:scale-125 active:rotate-45 duration-300" src="{{url('/a/images/logo.png')}}">
                 </label>
             </x-slot:actions>
         </x-mary-nav>
@@ -116,7 +116,7 @@
 
                 <livewire:game.story.interaction-action/>
 
-                <div class="mt-12"></div>
+                <div class="mt-32"></div>
                 @if(isset($player) && $player->finished == false)
                     <livewire:game.player.control-timer>
                 @endif
@@ -141,6 +141,13 @@
         gtag('js', new Date());
 
         gtag('config', 'G-XNJ3ENMLR7');
+
+        setTimeout(() => {
+        const logo = document.getElementById('menu-logo');
+            if (logo) {
+                logo.classList.add('animate-pulse-scale-small');
+            }
+        }, 60000);
         </script>
     </body>
 </html>

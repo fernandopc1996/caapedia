@@ -5,11 +5,11 @@
     "character_image": "front_partial",
     "character_target_id": 4,
     "character_target_image": "front_partial",
-    "text": "Meu filho voltou hoje da cidade, depois de tanto tempo estudando. Quando o abracei no terreiro, parecia que o tempo tinha parado por um instante. Ele fala bonito agora, cheio de ideias novas, mas eu vejo nos olhos dele um brilho antigo — o mesmo de quando corria por entre os mandacarus. Será que ainda cabe aqui?",
+    "text": "Meu filho voltou hoje da cidade, depois de tanto tempo estudando. Ele fala bonito agora, cheio de ideias novas, mas eu vejo nos olhos dele um brilho antigo — o mesmo de quando corria por entre os mandacarus.",
     "images": ["t2/1.jpg"],
     "choices": [
         {
-            "text": "Perguntar o que ele aprendeu de mais útil",
+            "text": "Perguntar o que ele aprendeu nesses anos",
             "description": "Ela quer entender o que pode ajudar por aqui, de verdade.",
             "actions": [
                 {
