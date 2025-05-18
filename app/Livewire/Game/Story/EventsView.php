@@ -3,6 +3,7 @@
 namespace App\Livewire\Game\Story;
 
 use Livewire\Component;
+use Livewire\Attributes\Title;
 use App\Models\Game\Player;
 use App\Models\Game\PlayerStory;
 use App\Traits\LoadsPlayerFromSession;
@@ -13,6 +14,7 @@ class EventsView extends Component
 {
     use LoadsPlayerFromSession;
     
+    #[Title('História')] 
     public ?Player $player = null;
 
     public function mount(): void

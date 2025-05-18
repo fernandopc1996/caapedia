@@ -3,6 +3,7 @@
 namespace App\Livewire\Game\Finance;
 
 use Livewire\Component;
+use Livewire\Attributes\Title;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\Game\Player;
@@ -18,6 +19,7 @@ class LoanManage extends Component
 {
     use Toast, LoadsPlayerFromSession;
 
+    #[Title('Empréstimos')] 
     public ?Player $player = null;
     public $loans = [];
     public array $installments = [];
