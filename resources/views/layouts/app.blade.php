@@ -74,10 +74,14 @@
                         
                     </div>
                     @endif
-                    @else
+                    @endif
+
+                    <x-mary-menu-separator />
+                    
+                    @if(!isset($player) || $player->finished == true)
                     <x-mary-menu-item title="Criar personagem" icon="far.plus-square" link="{{route('player.create')}}" />
                     @endif
-                    <x-mary-menu-separator />
+                    
 
                     <x-mary-menu-item title="Ranking" icon="fas.ranking-star" link="{{route('general.score.ranking')}}"/>
                     <x-mary-menu-item icon="fas.user" link="{{route('profile')}}">

@@ -1,0 +1,31 @@
+{
+  "id": 9000,
+  "type": "event",
+  "character_id": 1,
+  "character_image": "front_partial",
+  "character_target_id": 3,
+  "character_target_image": "front_partial",
+  "text": "Hoje fiquei um tempo olhando pro curral vazio... A seca apertou, as contas só crescem e parece que todo esforço não é suficiente. Penso se não seria melhor tentar a vida na cidade, mesmo sem saber o que vou encontrar lá.",
+  "images": ["t2/4.jpg"],
+  "choices": [
+    {
+      "text": "Talvez seja hora de recomeçar em outro lugar.",
+      "description": "Você decide deixar o campo para tentar melhores condições de vida na cidade.",
+      "actions": [
+        {
+          "type": "end_story"
+        }
+      ]
+    },
+    {
+      "text": "Ainda não posso desistir, minha família depende disso.",
+      "description": "Apesar das dificuldades, você decide continuar lutando na roça, buscando melhoras.",
+      "actions": [
+        {
+          "type": "branch_to",
+          "target_id": null
+        }
+      ]
+    }
+  ]
+}

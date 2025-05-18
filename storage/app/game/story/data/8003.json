@@ -1,0 +1,22 @@
+{
+    "id": 8003,
+    "type": "event",
+    "character_id": 1,
+    "character_image": "front_partial",
+    "character_target_id": 3,
+    "character_target_image": "front_partial",
+    "text": "Fiquei feliz com a vontade dela de ajudar. Ver minha filha crescer e querer fazer parte da lida me enche de orgulho. Mas aqui, no sertão, tudo é muito no limite. O jeito que aprendi com meu pai sempre funcionou, mesmo nas épocas de seca mais braba. Às vezes o certo é não arriscar.",
+    "images": ["t1/4.jpg"],
+    "choices": [
+        {
+            "text": "Pedir para ela observar mais um pouco",
+            "description": "Você a convida a aprender com os costumes antigos antes de propor mudanças.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        }
+    ]
+}

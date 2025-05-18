@@ -1,0 +1,32 @@
+{
+    "id": 8001,
+    "type": "event",
+    "character_id": 3,
+    "character_image": "front_partial",
+    "character_target_id": 1,
+    "character_target_image": "front_partial",
+    "text": "É bom estar de volta. Enquanto estive com a tia, aprendi muito... cuidar dos bichos, plantar milho na hora certa, até fazer queijo! Mas aqui tudo parece maior... mais sério. Será que meu pai vai confiar em mim pra ajudar de verdade?",
+    "images": ["t1/2.jpg"],
+    "choices": [
+        {
+            "text": "Ofereço ajuda com o que for preciso",
+            "description": "Ela toma a iniciativa, demonstrando que quer fazer parte da rotina.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": 8003
+                }
+            ]
+        },
+        {
+            "text": "Espero que ele tome a decisão",
+            "description": "Ela prefere observar e entender mais antes de se envolver.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        }
+    ]
+}

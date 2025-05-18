@@ -2,47 +2,68 @@
 
 namespace App\Jobs\Events;
 
-use App\Models\Game\{Player};
-use App\Enums\{TypeEvent};
+use App\Models\Game\Player;
 use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Middleware\WithoutOverlapping;
+
 use App\Services\Game\Finance\LoanInstallmentService;
 use App\Services\Game\Finance\FamilyCostService;
 use App\Services\Game\Mechanics\PlayerRateAdjustmentService;
+use App\Services\Game\Events\FixedEventService;
 
 class ProcessPlayerEvent implements ShouldQueue
 {
     use Queueable;
 
     protected int $playerId;
-    protected TypeEvent $eventType;
     protected Carbon $simulatedDate;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct(int $playerId, TypeEvent $eventType, string $simulatedDate)
+    public $uniqueFor = 3600;
+
+    protected ?Carbon $previousDate = null;
+
+    public function __construct(int $playerId, string $simulatedDate, ?string $previousDate = null)
     {
         $this->playerId = $playerId;
-        $this->eventType = $eventType;
         $this->simulatedDate = Carbon::parse($simulatedDate)->startOfDay();
+        $this->previousDate = $previousDate ? Carbon::parse($previousDate)->startOfDay() : null;
     }
 
-    /**
-     * Execute the job.
-     */
+    public function uniqueId(): string
+    {
+        return "player_event_{$this->playerId}_{$this->simulatedDate->format('Ymd')}";
+    }
+
+    public function middleware(): array
+    {
+        return [
+            (new WithoutOverlapping($this->uniqueId()))->dontRelease(),
+        ];
+    }
+
     public function handle(): void
     {
         $player = Player::find($this->playerId);
-
         if (!$player) return;
 
-        match ($this->eventType) {
-            TypeEvent::Monthly => $this->handleMonthly($player),
-            TypeEvent::Yearly  => $this->handleYearly($player),
-            TypeEvent::Random  => $this->handleRandom($player),
-        };
+        app(FixedEventService::class, ['player' => $player])->process();
+
+        $before = $this->previousDate ?? Carbon::parse($player->last_execution ?? $player->updated_at);
+        $after = $this->simulatedDate;
+
+        if ($before->month !== $after->month || $before->year !== $after->year) {
+            $this->handleMonthly($player);
+        }
+
+        if ($before->year !== $after->year) {
+            $this->handleYearly($player);
+        }
+
+        if (random_int(1, 100) === 1) {
+            $this->handleRandom($player);
+        }
     }
 
     protected function handleMonthly(Player $player): void
@@ -58,6 +79,6 @@ class ProcessPlayerEvent implements ShouldQueue
 
     protected function handleRandom(Player $player): void
     {
-        // lógica de evento aleatório será implementada futuramente
+        // lógica futura para evento aleatório
     }
 }

@@ -1,0 +1,32 @@
+{
+    "id": 8002,
+    "type": "event",
+    "character_id": 3,
+    "character_image": "front_partial",
+    "character_target_id": 2,
+    "character_target_image": "front_partial",
+    "text": "Ele me ouviu com atenção enquanto eu falava sobre o que aprendi. Expliquei várias formas de proteger o solo e manter a umidade. Acho que ele ficou orgulhoso, mas não sei se vai querer mudar a forma como sempre fez as coisas por aqui.",
+    "images": ["t1/3.jpg"],
+    "choices": [
+        {
+            "text": "Vamos tentar juntos?",
+            "description": "Ela tenta criar um momento de troca e aprendizado mútuo.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": 8003
+                }
+            ]
+        },
+        {
+            "text": "Talvez não seja o momento",
+            "description": "Ela entende que mudanças podem levar tempo.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        }
+    ]
+}

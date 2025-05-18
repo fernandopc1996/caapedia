@@ -42,7 +42,8 @@ class PlayerTimerService
         }
 
         $currentDatetime = Carbon::parse($this->player->last_datetime);
-        $this->checkAndDispatchEvents($previousDatetime, $currentDatetime);
+        ProcessPlayerEvent::dispatch($this->player->id, $currentDatetime->toDateTimeString(), $previousDatetime->toDateTimeString());
+        //$this->checkAndDispatchEvents($previousDatetime, $currentDatetime);
 
         $this->player->last_execution = $this->now;
         $this->player->save();

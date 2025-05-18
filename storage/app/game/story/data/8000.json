@@ -1,0 +1,32 @@
+{
+    "id": 8000,
+    "type": "event",
+    "character_id": 1,
+    "character_image": "front_partial",
+    "character_target_id": 3,
+    "character_target_image": "front_partial",
+    "text": "Minha filha retornou hoje da casa da minha irmã. Passou uns meses ajudando na roça de milho e cuidando dos bodes por lá.",
+    "images": ["t1/1.jpg"],
+    "choices": [
+        {
+            "text": "Espero que ela tenha crescido com a experiência.",
+            "description": "Você valoriza o aprendizado dela e pensa em como pode envolver a família na propriedade.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": 8001
+                }
+            ]
+        },
+        {
+            "text": "Quero conversar com ela sobre o que aprendeu.",
+            "description": "Você vê nisso uma oportunidade de melhorar sua própria produção e aproximar-se da filha.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": 8002
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": 9999,
+  "type": "event",
+  "character_id": 1,
+  "character_image": "front_partial",
+  "text": "Chegou o ponto em que não consigo mais manter a propriedade. As dívidas se acumularam, os animais se foram, a lavoura não resiste mais. Com dor no peito e um nó na garganta, decido deixar tudo para trás. É hora de ir para a cidade e tentar outro caminho.",
+  "images": ["t2/6.jpg"],
+  "choices": [
+    {
+      "text": "Não há mais como continuar aqui.",
+      "description": "Você deixa a vida no campo para trás, sem saber o que encontrará pela frente.",
+      "actions": [
+        {
+          "type": "end_story"
+        }
+      ]
+    }
+  ]
+}

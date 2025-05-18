@@ -1,0 +1,32 @@
+{
+    "id": 8500,
+    "type": "event",
+    "character_id": 2,
+    "character_image": "front_partial",
+    "character_target_id": 4,
+    "character_target_image": "front_partial",
+    "text": "Meu filho voltou hoje da cidade, depois de tanto tempo estudando. Quando o abracei no terreiro, parecia que o tempo tinha parado por um instante. Ele fala bonito agora, cheio de ideias novas, mas eu vejo nos olhos dele um brilho antigo — o mesmo de quando corria por entre os mandacarus. Será que ainda cabe aqui?",
+    "images": ["t2/1.jpg"],
+    "choices": [
+        {
+            "text": "Perguntar o que ele aprendeu de mais útil",
+            "description": "Ela quer entender o que pode ajudar por aqui, de verdade.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": 8501
+                }
+            ]
+        },
+        {
+            "text": "Convidá-lo para ver a roça ao entardecer",
+            "description": "Ela acredita que a terra ensina mais que palavras.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        }
+    ]
+}

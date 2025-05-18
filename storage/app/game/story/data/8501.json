@@ -1,0 +1,32 @@
+{
+    "id": 8501,
+    "type": "event",
+    "character_id": 4,
+    "character_image": "front_partial",
+    "character_target_id": 2,
+    "character_target_image": "front_partial",
+    "text": "Quando a mainha perguntou o que eu tinha aprendido de mais útil, respirei fundo. Falei sobre captação de água de chuva, compostagem, sobre plantar no espaçamento certo pra conservar o solo. Mas, no fundo, o que mais aprendi foi que o saber da cidade não vale muito se não tiver raiz. E minha raiz... é aqui.",
+    "images": ["t2/2.jpg"],
+    "choices": [
+        {
+            "text": "Dizer que quer ajudar com o que for possível",
+            "description": "Ele mostra disposição sem impor mudanças.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        },
+        {
+            "text": "Sugerir testar uma técnica nova na horta",
+            "description": "Ele quer colocar em prática algo concreto logo.",
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        }
+    ]
+}
