@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Traits\LoadsPlayerFromSession;
 
 class UserHasPlayer
 {
+    use LoadsPlayerFromSession;
+
     /**
      * Handle an incoming request.
      *
@@ -21,22 +24,20 @@ class UserHasPlayer
             return redirect('/');
         }
 
-        $user = Auth::user();
+        $player = $this->getPlayerFromSession();
 
-        if (!$request->session()->has('player')) {
-            $request->session()->put('player', $user->players()->orderBy('created_at', 'desc')->first());
-        }
-
-        if ($request->session()->get('player') == null and !Route::is('player.create')) {
+        if (!$player && !Route::is('player.create')) {
             return redirect()->route('player.create');
         }
 
-        if($request->session()->has('player') && $request->session()->get('player')->finished == true && !Route::is('player.finished') && !Route::is('player.create')){
+        if (
+            $player &&
+            $player->finished &&
+            !request()->routeIs('player.finished', 'player.create')
+        ) {
             return redirect()->route('player.finished');
         }
-       
+
         return $next($request);
     }
-
-    
 }

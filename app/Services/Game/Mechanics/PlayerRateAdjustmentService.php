@@ -9,8 +9,8 @@ class PlayerRateAdjustmentService
 {
     protected int $startYear = 1995;
     protected int $limitYear = 2035;
-    protected float $targetSell = 15.0;
-    protected float $targetBuy = 20.0;
+    protected float $targetSell = 20.0;
+    protected float $targetBuy = 30.0;
 
     public function applyYearlyAdjustment(Player $player): void
     {

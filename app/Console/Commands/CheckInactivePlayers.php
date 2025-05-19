@@ -34,10 +34,10 @@ class CheckInactivePlayers extends Command
             ->where(function ($query) use ($now) {
                 $query->where(function ($q) use ($now) {
                     $q->where('mode_time', 1)
-                      ->where('updated_at', '<=', $now->copy()->subHours(2));
+                      ->where('updated_at', '<=', $now->copy()->subHours(3));
                 })->orWhere(function ($q) use ($now) {
                     $q->where('mode_time', 2)
-                      ->where('updated_at', '<=', $now->copy()->subHour());
+                      ->where('updated_at', '<=', $now->copy()->subMinutes(15));
                 });
             })
             ->pluck('id')

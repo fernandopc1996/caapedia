@@ -32,51 +32,48 @@ Route::controller(GoogleLoginController::class)->group(function () {
     Route::get('/google/callback', 'handleGoogleCallback')->name('google.callback');
 });
 
-Route::middleware(['auth', UserHasPlayer::class, 'throttle:60,1'])->group(function () {
+Route::middleware(['auth', UserHasPlayer::class, CheckPlayerTime::class, 'throttle:60,1'])->group(function () {
     Route::prefix('player')->group(function () {
         Route::get('/create', CreatePlayer::class)->name('player.create');
         Route::get('/finished', PlayerFinished::class)->name('player.finished');
     });
 
-    Route::middleware([CheckPlayerTime::class])->group(function () {
-        //Route::view('dashboard', 'dashboard')->name('dashboard');
-        Route::redirect('/dashboard', '/story/events');
+    Route::redirect('/dashboard', '/story/events');
 
-        Route::prefix('people')->group(function () {
-            Route::get('/manage', PeopleManage::class)->name('people.manage');
-        });
+    Route::prefix('people')->group(function () {
+        Route::get('/manage', PeopleManage::class)->name('people.manage');
+    });
 
-        Route::prefix('explore')->group(function () {
-            Route::get('/manage', ExploreManage::class)->name('explore.manage');
-        });
+    Route::prefix('explore')->group(function () {
+        Route::get('/manage', ExploreManage::class)->name('explore.manage');
+    });
 
-        Route::prefix('market')->group(function () {
-            Route::get('/manage', MarketManage::class)->name('market.manage');
-        });
+    Route::prefix('market')->group(function () {
+        Route::get('/manage', MarketManage::class)->name('market.manage');
+    });
 
-        Route::prefix('inventory')->group(function () {
-            Route::get('/manage', InventoryManage::class)->name('inventory.manage');
-        });
+    Route::prefix('inventory')->group(function () {
+        Route::get('/manage', InventoryManage::class)->name('inventory.manage');
+    });
 
-        Route::prefix('finance')->group(function () {
-            Route::get('/manage', FinanceManage::class)->name('finance.manage');
-            Route::get('/manage/loan', LoanManage::class)->name('finance.laon.manage');
-        });
+    Route::prefix('finance')->group(function () {
+        Route::get('/manage', FinanceManage::class)->name('finance.manage');
+        Route::get('/manage/loan', LoanManage::class)->name('finance.laon.manage');
+    });
 
-        Route::prefix('production')->group(function () {
-            Route::get('/', ProductionManage::class)->name('production.manage');
-            Route::get('/create', ProductionCreate::class)->name('production.create');
-            Route::get('/item/i/{production:uuid?}', ProductionItem::class)->name('production.item');
-            Route::get('/item/area/i/{production:uuid?}', ProductionAreaCrop::class)->name('production.area');
-        });
+    Route::prefix('production')->group(function () {
+        Route::get('/', ProductionManage::class)->name('production.manage');
+        Route::get('/create', ProductionCreate::class)->name('production.create');
+        Route::get('/item/i/{production:uuid?}', ProductionItem::class)->name('production.item');
+        Route::get('/item/area/i/{production:uuid?}', ProductionAreaCrop::class)->name('production.area');
+    });
 
-        Route::prefix('news')->group(function () {
-            Route::get('/newspaper', Newspaper::class)->name('news.newspaper');
-        });
+    Route::prefix('news')->group(function () {
+        Route::get('/newspaper', Newspaper::class)->name('news.newspaper');
+    });
 
-        Route::prefix('story')->group(function () {
-            Route::get('/events', EventsView::class)->name('story.events');
-        });
+    Route::prefix('story')->group(function () {
+        Route::get('/events', EventsView::class)->name('story.events');
     });
 
 });

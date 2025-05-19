@@ -14,7 +14,7 @@ trait LoadsPlayerFromSession
             $user = auth()->user();
             if (!$user) return null;
 
-            $player = $user->players()->first();
+            $player = $user->players()->where('finished', false)->first();
             if (!$player) return null;
 
             Session::put('player_id', $player->id);
