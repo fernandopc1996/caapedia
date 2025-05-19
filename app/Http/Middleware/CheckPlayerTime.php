@@ -27,7 +27,7 @@ class CheckPlayerTime{
         $now = now(); 
         $playerInit = $this->getPlayerFromSession();
 
-        if ($playerInit) {
+        if ($playerInit && $playerInit->mode_time != 0) {
             $player = $this->playerTimerService
                 ->setNow($now)
                 ->setPlayer($playerInit)

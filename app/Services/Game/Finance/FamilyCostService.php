@@ -37,7 +37,7 @@ class FamilyCostService
                     'installment' => null,
                     'installments' => null,
                     'amount' => $amount,
-                    'description' => "Custo familiar mensal",
+                    'description' => "Despesa familiar",
                     'completed' => true,
                 ]);
 

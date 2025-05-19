@@ -11,6 +11,7 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use App\Services\Game\Finance\LoanInstallmentService;
 use App\Services\Game\Finance\FamilyCostService;
 use App\Services\Game\Mechanics\PlayerRateAdjustmentService;
+use App\Services\Game\Events\PlayerEventProcessorService;
 use App\Services\Game\Events\FixedEventService;
 
 class ProcessPlayerEvent implements ShouldQueue
@@ -48,37 +49,8 @@ class ProcessPlayerEvent implements ShouldQueue
         $player = Player::find($this->playerId);
         if (!$player) return;
 
-        app(FixedEventService::class, ['player' => $player])->process();
-
-        $before = $this->previousDate ?? Carbon::parse($player->last_execution ?? $player->updated_at);
-        $after = $this->simulatedDate;
-
-        if ($before->month !== $after->month || $before->year !== $after->year) {
-            $this->handleMonthly($player);
-        }
-
-        if ($before->year !== $after->year) {
-            $this->handleYearly($player);
-        }
-
-        if (random_int(1, 100) === 1) {
-            $this->handleRandom($player);
-        }
+        app(PlayerEventProcessorService::class)
+        ->process($player, $this->simulatedDate, $this->previousDate);
     }
 
-    protected function handleMonthly(Player $player): void
-    {
-        app(LoanInstallmentService::class)->processPendingInstallments($player, $this->simulatedDate);
-        app(FamilyCostService::class)->processMonthlyCost($player, $this->simulatedDate);
-    }
-
-    protected function handleYearly(Player $player): void
-    {
-        app(PlayerRateAdjustmentService::class)->applyYearlyAdjustment($player);
-    }
-
-    protected function handleRandom(Player $player): void
-    {
-        // lógica futura para evento aleatório
-    }
 }

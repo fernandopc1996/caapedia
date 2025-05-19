@@ -50,8 +50,10 @@ class ProductionService
                         ->selectRaw("SUM(CASE WHEN op = 'C' THEN amount ELSE -amount END) as balance")
                         ->value('balance');
 
+                    
                     if ($currentBalance < $requiredProduct->qnt) {
-                        return 'Produtos insuficientes para a produção.';
+                        $productName = app(ProductRepository::class)->find($requiredProduct->id)->name ?? 'Desconhecido';
+                        return "Produto insuficiente: {$productName}.";
                     }
                 }
 
@@ -286,8 +288,10 @@ class ProductionService
                     ->selectRaw("SUM(CASE WHEN op = 'C' THEN amount ELSE -amount END) as balance")
                     ->value('balance');
 
+                
                 if ($balance < $required['qnt']) {
-                    return 'Produtos obrigatórios insuficientes.'.$required['id'];
+                    $productName = app(ProductRepository::class)->find($required['id'])->name ?? 'Desconhecido';
+                    return "Produto obrigatório insuficiente: {$productName}.";
                 }
             }
 
@@ -298,7 +302,8 @@ class ProductionService
                     ->value('balance');
 
                 if ($balance < $product->qnt) {
-                    return 'Produtos opcionais insuficientes.'.$product->id;
+                    $productName = app(ProductRepository::class)->find($product->id)->name ?? 'Desconhecido';
+                    return "Produto opcional/selecionado insuficiente: {$productName}.";
                 }
             }
 
