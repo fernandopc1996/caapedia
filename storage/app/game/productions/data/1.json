@@ -1,5 +1,6 @@
 {
     "id": 1,
+    "type": 1,
     "name": "Criação de galinhas",
     "description": "A avicultura no Nordeste brasileiro é desenvolvida de forma rudimentar, com baixa produtividade",
     "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/produ%C3%A7%C3%A3o/cria%C3%A7%C3%A3o-de-galinhas",

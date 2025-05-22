@@ -21,6 +21,8 @@ class PlayerAction extends Model
         'completed',
         'start',
         'end',
+        'multiplier_times',
+        'multiplier_quantity',
         'increase_production',
         'area',
         'degration',

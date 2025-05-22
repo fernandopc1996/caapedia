@@ -23,6 +23,8 @@ return new class extends Migration
             $table->boolean('completed')->default(0);
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
+            $table->unsignedSmallInteger('multiplier_times')->default(1);
+            $table->unsignedSmallInteger('multiplier_quantity')->default(1);
             $table->decimal('increase_production', total: 9, places: 6)->nullable();
             $table->decimal('area', total: 12, places: 4);
             $table->decimal('degration', total: 15, places: 6);

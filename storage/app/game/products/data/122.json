@@ -1,0 +1,11 @@
+{
+    "id": 122,
+    "type": 3,
+    "name": "Feijão",
+    "unit": "KG",
+    "unit_value": 0.50,
+    "salable": true,
+    "description": "O feijão é um alimento essencial na agricultura familiar do semiárido, sendo base da alimentação e importante fonte de proteína. Comercializado em sacas, é amplamente cultivado por sua adaptabilidade e valor econômico.",
+    "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/cultivo/feij%C3%A3o",
+    "images": ["t3/122.png"]
+}

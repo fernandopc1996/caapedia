@@ -1,0 +1,94 @@
+{
+  "id": 3,
+  "type": 2,
+  "name": "Feijão",
+  "description": "Cultura de ciclo curto muito importante na agricultura familiar do Semiárido, o feijão exige replantio após cada colheita. É fundamental para a segurança alimentar e possui alta demanda local.",
+  "source": "hhttps://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/cultivo/feij%C3%A3o",
+  "images": [
+    "c3/3.jpg"
+  ],
+  "production": {
+    "start_cycle": {
+      "time": 2160,
+      "area": 0.5,
+      "water": -1500,
+      "cost": -1200,
+      "degration": 0.014,
+      "phases": [
+        {
+          "name": "Germinação",
+          "percent": 15,
+          "products": {
+            "required": [
+              {
+                "id": 122,
+                "qnt": 40
+              }
+            ],
+            "optional": [
+              {
+                "id": 150,
+                "qnt": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Vegetativo",
+          "percent": 35,
+          "products": {
+            "optional": [
+              {
+                "id": 151,
+                "qnt": 1
+              },
+              {
+                "id": 152,
+                "qnt": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Florescimento",
+          "percent": 25,
+          "products": {
+            "optional": [
+              {
+                "id": 152,
+                "qnt": 1
+              },
+              {
+                "id": 153,
+                "qnt": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Maturação",
+          "percent": 25,
+          "products": {
+            "optional": [
+              {
+                "id": 152,
+                "qnt": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "batch": 1,
+    "products": [
+      {
+        "id": 122,
+        "qnt": [
+          800,
+          1500
+        ],
+        "lottery": 100
+      }
+    ]
+  }
+}

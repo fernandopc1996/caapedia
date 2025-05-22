@@ -1,7 +1,7 @@
 {
     "id": 120,
     "type": 3,
-    "name": "MILHO",
+    "name": "Milho",
     "unit": "KG",
     "unit_value": 0.75,
     "salable": true,

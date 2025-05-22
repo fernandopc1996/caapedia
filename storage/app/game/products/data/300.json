@@ -1,0 +1,11 @@
+{
+    "id": 300,
+    "type": 3,
+    "name": "Corda de Sisal",
+    "unit": "Metro",
+    "unit_value": 0.20,
+    "salable": true,
+    "description": "A corda de sisal é um produto resistente, biodegradável e muito utilizado na agricultura, artesanato, construção civil e decoração. Produzida a partir da fibra das folhas de sisal, destaca-se pela sua durabilidade e versatilidade.",
+    "source": "",
+    "images": ["t3/300.png"]
+}

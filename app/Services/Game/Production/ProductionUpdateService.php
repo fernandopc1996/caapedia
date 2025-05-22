@@ -77,18 +77,22 @@ class ProductionUpdateService
         }
 
         $config = $productionData->production;
-        $productsConfig = $config['products'] ?? [];
+
+        $productsConfig = $config['outputs'] ?? $config['products'] ?? [];
+
         $batch = $config['batch'] ?? 1;
+        $multiplier = $action?->multiplier_quantity ?? 1;
+        $totalBatch = $batch * $multiplier;
 
         if (empty($productsConfig)) {
             return;
         }
 
-        $grouped = $this->generateGroupedProducts($productsConfig, $batch);
+        $grouped = $this->generateGroupedProducts($productsConfig, $totalBatch);
 
-        $increase = $action?->increase_production ?? 0; 
+        $increase = $action?->increase_production ?? 0;
         $degration = $action?->degration ?? 0;
-        $factor = 1 + $increase - $degration;
+        $factor = max(0, 1 + $increase - $degration);
 
         foreach ($grouped as $data) {
             $finalAmount = max(1, (int) round($data['amount'] * $factor));
@@ -105,8 +109,6 @@ class ProductionUpdateService
             ]);
         }
     }
-
-
 
     private function createProductsFromNativeCleaning(Player $player, $production): void
     {

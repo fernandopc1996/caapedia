@@ -1,0 +1,36 @@
+{
+    "id": 5,
+    "type": 3,
+    "name": "Casa de Manufatura de Sisal",
+    "description": "Espaço destinado à transformação de sisal em produtos como cordas, vassouras, tapetes e bolsas, valorizando o trabalho artesanal e sustentável da agricultura familiar.",
+    "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/manufatura/manufatura-do-sisal",
+    "build": {
+        "time": 24,
+        "cost": -500,
+        "area": 0.0006,
+        "water": -0.005,
+        "degration": 0.0005,
+        "products": {
+            "required": [],
+            "optional": []
+        }
+    },
+    "production": {
+        "time": 48,
+        "cost": -50,
+        "area": 0,
+        "water": -0.0005,
+        "degration": -0.00003,
+        "batch": 4,
+        "inputs": [
+            { "id": 124, "qnt": 100 }
+        ],
+        "outputs": [
+            { "id": 300, "qnt": [20, 50], "lottery": 25 },
+            { "id": 301, "qnt": [15, 20], "lottery": 25 },
+            { "id": 302, "qnt": [7, 10], "lottery": 25 },
+            { "id": 303, "qnt": [1, 2], "lottery": 25 }
+        ]
+    },
+    "images": ["p5/5.jpg"]
+}

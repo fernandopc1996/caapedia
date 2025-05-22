@@ -1,0 +1,11 @@
+{
+    "id": 102,
+    "type": 3,
+    "name": "Broto de Sisal",
+    "unit": "Unidade",
+    "unit_value": 1.00,
+    "salable": true,
+    "description": "O broto de sisal é a muda utilizada na expansão dos cultivos dessa planta resistente do semiárido. Essencial para o replantio, ele representa o início do ciclo produtivo, sendo fundamental na cadeia da agricultura familiar ligada à produção de fibras.",
+    "source": "",
+    "images": ["t3/102.png"]
+}

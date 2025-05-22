@@ -1,0 +1,14 @@
+{
+    "id": 52,
+    "type": 4,
+    "name": "Cabrito",
+    "unit": "KG",
+    "unit_value": 100.00,
+    "salable": true,
+    "description": "Cabrito é o filhote da cabra ou do bode, criado tradicionalmente no semiárido. É resistente, adaptado ao clima seco e muito valorizado na pecuária de subsistência e corte.",
+    "source": "https://caapedia.fernandopc.dev.br/caapedia/referências/criação/caprinos",
+    
+    "images": [
+        "t4/52.png"
+    ]
+}

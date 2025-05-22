@@ -83,7 +83,7 @@ class ProductionService
                 'player_id'            => $player->id,
                 'player_character_id'  => $playerCharacterId,
                 'coid'                 => $coid,
-                'type_area'            => $typeArea,
+                'type_area'            => $productionSetting->type ?? $typeArea,
                 'start_build'          => $player->last_datetime,
                 'end_build'            => Carbon::parse($player->last_datetime)->addHours($productionSetting->build['time']),
                 'completed'            => false,
@@ -112,9 +112,14 @@ class ProductionService
     }
 
 
-    public function createProductionAction(PlayerProduction $playerProduction, int $playerCharacterId, int $coid, int $typeArea = 0): bool|string
+    public function createProductionAction(
+        PlayerProduction $playerProduction, 
+        int $playerCharacterId, 
+        int $coid, 
+        int $multiplierQuantity = 1
+    ): bool|string 
     {
-        $result = DB::transaction(function () use ($playerProduction, $playerCharacterId, $coid, $typeArea) {
+        $result = DB::transaction(function () use ($playerProduction, $playerCharacterId, $coid, $multiplierQuantity) {
             $player = $this->getPlayerFromSession();
 
             if (!$player) {
@@ -132,22 +137,63 @@ class ProductionService
 
             $productionSetting = $playerProduction->game_data;
 
-            if (
-                $player->amount < abs($productionSetting->production['cost']) ||
-                $player->water < abs($productionSetting->production['water'])
-            ) {
-                return 'Recursos insuficientes.';
+            if (!$productionSetting) {
+                return 'Configuração de produção não encontrada.';
             }
 
-            $player->amount   += $productionSetting->production['cost'];
-            $player->water    += $productionSetting->production['water'];
-            $player->area     += $productionSetting->production['area'];
-            $player->degration+= $productionSetting->production['degration'];
+            // Verificar recursos básicos (dinheiro e água)
+            if (
+                $player->amount < abs($productionSetting->production['cost']) * $multiplierQuantity ||
+                $player->water < abs($productionSetting->production['water']) * $multiplierQuantity
+            ) {
+                return 'Recursos insuficientes (Montante ou água).';
+            }
+
+            // Verificar se possui inputs (se houver)
+            if (isset($productionSetting->production['inputs']) && is_array($productionSetting->production['inputs'])) {
+                foreach ($productionSetting->production['inputs'] as $input) {
+                    $requiredQnt = $input->qnt * $multiplierQuantity;
+
+                    $balance = PlayerProduct::where('player_id', $player->id)
+                        ->where('coid', $input->id)
+                        ->selectRaw("SUM(CASE WHEN op = 'C' THEN amount ELSE -amount END) as balance")
+                        ->value('balance') ?? 0;
+
+                    if ($balance < $requiredQnt) {
+                        $productName = app(ProductRepository::class)->find($input->id)?->name ?? 'Desconhecido';
+                        return "Produto insuficiente: {$productName}.";
+                    }
+                }
+            }
+
+            // Débito dos inputs (se houver)
+            if (isset($productionSetting->production['inputs']) && is_array($productionSetting->production['inputs'])) {
+                foreach ($productionSetting->production['inputs'] as $input) {
+                    PlayerProduct::create([
+                        'player_id'            => $player->id,
+                        'player_production_id' => $playerProduction->id,
+                        'coid'                 => $input->id,
+                        'op'                   => 'D',
+                        'amount'               => $input->qnt * $multiplierQuantity,
+                        'unit_value'           => 0,
+                        'start'                => $player->last_datetime,
+                        'end'                  => $player->last_datetime,
+                    ]);
+                }
+            }
+
+            // Atualizar recursos do jogador
+            $player->amount    += $productionSetting->production['cost'] * $multiplierQuantity;
+            $player->water     += $productionSetting->production['water'] * $multiplierQuantity;
+            $player->area      += ($productionSetting->production['area'] ?? 0) * $multiplierQuantity;
+            $player->degration += ($productionSetting->production['degration'] ?? 0) * $multiplierQuantity;
             $player->save();
 
+            // Atualizar status do personagem
             $playerCharacter->working++;
             $playerCharacter->save();
 
+            // Criar a ação de produção
             PlayerAction::create([
                 'player_id'            => $player->id,
                 'player_production_id' => $playerProduction->id,
@@ -155,10 +201,11 @@ class ProductionService
                 'completed'            => false,
                 'start'                => $player->last_datetime,
                 'end'                  => Carbon::parse($player->last_datetime)->addHours($productionSetting->production['time']),
-                'area'                 => $productionSetting->production['area'],
-                'degration'            => $productionSetting->production['degration'],
-                'water'                => $productionSetting->production['water'],
-                'amount'               => $productionSetting->production['cost'],
+                'area'                 => ($productionSetting->production['area'] ?? 0) * $multiplierQuantity,
+                'degration'            => ($productionSetting->production['degration'] ?? 0) * $multiplierQuantity,
+                'water'                => $productionSetting->production['water'] * $multiplierQuantity,
+                'amount'               => $productionSetting->production['cost'] * $multiplierQuantity,
+                'multiplier_quantity'  => $multiplierQuantity,
             ]);
 
             return $player;
@@ -169,7 +216,6 @@ class ProductionService
         }
 
         $this->updatePlayerInSession($result->fresh(['playerCharacters']));
-
         return true;
     }
 
