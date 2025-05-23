@@ -1,66 +1,97 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🌵 Caapedia - Jogo de Simulação e Sustentabilidade no Semiárido
 
-## About Laravel
+Caapedia é um jogo de simulação focado na gestão de recursos, sustentabilidade e cultura da agricultura familiar no semiárido brasileiro. O projeto tem como objetivo promover o conhecimento sobre práticas sustentáveis, economia local e manejo dos recursos naturais, valorizando a cultura e os saberes da região.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+> 🔗 Site do projeto: [caapedia.fernandopc.dev.br](https://caapedia.fernandopc.dev.br)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> 🔗 Jogar: [jogarcaapedia.fernandopc.com.br](https://jogarcaapedia.fernandopc.com.br)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Tecnologias Utilizadas
 
-## Learning Laravel
+- [Laravel](https://laravel.com/) - Backend robusto em PHP
+- [Livewire](https://livewire.laravel.com/) - Componentização reativa para Laravel
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitário
+- [DaisyUI](https://daisyui.com/) - Componentes UI sobre Tailwind
+- [Mary UI](https://mary-ui.com/) - Extensões UI para aplicações modernas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🎮 Funcionalidades
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 🌾 Simulação de produção agrícola e pecuária
+- 🏗️ Construção de infraestruturas para criação e manufatura
+- 💧 Gestão de recursos como água e degradação ambiental
+- 💰 Sistema financeiro com fluxo de caixa, empréstimos e comércio de produtos
+- 🧑 Personagens e histórias interativas
+- 🌍 Sustentabilidade e impacto ambiental como mecânica central
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🏗️ Instalação e Desenvolvimento Local
 
-## Laravel Sponsors
+### Pré-requisitos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP 8.2+
+- Composer
+- Node.js 18+
+- MySQL ou MariaDB
 
-### Premium Partners
+### Instalação
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Clone o projeto:
 
-## Contributing
+```bash
+git clone https://github.com/seu-usuario/caapedia.git
+cd caapedia
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Instale as dependências PHP:
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Instale as dependências JS e compile os assets:
 
-## Security Vulnerabilities
+```bash
+npm install
+npm run dev
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Configure o ambiente:
 
-## License
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Configure o banco de dados no arquivo `.env` e execute as migrations:
+
+```bash
+php artisan migrate --seed
+```
+
+Inicie o servidor:
+
+```bash
+php artisan serve
+```
+
+Acesse em: [http://localhost:8000](http://localhost:8000)
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença [MIT](LICENSE.md).
+
+## 🔒 Políticas e Privacidade
+
+O Caapedia respeita seus dados e sua privacidade. Consulte nossas [Políticas de Privacidade](https://caapedia.fernandopc.dev.br/caapedia/termos/pol%C3%ADticas-de-privacidade) para mais informações.
+
+## 🙌 Contribuição
+
+Sinta-se livre para contribuir! Envie pull requests, abra issues ou sugira melhorias.
+
+## 💡 Referências e Agradecimentos
+
+- [Sobre o Caapedia](https://caapedia.fernandopc.dev.br/caapedia/sobre)
+- Inspirado na cultura, saberes e práticas da agricultura familiar no semiárido brasileiro.
+
+---
+Desenvolvido com 💚 por [Fernando Pereira Coelho](https://github.com/fernandopc1996)

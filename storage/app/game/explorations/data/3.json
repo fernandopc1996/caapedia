@@ -1,0 +1,25 @@
+{
+  "id": 3,
+  "name": "Coletar Umbu",
+  "description": "Atividade de coleta de umbu nas próximidades, aproveitando a generosidade dos umbuzeiros. Além do fruto, é possível encontrar outros recursos naturais entre a vegetação nativa da Caatinga.",
+  "source": "",
+  "exploration": {
+    "time": 24,
+    "cost": -10,
+    "area": 0,
+    "water": -0.003,
+    "degration": -0.00008,
+    "batch": 10,
+    "products": [
+      {
+        "id": 103, "qnt": [8, 15], "lottery": 99
+      },
+      {
+        "id": 52, "qnt": [1, 1], "lottery": 1
+      }
+    ]
+  },
+  "images": [
+    "e3/3.jpg"
+  ]
+}
