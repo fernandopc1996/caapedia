@@ -1,0 +1,11 @@
+{
+    "id": 400,
+    "type": 3,
+    "name": "Doce de Umbu",
+    "unit": "Kg",
+    "unit_value": 1.50,
+    "salable": true,
+    "description": "O Doce de Umbu é uma iguaria tradicional do semiárido, produzido a partir da polpa do umbu. Seu sabor agridoce encanta gerações e representa uma das formas mais populares de aproveitar o fruto, gerando renda para as famílias da agricultura familiar.",
+    "source": "",
+    "images": ["t3/400.png"]
+}

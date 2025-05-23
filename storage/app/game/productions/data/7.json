@@ -1,0 +1,35 @@
+{
+    "id": 7,
+    "type": 3,
+    "name": "Casa do Leite de Cabra",
+    "description": "Espaço destinado à transformação do umbu em produtos como doces, geleias, polpas, umbuzada, compotas, licores e farinha da casca, valorizando o trabalho artesanal e sustentável da agricultura familiar no semiárido.",
+    "source": "https://caapedia.fernandopc.dev.br/caapedia/refer%C3%AAncias/manufatura/manufatura-do-leite-de-cabra",
+    "build": {
+        "time": 72,
+        "cost": -1000,
+        "area": 0.0006,
+        "water": -0.100,
+        "degration": 0.0005,
+        "products": {
+            "required": [],
+            "optional": []
+        }
+    },
+    "production": {
+        "time": 48,
+        "cost": -200,
+        "area": 0,
+        "water": -0.500,
+        "degration": -0.00003,
+        "batch": 3,
+        "inputs": [
+            { "id": 50, "qnt": 100 }
+        ],
+        "outputs": [
+            { "id": 450, "qnt": [10, 20], "lottery": 40 },   
+            { "id": 451, "qnt": [15, 25], "lottery": 40 },   
+            { "id": 452, "qnt": [3, 5], "lottery": 20 } 
+        ]
+    },
+    "images": ["p7/7.jpg"]
+}

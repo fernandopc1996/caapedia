@@ -8,6 +8,7 @@ use App\Repositories\ProductionRepository;
 use App\Models\Game\PlayerProduction;
 
 class ProductionCreate extends Component{
+    
     #[Title('Construir')] 
     public $productions;
     public ?int $coid = null;

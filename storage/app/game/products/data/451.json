@@ -1,0 +1,11 @@
+{
+    "id": 451,
+    "type": 3,
+    "name": "Doce de Leite de Cabra",
+    "unit": "Kg",
+    "unit_value": 3.00,
+    "salable": true,
+    "description": "O Doce de Leite de Cabra é um produto artesanal de sabor marcante e textura cremosa. Além de nutritivo e de fácil digestão, é uma excelente alternativa para agregar valor à produção da agricultura familiar, utilizando o leite de cabra como principal matéria-prima.",
+    "source": "",
+    "images": ["t4/451.png"]
+}

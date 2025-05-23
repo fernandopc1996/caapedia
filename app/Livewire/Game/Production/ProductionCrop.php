@@ -3,6 +3,7 @@
 namespace App\Livewire\Game\Production;
 
 use Livewire\Component;
+use Livewire\Attributes\Title;
 use Illuminate\Support\Facades\Session;
 use App\Services\Game\Production\ProductionService;
 use App\Models\Game\{Player, PlayerProduction};
@@ -15,6 +16,8 @@ use Mary\Traits\Toast;
 class ProductionCrop extends Component
 {
     use Toast, LoadsPlayerFromSession;
+
+    #[Title('Produção')] 
     public ?PlayerProduction $production = null;
     public ?Player $player = null;
     public $crops = [];
