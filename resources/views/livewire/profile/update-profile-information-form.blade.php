@@ -80,6 +80,18 @@ new class extends Component {
         </x-slot:actions>
     </x-mary-header>
 
+    @if ($errors->has('google'))
+        <div class="my-4 p-4 border-l-4 border-red-500 bg-red-100 rounded-md flex items-start gap-4 shadow">
+            <x-mary-icon name="fas.exclamation-circle" class="w-6 h-6 text-red-600 mt-1" />
+            <div class="flex-1">
+                <h4 class="text-red-800 font-semibold mb-1">Erro na vinculação do Google</h4>
+                <p class="text-sm text-red-800">
+                    {{ $errors->first('google') }}
+                </p>
+            </div>
+        </div>
+    @endif
+
     @if (is_null(Auth::user()->google_email))
     <div class="my-6 p-4 border-l-4 border-yellow-500 bg-yellow-100 rounded-md flex items-start gap-4 shadow">
         <x-mary-icon name="fas.exclamation-triangle" class="w-6 h-6 text-yellow-600 mt-1" />

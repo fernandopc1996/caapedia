@@ -77,6 +77,10 @@
                     @endif
 
                     <x-mary-menu-separator />
+
+                    @if(isset($player) && \Illuminate\Support\Carbon::parse($player->last_datetime)->format('Y') > 1995)
+                    <x-mary-menu-item title="Pesquisa" icon="fas.magnifying-glass-chart" class="glass-shine" link="https://forms.gle/bpgdnTiEBNBvarog8" external/>
+                    @endif
                     
                     @if(!isset($player) || $player->finished == true)
                     <x-mary-menu-item title="Criar personagem" icon="far.plus-square" link="{{route('player.create')}}" />
@@ -92,6 +96,9 @@
                             @endif
                         </div>
                     </x-mary-menu-item>
+
+                    <x-mary-menu-item title="Suporte" icon="fas.file-circle-exclamation" link="https://forms.gle/Dh6umAMxiGixYGmb8" external/>
+
                     @can('access_admin_panel')
                     <x-mary-menu-sub title="Configurações" icon="o-cog-6-tooth">
                         <x-mary-menu-item title="Contas" icon="fas.users-gear" link="####" />

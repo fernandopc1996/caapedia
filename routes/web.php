@@ -19,9 +19,12 @@ use App\Livewire\Game\Story\{EventsView};
 
 use App\Livewire\General\Person\{PersonIndexPage, PersonFormPage};
 use App\Livewire\General\Score\{RankingView};
+use App\Livewire\General\{PreloadResources};
 
 Route::view('/', 'welcome');
 Route::permanentRedirect('/login', '/');
+
+Route::view('/credits', 'credits')->name('credits');
 
 Route::prefix('guest')->controller(GuestUserController::class)->group(function () {
     Route::get('/create', 'create')->name('guest.create');
@@ -84,6 +87,8 @@ Route::middleware(['auth'])->group(function () {
     });
     
     Route::prefix('general')->group(function () {
+        Route::get('/preload', PreloadResources::class)->name('general.preload');
+
         Route::prefix('score')->group(function () {
             Route::get('/ranking', RankingView::class)->name('general.score.ranking');
         });

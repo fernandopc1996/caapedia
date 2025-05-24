@@ -49,6 +49,7 @@
                 <a target="_blank" href="https://caapedia.fernandopc.dev.br/caapedia/sobre" class="text-white hover:text-gray-300">Sobre</a>
                 <a target="_blank" href="https://caapedia.fernandopc.dev.br/caapedia/termos/termos-de-uso" class="text-white hover:text-gray-300">Termos de Uso</a>
                 <a target="_blank" href="https://caapedia.fernandopc.dev.br/caapedia/termos/pol%C3%ADticas-de-privacidade" class="text-white hover:text-gray-300">Políticas de Privacidade</a>
+                <a target="_blank" href="https://caapedia.fernandopc.dev.br/caapedia/cr%C3%A9ditos" class="text-white hover:text-gray-300">Créditos</a>
             </div>
 
             <!-- Logos -->

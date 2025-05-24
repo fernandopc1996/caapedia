@@ -16,7 +16,7 @@ class GuestUserController extends Controller
 {
     public function create(Request $request){
         
-        if(Auth::check()) return redirect()->route('story.events');
+        if(Auth::check()) return redirect()->route('general.preload');
 
         $user = new User();
         $faker = Faker::create();
@@ -26,6 +26,6 @@ class GuestUserController extends Controller
         $user->save();
 
         Auth::login($user, $remember = true);
-        return redirect()->route('story.events');
+        return redirect()->route('general.preload');
     }
 }
