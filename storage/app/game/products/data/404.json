@@ -1,0 +1,11 @@
+{
+    "id": 404,
+    "type": 3,
+    "name": "Geleia de Maracujá da Caatinga",
+    "unit": "KG",
+    "unit_value": 9.00,
+    "salable": true,
+    "description": "A geleia de maracujá da Caatinga é um produto artesanal, elaborado a partir da polpa do maracujá nativo (Passiflora cincinnata). De sabor marcante e levemente ácido, preserva as características únicas do fruto, sendo uma opção saudável e saborosa, rica em nutrientes e elaborada pela agricultura familiar do semiárido.",
+    "source": "",
+    "images": ["t3/404.png"]
+}

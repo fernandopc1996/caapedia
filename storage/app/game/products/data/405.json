@@ -1,0 +1,11 @@
+{
+    "id": 405,
+    "type": 3,
+    "name": "Licor de Maracujá da Caatinga",
+    "unit": "LT",
+    "unit_value": 25.00,
+    "salable": true,
+    "description": "O licor de maracujá da Caatinga é uma bebida artesanal, elaborada a partir da polpa do maracujá nativo (Passiflora cincinnata). De sabor exótico, levemente ácido e doce, preserva os aromas característicos do fruto, sendo uma expressão da cultura e dos saberes da agricultura familiar do semiárido.",
+    "source": "",
+    "images": ["t3/405.png"]
+}

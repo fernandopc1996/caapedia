@@ -25,7 +25,7 @@
         
         <div class="w-full">
             <span class="text-xs border border-black px-2 py-0.5 rounded-md font-bold">{{ $item->name }}</span>
-            <h2 class="text-xl font-bold">{{ $title }}</h2>
+            <h2 class="text-xl font-bold truncate">{{ $title }}</h2>
             <p class="text-sm text-gray-600">{{ $statusLabel }}</p>
         </div>
 

@@ -1,5 +1,8 @@
 <div>
     <x-layout.header title="Estoque" />
+    <p class="text-sm text-gray-800 mb-4">
+        No estoque você pode visualizar, gerenciar e vender os produtos armazenados para obter outros recursos.
+    </p>
     <div class="flex justify-end mb-5">
         <x-mary-input wire:model.live="search" icon="s-magnifying-glass" 
         placeholder="Procurar" clearable class="w-full lg:w-64"/>

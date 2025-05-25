@@ -21,16 +21,16 @@ use App\Livewire\General\Person\{PersonIndexPage, PersonFormPage};
 use App\Livewire\General\Score\{RankingView};
 use App\Livewire\General\{PreloadResources};
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->middleware(['throttle:10,1']);
 Route::permanentRedirect('/login', '/');
 
-Route::view('/credits', 'credits')->name('credits');
+Route::view('/credits', 'credits')->middleware(['throttle:10,1'])->name('credits');
 
-Route::prefix('guest')->controller(GuestUserController::class)->group(function () {
+Route::prefix('guest')->middleware(['throttle:10,1'])->controller(GuestUserController::class)->group(function () {
     Route::get('/create', 'create')->name('guest.create');
 });
 
-Route::controller(GoogleLoginController::class)->group(function () {
+Route::controller(GoogleLoginController::class)->middleware(['throttle:10,1'])->group(function () {
     Route::get('/google/redirect', 'redirectToGoogle')->name('google.redirect');
     Route::get('/google/callback', 'handleGoogleCallback')->name('google.callback');
 });
@@ -86,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{path}', 'getImage')->name('get.image')->where('path', '.*'); 
     });
     
-    Route::prefix('general')->group(function () {
+    Route::prefix('general')->middleware(['throttle:30,1'])->group(function () {
         Route::get('/preload', PreloadResources::class)->name('general.preload');
 
         Route::prefix('score')->group(function () {
@@ -101,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
 });   
 
 Route::view('profile', 'profile')
-    ->middleware(['auth'])
+    ->middleware(['auth', 'throttle:10,1'])
     ->name('profile');
 
 require __DIR__.'/auth.php';

@@ -58,18 +58,19 @@
                                     icon="fas.user-friends" title="Pessoas"/>
                         <x-menu.button-row href="{{route('production.manage')}}" 
                                     icon="fas.cubes" title="Produção"/>
-                        <x-menu.button-row href="{{route('inventory.manage')}}" 
-                                    icon="fas.warehouse" title="Estoque"/>
-                        <x-menu.button-row href="{{route('market.manage')}}" 
-                                    icon="fas.cash-register" title="Comércio"/>
-                        <x-menu.button-row href="{{route('explore.manage')}}"
+                         <x-menu.button-row href="{{route('explore.manage')}}"
                                     icon="fas.leaf" title="Explorar"/>
+                        <x-menu.button-row href="{{route('inventory.manage')}}" 
+                                    icon="fas.warehouse" title="Estoque" tag="Vender"/>
+                        <x-menu.button-row href="{{route('market.manage')}}" 
+                                    icon="fas.cash-register" title="Comércio" tag="Comprar"/>
+                       
                         <x-menu.button-row href="{{route('finance.manage')}}" 
                                     icon="fas.piggy-bank" title="Finanças"/>
                         <x-menu.button-row href="{{route('news.newspaper')}}" 
-                                    icon="fas.newspaper" title="Notícias" :disabled="true"/>
+                                    icon="fas.newspaper" title="Notícias" :disabled="true" tag="Em breve"/>
                         <x-menu.button-row href="#" 
-                                    icon="fas.school" title="Educação" :disabled="true"/>
+                                    icon="fas.school" title="Educação" :disabled="true" tag="Em breve"/>
                                     
                         
                     </div>

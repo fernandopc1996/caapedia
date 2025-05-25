@@ -1,0 +1,11 @@
+{
+    "id": 406,
+    "type": 3,
+    "name": "Iogurte de Maracujá da Caatinga",
+    "unit": "LT",
+    "unit_value": 7.00,
+    "salable": true,
+    "description": "O iogurte de maracujá da Caatinga é um produto artesanal, elaborado com leite e polpa do maracujá nativo (Passiflora cincinnata). Rico em probióticos, com sabor suave e aroma marcante, combina os benefícios do leite com os nutrientes e compostos antioxidantes do fruto, fortalecendo a renda da agricultura familiar no semiárido.",
+    "source": "",
+    "images": ["t3/406.png"]
+}

@@ -1,5 +1,8 @@
 <div>
     <x-layout.header title="Comércio"/>
+    <p class="text-sm text-gray-800 mb-4">
+        No comércio você pode adquirir recursos e insumos necessários para sua produção e desenvolvimento no jogo.
+    </p>
     <div class="flex justify-end mb-5">
         <x-mary-input wire:model.live="search" icon="s-magnifying-glass" 
         placeholder="Procurar" clearable class="w-full lg:w-64"/>

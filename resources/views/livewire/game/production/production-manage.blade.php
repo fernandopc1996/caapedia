@@ -1,7 +1,7 @@
 <div>
     <x-layout.header title="Produção" />
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <x-buttons.big href="{{ route('production.create') }}" wire:navigate>
             <div class="flex-none p-4">
                 <x-mary-icon name="o-plus" class="h-20" />
