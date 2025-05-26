@@ -2,7 +2,7 @@
     "id": 100,
     "type": 2,
     "name": "Sementes de milho híbrido",
-    "unit": "Kg",
+    "unit": "KG",
     "unit_value": 25.00,
     "salable": true,
     "description": "As sementes de milho híbrido possuem alto potencial genético que oferecem germinação uniforme, resistência a pragas e doenças, além de excelente adaptação a diferentes condições climáticas e de solo.",

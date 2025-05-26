@@ -12,7 +12,7 @@
     "batch": 10,
     "products": [
       {
-        "id": 103, "qnt": [8, 15], "lottery": 99
+        "id": 103, "qnt": [3, 7], "lottery": 99
       },
       {
         "id": 52, "qnt": [1, 1], "lottery": 1

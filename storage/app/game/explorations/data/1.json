@@ -12,20 +12,13 @@
         "batch": 8,
         "products": [
             {
-                "id": 3,
-                "qnt": [
-                    1,
-                    2
-                ],
-                "lottery": 70
+                "id": 102, "qnt": [10, 20], "lottery": 20
             },
             {
-                "id": 4,
-                "qnt": [
-                    1,
-                    2
-                ],
-                "lottery": 30
+                "id": 103, "qnt": [1, 3], "lottery": 50
+            },
+            {
+                "id": 104, "qnt": [1, 2], "lottery": 30
             }
         ]
     },

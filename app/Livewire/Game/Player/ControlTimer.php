@@ -28,6 +28,7 @@ class ControlTimer extends Component{
         $this->player->save();
         $this->updatePlayerInSession($this->player);
         $this->dispatch('timer-mode-updated', startTime: $this->player->last_datetime, mode: $this->player->mode_time); 
+        $this->dispatch('playerUpdated');
     }
 
     public function mount(){

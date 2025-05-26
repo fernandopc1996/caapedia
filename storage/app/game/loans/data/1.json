@@ -18,7 +18,7 @@
       "24": 0.04
     },
     "late_fee": 0.03,
-    "min_trust": 1,
+    "min_trust": 0.8,
     "requires_production": false
   },
   "images": [

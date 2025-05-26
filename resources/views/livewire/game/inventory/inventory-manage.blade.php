@@ -18,7 +18,7 @@
         @endscope
         @scope('cell_sell', $product)
             <x-mary-button icon="fas.arrow-right-from-bracket" x-on:click="toggleExpand({{$product->coid}})" 
-                label="Vender" spinner class="btn-sm" />
+                label="Vender" spinner class="btn-primary btn-outline btn-sm" />
         @endscope
         @scope('expansion', $product)
         <div class="flex justify-center">
