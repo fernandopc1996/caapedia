@@ -1,0 +1,21 @@
+{
+    "id": 6,
+    "type": "dialogue",
+    "character_id": 4,
+    "character_image": "front_partial",
+    "text": "Só para lembrar: o Caapedia ainda está em fase experimental. Isso significa que podem ocorrer mudanças inesperadas e alguns problemas durante o uso.",
+    "event": "Recursos iniciais",
+    "images": ["t1/1.jpg"],
+    "choices": [
+        {
+            "text": "Eu entendo",
+            "description": null,
+            "actions": [
+                {
+                    "type": "branch_to",
+                    "target_id": null
+                }
+            ]
+        }
+    ]
+}
