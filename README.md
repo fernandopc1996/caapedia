@@ -1,4 +1,3 @@
-
 # 🌵 Caapedia - Jogo de Simulação e Sustentabilidade no Semiárido
 
 Caapedia é um jogo de simulação focado na gestão de recursos, sustentabilidade e cultura da agricultura familiar no semiárido brasileiro. O projeto tem como objetivo promover o conhecimento sobre práticas sustentáveis, economia local e manejo dos recursos naturais, valorizando a cultura e os saberes da região.
@@ -84,6 +83,10 @@ Sinta-se livre para contribuir! Envie pull requests, abra issues ou sugira melho
 
 - [Sobre o Caapedia](https://caapedia.fernandopc.dev.br/caapedia/sobre)
 - Inspirado na cultura, saberes e práticas da agricultura familiar no semiárido brasileiro.
+
+## 🔒 INPI Registro de Software
+
+- BR 51 2025 002388-0 
 
 ---
 Desenvolvido com 💚 por [Fernando Pereira Coelho](https://github.com/fernandopc1996)
