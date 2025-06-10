@@ -68,14 +68,6 @@ Configure o banco de dados no arquivo `.env` e execute as migrations:
 php artisan migrate --seed
 ```
 
-Inicie o servidor:
-
-```bash
-php artisan serve
-```
-
-Acesse em: [http://localhost:8000](http://localhost:8000)
-
 ## 📄 Licença
 
 Este projeto está licenciado sob a licença [MIT](LICENSE.md).

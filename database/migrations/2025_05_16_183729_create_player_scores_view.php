@@ -11,12 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $isSqlite = DB::getDriverName() === 'sqlite';
+
+        $datediff = $isSqlite
+            ? "CAST(julianday(last_datetime) - julianday('1995-01-01') AS INTEGER)"
+            : "DATEDIFF(last_datetime, '1995-01-01')";
+
         DB::statement("
             CREATE VIEW player_scores_view AS
             SELECT
                 players.id AS player_id,
                 RANK() OVER (ORDER BY (
-                    DATEDIFF(last_datetime, '1995-01-01') +
+                    $datediff +
                     area * 1000 -
                     degration * 1000 -
                     rate_sell * 100 -
@@ -26,7 +32,7 @@ return new class extends Migration
                 last_datetime,
                 finished,
                 (
-                    DATEDIFF(last_datetime, '1995-01-01') +
+                    $datediff +
                     area * 1000 -
                     degration * 1000 -
                     rate_sell * 100 -
