@@ -1,0 +1,39 @@
+@keyframes shine-bounce {
+  0% {
+    background-position: -200% 0;
+  }
+
+  50% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-text-glow {
+  background: linear-gradient(90deg,
+      #000 0%,
+      #ffffff 45%,
+      #00ff62 50%,
+      #ffffff 55%,
+      #000 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine-bounce 5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    text-shadow: 0 0 5px #ffffff, 0 0 10px transparent;
+  }
+}
+
+.animate-text-glow-2 {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

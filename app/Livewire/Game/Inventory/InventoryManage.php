@@ -34,6 +34,9 @@ class InventoryManage extends Component
 
     public array $searchCoid = [];
 
+    public bool $showModal = false;
+    public ?object $modalProduct = null;
+
     public function updated($property): void
     {
         if (! is_array($property) && $property != "") {
@@ -41,15 +44,38 @@ class InventoryManage extends Component
         }
     }
 
-    public function toggleExpanded($coid)
+    public function openModal($coid)
     {
-        if (($key = array_search($coid, $this->expanded)) !== false) {
-            unset($this->expanded[$key]);
-            $this->expanded = array_values($this->expanded);
-        } else {
-            $this->expanded[] = $coid;
+        $productRepository = app(\App\Repositories\ProductRepository::class);
+
+        $balance = PlayerProduct::where('player_id', $this->player->id)
+            ->where('coid', $coid)
+            ->selectRaw("SUM(CASE WHEN op = 'C' THEN amount ELSE -amount END) as balance")
+            ->value('balance');
+
+        if (!$balance) {
+            $this->error('Produto sem saldo em estoque.');
+            return;
         }
+
+        $gameData = $productRepository->find($coid);
+
+        if (!$gameData) {
+            $this->error('Produto não encontrado.');
+            return;
+        }
+
+        $modalProduct = new \stdClass();
+        $modalProduct->coid = $coid;
+        $modalProduct->balance = $balance;
+        $modalProduct->game_data = $gameData;
+        $modalProduct->unit_value = $this->player->getInflationValue($gameData->unit_value, "D");
+        $modalProduct->unit = $gameData->unit;
+
+        $this->modalProduct = $modalProduct;
+        $this->showModal = true;
     }
+
 
     public function sell($coid, $qnt){
         try {
@@ -61,6 +87,8 @@ class InventoryManage extends Component
                     $this->error('Produto não encontrado.');
                     throw new \Exception('Produto não encontrado.');
                 }
+
+                $this->showModal = false;
 
                 $unitValue = $this->player->getInflationValue($productData->unit_value, 'D');
 

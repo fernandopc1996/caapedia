@@ -1,12 +1,12 @@
 {
     "id": 2,
     "type": 1,
-    "name": "Galinha 2",
+    "name": "Galinha B",
     "unit": "UN",
     "unit_value": 7.00,
     "salable": true,
-    "description": "A avicultura no Nordeste brasileiro é desenvolvida de forma rudimentar, com baixa produtividade",
-    "source": "https://ovosite.com.br/nordeste-aumenta-producao-de-ovos-pernambuco-e-ceara-se-destacam-no-ranking-nacional",
+    "description": "A galinha representa uma fonte acessível de proteína e renda, sendo parte importante da economia rural, utilizado tanto para consumo quanto para comercialização em pequena escala",
+    "source": null,
     
     
     "images": ["pr2/02.png"]

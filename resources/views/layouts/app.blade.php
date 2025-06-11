@@ -155,7 +155,7 @@
             if (logo) {
                 logo.classList.add('animate-pulse-scale-small');
             }
-        }, 60000);
+        }, 1000);
         </script>
     </body>
 </html>

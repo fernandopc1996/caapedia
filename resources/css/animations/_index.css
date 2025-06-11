@@ -2,6 +2,10 @@
 @import './fade.css';
 @import './pulse.css';
 
+@import './text-pulse.css';
+@import './text-glow.css';
+
 @import './clock.css';
 
 @import './glass-shine.css';
+@import './typing.css';

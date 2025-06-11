@@ -1,12 +1,12 @@
 {
     "id": 4,
     "type": 2,
-    "name": "Ovo 2",
+    "name": "Ovo B",
     "unit": "UN",
     "unit_value": 0.25,
     "salable": true,
-    "description": "A avicultura no Nordeste brasileiro é desenvolvida de forma rudimentar, com baixa produtividade",
-    "source": "https://ovosite.com.br/nordeste-aumenta-producao-de-ovos-pernambuco-e-ceara-se-destacam-no-ranking-nacional",
+    "description": "Alimento versátil e nutritivo, o ovo é um produto comum nas pequenas criações do semiárido",
+    "source": null,
     
     "images": ["pr4/04.png"]
 }

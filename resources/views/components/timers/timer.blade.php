@@ -1,7 +1,20 @@
+@props(['mode' => 0, 'startTime'])
+
 <div>
+    @php
+
+        $animationClass = match ($mode) {
+            0 => 'animate-text-pulse',
+            1 => 'animate-text-glow-2',
+            2 => 'animate-text-glow-2',
+            default => '',
+        };
+
+    @endphp
+
     <div x-data="appFooterComponent('{{ $startTime }}', {{ $mode }})">
         <div class="text-center">
-            <span x-text="getTime()" class="select-none"></span>
+            <span x-text="getTime()" class="select-none {{$animationClass}}"></span>
         </div>
     </div>
     <script>

@@ -35,6 +35,9 @@ class MarketManage extends Component
 
     public ?Player $player = null;
 
+    public bool $showModal = false;
+    public $modalProduct = null;
+
     public array $expanded = [];
     
     #[Computed]
@@ -59,6 +62,8 @@ class MarketManage extends Component
                     $this->error('Produto não encontrado.');
                     throw new \Exception('Produto não encontrado.');
                 }
+
+                $this->showModal = false;
     
                 $unitValue = $this->player->getInflationValue($productData->unit_value, 'C');
     
@@ -90,6 +95,21 @@ class MarketManage extends Component
             dd($e);
         }
     }    
+
+    public function openModal($id)
+    {
+        $productRepository = app(ProductRepository::class);
+        $product = $productRepository->find($id);
+        if (!$product) {
+            $this->error('Produto não encontrado.');
+            return;
+        }
+
+        $product->unit_value = $this->player->getInflationValue($product->unit_value, "C");
+        $this->modalProduct = $product;
+        $this->showModal = true;
+    }
+
 
     public function mount(){
         $this->player = $this->getPlayerFromSession();

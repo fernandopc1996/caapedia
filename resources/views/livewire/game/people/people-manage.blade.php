@@ -3,7 +3,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @foreach ($characters as $character)
-            <div class="border rounded shadow hover:bg-gray-200/80 hover:duration-300 hover:ease-in hover:z-10 p-4 overflow-x-auto">
+            <div class="border rounded shadow p-4 overflow-x-auto">
                 <div class="flex">
                     <div class="flex-none mr-4">
                         @if ($character->game_data->front_full)
@@ -22,9 +22,11 @@
                             <p class="text-sm text-gray-700">
                                 {{ $character->game_data->description ?? 'Descrição não disponível.' }}
                             </p>
+                            {{--
                             <p class="text-sm text-gray-700">
                                 Idade: {{ $character->game_data->age ?? 'Idade não informada.' }}
                             </p>
+                            --}}
                         </div>
 
                         <div class="mt-4">
@@ -59,7 +61,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <p class="text-gray-500 mt-2">Nenhuma produção ativa para este personagem.</p>
+                                <p class="text-gray-500 mt-2 text-sm">Nenhuma produção ativa para este personagem.</p>
                             @endif
                         </div>
 
@@ -92,7 +94,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <p class="text-gray-500 mt-2">Nenhuma ação ativa para este personagem.</p>
+                                <p class="text-gray-500 mt-2 text-sm">Nenhuma ação ativa para este personagem.</p>
                             @endif
                         </div>
                     </div>

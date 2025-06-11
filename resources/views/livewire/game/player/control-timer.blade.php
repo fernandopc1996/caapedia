@@ -6,9 +6,9 @@
     </div>
 
     <a href="#" @click.prevent="showModal = true">
-        <div class="fixed bottom-5 right-5 w-auto backdrop-blur-3xl border-t border-gray-800 shadow-lg p-4 rounded-lg hover:bg-white/90 hover:px-8">
+        <div class="fixed bottom-5 right-5 w-auto backdrop-blur-3xl border-t border-gray-800 shadow-lg p-4 rounded-lg hover:bg-white/90 hover:px-8 font-bold">
             <div class="flex items-center gap-4">
-                <x-timers.timer startTime="{{ $player->last_datetime }}" mode="{{ $player->mode_time }}" />
+                <x-timers.timer startTime="{{ $player->last_datetime }}" :mode="$player->mode_time" />
                 <x-timers.clock :mode="$player->mode_time" :lastDatetime="$player->last_datetime"/>
             </div>
         </div>
@@ -23,8 +23,8 @@
         @click.self="showModal = false"
     >
         <div 
-            class="text-gray-800 backdrop-blur-3xl p-6 rounded-lg w-full max-w-sm shadow-xl 
-                   md:absolute md:bottom-24 md:right-5 md:rounded-xl md:w-80"
+            class="text-gray-800 backdrop-blur-3xl p-6 shadow-xl 
+                   absolute bottom-24 right-5 rounded-xl w-80 border"
             x-data
         >
             <h2 class="text-lg font-bold mb-4">Velocidade do tempo</h2>
@@ -33,7 +33,7 @@
                 <a href="#"
                    @click.prevent="showModal = false"
                    wire:click="setTimerMode(0)"
-                   class="flex items-center gap-2 p-2 rounded {{ $player->mode_time == 0 ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-gray-200' }}"
+                   class="flex items-center gap-2 p-2 rounded {{ $player->mode_time == 0 ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-gray-200 font-bold' }}"
                    {{ $player->mode_time == 0 ? 'disabled' : '' }}>
                     <x-mary-icon name="fas.pause" />
                     Pausar
@@ -42,7 +42,7 @@
                 <a href="#"
                    @click.prevent="showModal = false"
                    wire:click="setTimerMode(1)"
-                   class="flex items-center gap-2 p-2 rounded {{ $player->mode_time == 1 ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-gray-200' }}"
+                   class="flex items-center gap-2 p-2 rounded {{ $player->mode_time == 1 ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-gray-200 font-bold' }}"
                    {{ $player->mode_time == 1 ? 'disabled' : '' }}>
                     <x-mary-icon name="fas.angle-right" />
                     Velocidade 1
@@ -51,7 +51,7 @@
                 <a href="#"
                    @click.prevent="showModal = false"
                    wire:click="setTimerMode(2)"
-                   class="flex items-center gap-2 p-2 rounded {{ $player->mode_time == 2 ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-gray-200' }}"
+                   class="flex items-center gap-2 p-2 rounded {{ $player->mode_time == 2 ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-gray-200 font-bold' }}"
                    {{ $player->mode_time == 2 ? 'disabled' : '' }}>
                     <x-mary-icon name="fas.angle-double-right" />
                     Velocidade 2

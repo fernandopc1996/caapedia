@@ -1,12 +1,12 @@
 {
     "id": 1,
     "type": 1,
-    "name": "Galinha 1",
+    "name": "Galinha A",
     "unit": "UN",
     "unit_value": 10.00,
     "salable": true,
-    "description": "A avicultura no Nordeste brasileiro é desenvolvida de forma rudimentar, com baixa produtividade",
-    "source": "https://ovosite.com.br/nordeste-aumenta-producao-de-ovos-pernambuco-e-ceara-se-destacam-no-ranking-nacional",
+    "description": "A galinha caipira é criada de forma tradicional em muitas comunidades do semiárido nordestino, desempenhando um papel importante na segurança alimentar e na renda familiar.",
+    "source": null,
     
     
     "images": ["pr1/01.png"]

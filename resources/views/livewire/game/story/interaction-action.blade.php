@@ -20,15 +20,15 @@
                 x-transition:leave="transition ease-in-out duration-500"
                 x-transition:leave-start="opacity-100 translate-y-0"
                 x-transition:leave-end="opacity-0 translate-y-full"
-                class="absolute bottom-0 left-24 md:left-30 right-0 bg-white shadow-lg z-40 pointer-events-auto animate-slide-up">
+                class="absolute bottom-0 left-24 md:left-30 right-0 bg-white shadow-lg z-40 pointer-events-auto animate-slide-up rounded-l-2xl border-l border-t">
 
                 <div class="p-6 pl-25 md:pl-18">
-                    <p class="text-lg italic font-semibold text-gray-800 text-center animate-fade-in-left">
+                    <p class="text-md md:text-lg italic font-semibold text-gray-800 text-center animate-fade-in-left">
                         {{ $parsedText }} 
                         @if(isset($activeStory->link))
                         <span>
                             <a href="{{ $activeStory->link }}" target="_blank"
-                                class="text-white bg-black px-3 py-1 rounded text-sm inline-block font-semibold">
+                                class="text-white bg-black px-3 py-1 rounded text-[10px] md:text-sm inline-block font-semibold">
                                 Clique aqui para detalhes
                             </a>
                         </span>
@@ -39,7 +39,7 @@
                         @foreach ($activeStory->choices as $i => $choice)
                             <button
                                 style="animation-delay: {{ $i * 0.1 }}s"
-                                class="w-full px-4 py-2 italic rounded-md border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring animate-fade-in-left"
+                                class="w-full px-4 py-2 italic rounded-md border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring animate-fade-in-left text-sm md:text-lg"
                                 @click.prevent="
                                     exit = true;
                                     setTimeout(() => { $wire.action(@js($choice->text)) }, 500);
