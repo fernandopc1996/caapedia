@@ -17,7 +17,9 @@
         this.selling = false;
         this.quantity = 0;
     }
-}" class="w-full flex flex-col items-stretch">
+}" 
+wire:key="sell-input-{{ $product->coid }}"
+class="w-full flex flex-col items-stretch">
 
     <!-- Linha de controle de quantidade -->
     <div class="flex w-full">

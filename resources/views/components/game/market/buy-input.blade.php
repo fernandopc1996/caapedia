@@ -17,7 +17,9 @@
             this.buying = false;
         });
     }
-}" class="w-full flex flex-col items-stretch">
+}" 
+wire:key="buy-input-{{ $product->id }}"
+class="w-full flex flex-col items-stretch">
 
     
     <div class="flex w-full">
